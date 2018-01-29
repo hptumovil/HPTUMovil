@@ -12,6 +12,10 @@ export class Items {
     return this.api.get('/items', params);
   }
 
+  getAll(){
+    return this.api.get('/items');
+  }
+
   add(item: Item) {
   }
 
