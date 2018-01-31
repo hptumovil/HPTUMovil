@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers/providers';
+import { servicioMedico } from '../../models/servicioMedico';
+import { serviciosMedicos } from '../../providers/providers';
 
 @IonicPage()
 @Component({
@@ -10,10 +10,10 @@ import { Items } from '../../providers/providers';
   templateUrl: 'list-master.html'
 })
 export class ListMasterPage {
-  currentItems: Item[];
+  currentItems: servicioMedico[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+  constructor(public navCtrl: NavController, public portafolioServicios: serviciosMedicos, public modalCtrl: ModalController) {
+    this.currentItems = this.portafolioServicios.query();
   }
 
   /**
@@ -30,7 +30,7 @@ export class ListMasterPage {
     let addModal = this.modalCtrl.create('ItemCreatePage');
     addModal.onDidDismiss(item => {
       if (item) {
-        this.items.add(item);
+        this.portafolioServicios.add(item);
       }
     })
     addModal.present();
@@ -40,15 +40,15 @@ export class ListMasterPage {
    * Delete an item from the list of items.
    */
   deleteItem(item) {
-    this.items.delete(item);
+    this.portafolioServicios.delete(item);
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
+  openItem(servicio: servicioMedico) {
     this.navCtrl.push('ItemDetailPage', {
-      item: item
+      servicio: servicioMedico
     });
   }
 }
