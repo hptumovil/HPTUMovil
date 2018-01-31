@@ -10,8 +10,9 @@ export const Tab1Root = 'ContentPage';
 export const Tab2Root = 'SearchPage';
 export const Tab3Root = 'ListMasterPage';
 export const Tab4Root = 'SettingsPage';
-export const MapPage = 'MapPage';
-export const ContactPage = 'ContactPage';
 
 //The pages with the others functionalities
+export const MapPage = 'MapPage';
+export const ContactPage = 'ContactPage';
+export const CheckinPage = 'CheckinPage';
 

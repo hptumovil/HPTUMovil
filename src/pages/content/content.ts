@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
-import { Tab2Root, Tab4Root, MapPage, ContactPage } from '../pages';
+import { Tab2Root, Tab4Root, MapPage, ContactPage, CheckinPage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -9,7 +9,7 @@ import { Tab2Root, Tab4Root, MapPage, ContactPage } from '../pages';
   templateUrl: 'content.html'
 })
 export class ContentPage {
-  pages:any [] =[Tab2Root, Tab4Root, MapPage, ContactPage];
+  pages:any [] =[Tab2Root, Tab4Root, MapPage, ContactPage, CheckinPage];
   constructor(public navCtrl: NavController) { }
 
   goToPage(page: number) {
