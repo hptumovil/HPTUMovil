@@ -9,6 +9,7 @@ import { Tab2Root, Tab4Root, MapPage, ContactPage, CheckinPage } from '../pages'
   templateUrl: 'content.html'
 })
 export class ContentPage {
+  //Array of pages to pass to navController
   pages:any [] =[Tab2Root, Tab4Root, MapPage, ContactPage, CheckinPage];
   constructor(public navCtrl: NavController) { }
 
