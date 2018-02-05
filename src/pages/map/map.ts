@@ -72,7 +72,7 @@ export class MapPage {
     directionsDisplay.setPanel(this.directionsPanel.nativeElement);
 
     directionsService.route({
-        origin: {lat: 6.2799226, lng: -75.5718324},
+        origin: this.origin,//{lat: 6.2799226, lng: -75.5718324},
         destination: {lat: 6.2770054, lng: -75.5807295},
         travelMode: google.maps.TravelMode['DRIVING']
     }, (res, status) => {
