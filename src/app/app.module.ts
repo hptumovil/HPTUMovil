@@ -18,6 +18,7 @@ import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { serviciosMedicos } from '../mocks/providers/serviciosMedicos';
+import { RestProvider } from '../providers/rest/rest';
 
 
 // The translate loader needs to know where to load i18n files
@@ -76,7 +77,8 @@ export function provideSettings(storage: Storage) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Network,
     Geolocation,
-    InAppBrowser
+    InAppBrowser,
+    RestProvider
   ]
 })
 export class AppModule { }

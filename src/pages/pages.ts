@@ -15,4 +15,5 @@ export const Tab4Root = 'SettingsPage';
 export const MapPage = 'MapPage';
 export const ContactPage = 'ContactPage';
 export const CheckinPage = 'CheckinPage';
+export const PhysiciansPage = 'PhysiciansPage';
 
