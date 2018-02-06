@@ -16,4 +16,5 @@ export const MapPage = 'MapPage';
 export const ContactPage = 'ContactPage';
 export const CheckinPage = 'CheckinPage';
 export const PhysiciansPage = 'PhysiciansPage';
+export const DonatePage = 'DonatePage';
 
