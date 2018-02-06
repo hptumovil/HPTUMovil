@@ -24,8 +24,7 @@ export class MapPage {
 
   //The GoogleMaps data for api conection goes here
   map: any;
-  mapInitialised: boolean = false;
-  origin = new google.maps.LatLng();
+  mapInitialised: boolean = false;  
   apiKey = 'AIzaSyAuYJr53z_ljCFv7iVbY5YX39HJOXMfIUo';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private network: Network, private geolocation: Geolocation) {    
@@ -54,36 +53,41 @@ export class MapPage {
   }
     
 
-  startNavigating(){
+  startNavigating() {
 
     //Get the current location from the device
-    this.geolocation.getCurrentPosition().then((position) => {
- 
-      this.origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    if (navigator.geolocation) {
+      var options = {
+        enableHighAccuracy: true
+      };
+      navigator.geolocation.getCurrentPosition(position => {
+        console.info('using navigator');
+        console.info(position.coords.latitude);
+        console.info(position.coords.longitude);
 
-    }, (err) => {
-        console.log(err);
-      });
- 
-    let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer;
+        let directionsService = new google.maps.DirectionsService;
+        let directionsDisplay = new google.maps.DirectionsRenderer;
 
-    directionsDisplay.setMap(this.map);
-    directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+        directionsDisplay.setMap(this.map);
+        directionsDisplay.setPanel(this.directionsPanel.nativeElement);
 
-    directionsService.route({
-        origin: this.origin,//{lat: 6.2799226, lng: -75.5718324},
-        destination: {lat: 6.2770054, lng: -75.5807295},
-        travelMode: google.maps.TravelMode['DRIVING']
-    }, (res, status) => {
+        directionsService.route({
+          origin: { lat: position.coords.latitude, lng: position.coords.longitude },
+          destination: { lat: 6.2770054, lng: -75.5807295 },
+          travelMode: google.maps.TravelMode['DRIVING']
+        }, (res, status) => {
 
-        if(status == google.maps.DirectionsStatus.OK){
+          if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(res);
-        } else {
+          } else {
             console.warn(status);
-        }
+          }
 
-    });
+        });        
+      }, error => {
+        console.log(error);
+      }, options);
+    }
 
-}
+  }
 }
