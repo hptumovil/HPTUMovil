@@ -60,7 +60,7 @@ export class MapPage {
       var options = {
         enableHighAccuracy: true
       };
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.watchPosition(position => {
         console.info('using navigator');
         console.info(position.coords.latitude);
         console.info(position.coords.longitude);
