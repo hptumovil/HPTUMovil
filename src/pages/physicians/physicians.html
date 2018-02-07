@@ -14,10 +14,17 @@
 
 
 <ion-content>
-  <ion-list inset>
-    <ion-item *ngFor="let user of users">
-      <h2>{{user.firstname}} {{user.secondname}} {{user.lastname}}</h2>
-      <p>{{user.email}}</p>
+  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por apellido"></ion-searchbar>
+
+  <ion-item-group *ngFor="let group of groupedContacts">
+ 
+    <ion-item-divider light>{{group.letter}}</ion-item-divider>
+    <ion-item *ngFor="let contact of group.contacts">
+      <ion-avatar item-start>
+          <img src="{{contact.profilePic}}">
+      </ion-avatar>      
+      {{contact.firstname}} {{contact.lastname}}
     </ion-item>
-  </ion-list>
+
+  </ion-item-group>  
 </ion-content>
