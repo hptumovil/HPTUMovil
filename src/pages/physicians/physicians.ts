@@ -104,7 +104,7 @@ export class PhysiciansPage {
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(medico: medico) {
+  openItem(medico: medico) {    
     this.navCtrl.push('ItemDetailPage', {
       medico: medico
     });
