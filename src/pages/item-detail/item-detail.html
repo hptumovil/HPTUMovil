@@ -16,10 +16,15 @@
   <ion-card>
       <img src= {{item.profilePic}} />
 
-  </ion-card>
-
-  <div class="item-detail" padding>
-    <h2>{{item.firstname}}</h2>
-    <p>{{item.lastname}}</p>
-  </div>
+      <ion-card-content>
+        <ion-card-title>
+          {{item.firstname}} {{item.lastname}}
+        </ion-card-title>        
+        <br>
+        <h2>{{item.cargo}}</h2>        
+        <h2>Email: {{item.email}}</h2>
+        <br>
+        <p text-wrap>{{item.perfil}}</p>
+      </ion-card-content>
+  </ion-card>  
 </ion-content>
