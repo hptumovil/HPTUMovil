@@ -40,3 +40,42 @@
     padding: 5px;
     margin: 10px 10px 10px 10px;
 }
+
+/* Here goes the css info that controls thermometer */
+
+.container {
+    position: relative;
+    height: 25px;
+    width: 95%;
+    margin: 2%;
+    background: #DADADA;
+    border-radius: 10px;
+    -ms-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.container .thermometer
+	{
+		position:relative;
+		height:25px;
+		background:rgb(124, 124, 124);
+		left:0%;
+		border-radius:10px 0px 0px 10px;
+		-ms-border-radius:10px 0px 0px 10px;
+		-moz-border-radius:10px 0px 0px 10px;
+		-o-border-radius:10px 0px 0px 10px;
+		-webkit-border-radius:10px 0px 0px 10px;
+    }
+    
+    .container .porcentaje
+	{
+		position: relative;
+		margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+		top: 2px;	
+		color:#fffdfd;
+	}

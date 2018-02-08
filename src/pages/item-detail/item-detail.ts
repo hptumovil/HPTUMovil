@@ -10,11 +10,9 @@ import { serviciosMedicos } from '../../providers/providers';
   templateUrl: 'item-detail.html'
 })
 export class ItemDetailPage {
-  item: any;
+  item: any; 
 
   constructor(public navCtrl: NavController, navParams: NavParams, items: Items) {
-    this.item = navParams.get('medico') || items.defaultItem;
-    console.log(this.item.profilePic);
+    this.item = navParams.get('medico') || items.defaultItem;    
   }
-
 }

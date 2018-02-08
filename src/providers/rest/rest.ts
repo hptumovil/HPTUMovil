@@ -11,8 +11,7 @@ import { Injectable } from '@angular/core';
 export class RestProvider {
   apiUrl = 'https://hptuapp.herokuapp.com/api';
 
-  constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
+  constructor(public http: HttpClient) {    
   }
 
   getUsers() {
