@@ -14,10 +14,22 @@ export class RestProvider {
   constructor(public http: HttpClient) {    
   }
 
+  /* Method that returns all the physicians */
   getUsers() {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'/contacts').subscribe(data => {
-        resolve(data);
+        resolve(data);        
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  /* Method that returns all the instrectutions and recommendations for exams */
+  getExamsInstructions() {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/exams').subscribe(data => {
+        resolve(data);        
       }, err => {
         console.log(err);
       });

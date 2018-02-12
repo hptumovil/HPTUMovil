@@ -18,7 +18,7 @@ import { medico } from '../../models/medico';
 export class PhysiciansPage {
   users: any;
   groupedContacts = [];
-  //medico: medico;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
   }
@@ -34,9 +34,10 @@ export class PhysiciansPage {
   initializeItems() {
     this.groupedContacts = [];
     this.groupContacts(this.users);
+    console.log(this.groupedContacts);
   }
 
-  //Method that gets all the Physicians from de database
+  //Method that gets all the Physicians from the database
   getContacts() {
     this.restProvider.getUsers()
       .then(data => {
