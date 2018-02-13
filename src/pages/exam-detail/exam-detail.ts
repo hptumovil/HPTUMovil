@@ -14,14 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'exam-detail.html',
 })
 export class ExamDetailPage {
-  exam: any;
+  exam: any;  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.exam = navParams.get('exam');
+    this.exam = navParams.get('exam');    
     console.log(this.exam);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExamDetailPage');
   }
+  toggleSection(i) {    
+    this.exam.info[i].open = !this.exam.info[i].open;
+  }
+ 
+  toggleItem(i, j) {
+    this.exam.info[i].children[j].open = !this.exam.info[i].children[j].open;
+  }  
 }

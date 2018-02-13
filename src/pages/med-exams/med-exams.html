@@ -15,8 +15,8 @@
 
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Nombre Examen"></ion-searchbar>
-  <ion-item-group *ngFor="let group of groupedExams">
 
+  <ion-item-group *ngFor="let group of groupedExams">
     <ion-item-divider light>{{group.letter}}</ion-item-divider>
     <ion-item *ngFor="let exam of group.exams">
       <button ion-item (click)="openItem(exam)">

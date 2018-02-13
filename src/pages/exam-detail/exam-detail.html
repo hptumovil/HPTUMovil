@@ -23,28 +23,24 @@
     </ion-card-content>
   </ion-card>
 
-  <h2></h2>
-  <ion-list>
+  <ion-list class="accordion-list">
+    <!-- First Level -->
+    <ion-list-header *ngFor="let item of exam.info; let i = index">
+      <!-- Toggle Button -->
+      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+        <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+        {{ item.name }}
+      </button>
 
-    <ion-list-header>Preparacion</ion-list-header>
-    <ion-card>
-      <ion-card-content *ngFor="let prep of exam.preparacion">
-        {{prep}}
-      </ion-card-content>
-    </ion-card>
+      <ion-list *ngIf="item.children && item.open">
+        <!-- Secon Level-->
+        <ion-card *ngFor="let child of item.children; let j = index" style="text-transform: none;" text-wrap>
+          {{child}}
+        </ion-card>
+      </ion-list>
 
-    <ion-list-header>Recomendaciones</ion-list-header>
-    <ion-card>
-        <ion-card-content *ngFor="let reco of exam.recomendaciones">
-            {{reco}}
-        </ion-card-content>
-    </ion-card>
-
-    <ion-list-header>Recuerde</ion-list-header>
-    <ion-card>
-        <ion-card-content>
-          {{exam.recuerde}}
-        </ion-card-content>
-    </ion-card>
+    </ion-list-header>
   </ion-list>
+
 </ion-content>
