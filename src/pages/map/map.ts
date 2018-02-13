@@ -55,6 +55,9 @@ export class MapPage {
 
   startNavigating() {
 
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer;
+
     //Get the current location from the device
     if (navigator.geolocation) {
       var options = {
@@ -65,8 +68,7 @@ export class MapPage {
         console.info(position.coords.latitude);
         console.info(position.coords.longitude);
 
-        let directionsService = new google.maps.DirectionsService;
-        let directionsDisplay = new google.maps.DirectionsRenderer;
+        
 
         directionsDisplay.setMap(this.map);
         directionsDisplay.setPanel(this.directionsPanel.nativeElement);
