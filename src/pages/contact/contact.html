@@ -14,27 +14,49 @@
 
 
 <ion-content padding>
-  <form id="contactenos-form3">
-    <ion-item id="contactenos-input10">
-      <ion-label>
+  
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+  
+  <form id="contactenos-form3" [formGroup]="slideOneForm">
+    
+    <ion-item id="contactenos-nombre">
+      <ion-label floating>
         Nombre
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input formControlName="name" type="text" [class.invalid]="!slideOneForm.controls.name.valid && (slideOneForm.controls.name.dirty || submitAttempt)"></ion-input>
     </ion-item>
-    <ion-item id="contactenos-input11">
-      <ion-label>
+    <ion-item *ngIf="!slideOneForm.controls.name.valid  && (slideOneForm.controls.name.dirty || submitAttempt)">
+        <p>Please enter a valid name.</p>
+    </ion-item>
+    
+    <ion-item id="contactenos-email">
+      <ion-label floating>
         Email
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input formControlName="email" type="text" type="text" [class.invalid]="!slideOneForm.controls.email.valid && submitAttempt"></ion-input>
     </ion-item>
-    <ion-item id="contactenos-textarea2">
-      <ion-label>
+    <ion-item *ngIf="!slideOneForm.controls.email.valid  && (slideOneForm.controls.email.dirty || submitAttempt)">
+        <p>Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item id="contactenos-phone">
+      <ion-label floating>
+        Telefono
+      </ion-label>
+      <ion-input formControlName="phone" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item id="contactenos-textarea">
+      <ion-label floating>
         Mensaje
       </ion-label>
-      <ion-textarea placeholder=""></ion-textarea>
+      <ion-textarea formControlName="message"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="!slideOneForm.controls.message.valid  && (slideOneForm.controls.message.dirty || submitAttempt)">
+        <p>Please enter a message.</p>
     </ion-item>
   </form>
-  <button id="contactenos-button9" ion-button color="positive" block>
+  <button id="contactenos-button9" ion-button color="positive" block (click)="save()">
     Enviar
   </button>
 </ion-content>
