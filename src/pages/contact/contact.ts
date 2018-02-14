@@ -49,8 +49,8 @@ export class ContactPage {
 
     let email = {
       to: 'juandavid.torres@gmail.com',
-      subject: 'Mail from Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
+      subject: 'Mail from HPTU movil',
+      body: this.slideOneForm.value.message + ' telefono de contacto: ' + this.slideOneForm.value.phone,
       isHtml: true
     };
     
