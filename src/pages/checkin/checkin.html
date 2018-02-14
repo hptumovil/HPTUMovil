@@ -14,12 +14,15 @@
 
 
 <ion-content padding>
+    <ion-card>
 
-  <ion-item>
-    <ion-label floating>URL</ion-label>
-    <ion-input type="url" [(ngModel)]="url"></ion-input>
-  </ion-item>
+        <ion-card-header text-wrap>
+            Va a ser redireccionado al Portal del Hospital Pablo Tobon
+        </ion-card-header>
 
-  <button ion-button block clear (click)="openWebpage(url)">Open Webpage</button>
+        <ion-card-content>
+            <button ion-button block (click)="openWebpage(url)">Iniciar Web Check In</button>
+        </ion-card-content>
 
+    </ion-card>
 </ion-content>

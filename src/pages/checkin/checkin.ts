@@ -28,13 +28,17 @@ export class CheckinPage {
   openWebpage(){
     //Setup options
     const options: InAppBrowserOptions = {
-      zoom: 'no',
+      zoom: 'yes',
       location: 'yes',
-      hardwareback: 'yes'
+      hardwareback: 'yes',
+      footer: 'yes'
     }
 
     // Opening a URL and returning an InAppBrowserObject
-    const browser = this.inAppbrowser.create(this.url, '_self', options);      
+    const browser = this.inAppbrowser.create(this.url, '_system', options);   
+    
+    // Inject scripts, css and more with browser.X
+
   }
 
 }
