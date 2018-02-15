@@ -28,16 +28,16 @@
     <ion-list-header *ngFor="let item of exam.info; let i = index">
       <!-- Toggle Button -->
       <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-        <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-        <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+        <ion-icon item-left name="add" *ngIf="!item.open"></ion-icon>
+        <ion-icon item-left name="remove" *ngIf="item.open"></ion-icon>
         {{ item.name }}
       </button>
 
       <ion-list *ngIf="item.children && item.open">
         <!-- Secon Level-->
-        <ion-card *ngFor="let child of item.children; let j = index" style="text-transform: none;" text-wrap>
+        <ion-item *ngFor="let child of item.children; let j = index" style="text-transform: none;" text-wrap>
           {{child}}
-        </ion-card>
+        </ion-item>
       </ion-list>
 
     </ion-list-header>
