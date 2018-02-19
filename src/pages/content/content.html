@@ -1,4 +1,4 @@
-<ion-content padding>
+<ion-content no-bounce padding>
 
   <!-- Image in the main Screen-->
   <img src="assets/img/main_logo.jpg" style="display:block;width:90%;height:auto;margin-left:auto;margin-right:auto;" />
@@ -9,20 +9,22 @@
     <ion-row>
       <ion-col>
         <button (click)="goToPage(0)" block>
-          <i class="fas fa-stethoscope fa-5x" style="color:#1571AC"></i> Nuestros Profesionales
+          <i class="far fa-calendar-alt fa-4x" style="color:#1571AC"></i> 
+          <div>Solicitar cita</div> 
           <!-- <img src="assets/img/medicos.png" alt="Medicos">          -->
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(1)" block>
-          <i class="far fa-clipboard fa-5x" style="color:#9CBD25"></i> Instructivos Examenes
+          <i class="far fa-clipboard fa-4x" style="color:#9CBD25"></i> Instructivos Examenes
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(2)" block>
-          <i class="fas fa-map-signs fa-5x" style="color:#98CADF"></i> Como Llegar
+          <i class="fas fa-user-md fa-4x" style="color:#98CADF"></i>
+          <div>Nuestros Profesionales</div> 
         </button>
       </ion-col>
     </ion-row>
@@ -32,19 +34,20 @@
     <ion-row>
       <ion-col>
         <button (click)="goToPage(3)" block>
-          <i class="far fa-envelope-open fa-5x"></i> Contactenos
+            <i class="fas fa-map-signs fa-4x" style="color:#98CADF"></i>
+            <div>Como Llegar</div>
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(4)" block>
-          <i class="far fa-check-circle fa-5x"></i> Checki In
+            <i class="fas fa-laptop fa-4x"></i>Check In           
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(5)" block>
-          <i class="fas fa-cog fa-5x"></i> Configuracion
+          <i class="fas fa-cog fa-4x"></i> Configuracion
         </button>
       </ion-col>
     </ion-row>
@@ -54,19 +57,20 @@
     <ion-row>
       <ion-col>
         <button (click)="goToPage(6)" block>
-          <i class="far fa-heart fa-5x"  style="color:#65A843"></i> Donaciones
+          <i class="far fa-heart fa-4x"  style="color:#65A843"></i> Donaciones
+        </button>
+      </ion-col>
+
+      <ion-col>
+        <button (click)="goToPage(7)" block>
+            <i class="far fa-envelope-open fa-4x"></i> 
+            <div>Contactenos</div>        
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage()" block>
-          <img src="assets/img/75.png" alt="Boton de prueba 1">
-        </button>
-      </ion-col>
-
-      <ion-col>
-        <button (click)="goToPage()" block>
-          <img src="assets/img/75.png" alt="Boton de prueba 1">
+            <i class="fas fa-flask  fa-4x"></i>          
         </button>
       </ion-col>
     </ion-row>
