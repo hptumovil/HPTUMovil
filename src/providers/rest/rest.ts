@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 
 /*
   Generated class for the RestProvider provider.
@@ -10,6 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class RestProvider {
   apiUrl = 'https://hptuapp.herokuapp.com/api';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'      
+    })
+  };
 
   constructor(public http: HttpClient) {    
   }
@@ -45,6 +52,20 @@ export class RestProvider {
           reject(err);
         });
     });
+  }
+
+  sendMessage(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/contactenos', JSON.stringify(data), this.httpOptions)
+        .subscribe(res => {
+          resolve(res);
+          console.log("POST call successful value returned in body", res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+
+    
   }
 
 }

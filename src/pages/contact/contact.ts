@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the ContactPage page.
@@ -17,12 +18,12 @@ import { EmailComposer } from '@ionic-native/email-composer';
   templateUrl: 'contact.html',
 })
 export class ContactPage {
-  slideOneForm: FormGroup;
+  contactUsForm: FormGroup;
   submitAttempt: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private emailComposer: EmailComposer) {
-    this.slideOneForm = formBuilder.group({
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private emailComposer: EmailComposer, private restProvider: RestProvider) {
+    this.contactUsForm = formBuilder.group({
       name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       phone: [''],
@@ -36,7 +37,10 @@ export class ContactPage {
 
   save() {
     this.verify();
+    
 
+    this.restProvider.sendMessage(this.contactUsForm.value);
+    /**
     this.emailComposer.isAvailable().then(
       (available: boolean) => {
         if (available) {
@@ -50,27 +54,25 @@ export class ContactPage {
     let email = {
       to: 'juandavid.torres@gmail.com',
       subject: 'Mail from HPTU movil',
-      body: this.slideOneForm.value.message + ' telefono de contacto: ' + this.slideOneForm.value.phone,
+      body: this.contactUsForm.value.message + ' telefono de contacto: ' + this.contactUsForm.value.phone,
       isHtml: true
     };
     
     // Send a text message using default options
     this.emailComposer.open(email);
-    
-
-
+    **/
   }
 
   verify() {
     this.submitAttempt = true;
 
-    if (!this.slideOneForm.valid) {
+    if (!this.contactUsForm.valid) {
       console.log("fail!")
     }
     else {
       console.log("success!")
-      console.log(this.slideOneForm.value);
+      console.log(this.contactUsForm.value);
     }
-  }
+  }  
 
 }

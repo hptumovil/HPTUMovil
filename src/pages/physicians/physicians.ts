@@ -33,8 +33,7 @@ export class PhysiciansPage {
    */
   initializeItems() {
     this.groupedContacts = [];
-    this.groupContacts(this.users);
-    console.log(this.groupedContacts);
+    this.groupContacts(this.users);    
   }
 
   //Method that gets all the Physicians from the database

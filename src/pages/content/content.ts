@@ -10,7 +10,7 @@ import { Tab2Root, Tab4Root, MapPage, ContactPage, CheckinPage, PhysiciansPage, 
 })
 export class ContentPage {
   //Array of pages to pass to navController
-  pages:any [] =[Tab2Root, Tab4Root, MapPage, ContactPage, CheckinPage, MedExamsPage, DonatePage];
+  pages:any [] =[PhysiciansPage, MedExamsPage, MapPage, ContactPage, CheckinPage, Tab4Root, DonatePage];
   constructor(public navCtrl: NavController) { }
 
   goToPage(page: number) {

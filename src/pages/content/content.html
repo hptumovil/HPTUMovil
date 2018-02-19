@@ -1,7 +1,7 @@
 <ion-content padding>
 
   <!-- Image in the main Screen-->
-  <img src="assets/img/main_logo.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+  <img src="assets/img/main_logo.jpg" style="display:block;width:90%;height:auto;margin-left:auto;margin-right:auto;" />
 
   <!-- Grid with Icons-->
   <ion-grid>
@@ -9,19 +9,20 @@
     <ion-row>
       <ion-col>
         <button (click)="goToPage(0)" block>
-          <img src="assets/img/medicos.png" alt="Medicos">          
+          <i class="fas fa-stethoscope fa-5x" style="color:#1571AC"></i> Nuestros Profesionales
+          <!-- <img src="assets/img/medicos.png" alt="Medicos">          -->
         </button>
       </ion-col>
 
-      <ion-col> 
-        <button (click)="goToPage(1)" block >
-          <img src="assets/img/settings.png" alt="Configuracion">          
-        </button>             
+      <ion-col>
+        <button (click)="goToPage(1)" block>
+          <i class="far fa-clipboard fa-5x" style="color:#9CBD25"></i> Instructivos Examenes
+        </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(2)" block>
-          <img src="assets/img/map.png" alt="Mapa">          
+          <i class="fas fa-map-signs fa-5x" style="color:#98CADF"></i> Como Llegar
         </button>
       </ion-col>
     </ion-row>
@@ -30,20 +31,20 @@
     <!-- Second Row-->
     <ion-row>
       <ion-col>
-        <button (click)="goToPage(3)" block>          
-          <img src="assets/img/mail.png" alt="Contactenos">          
+        <button (click)="goToPage(3)" block>
+          <i class="far fa-envelope-open fa-5x"></i> Contactenos
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(4)" block>
-          <img src="assets/img/checkin.png" alt="Checkin">          
+          <i class="far fa-check-circle fa-5x"></i> Checki In
         </button>
       </ion-col>
 
       <ion-col>
         <button (click)="goToPage(5)" block>
-          <img src="assets/img/profesionales.png" alt="Nuestros Profesionales">          
+          <i class="fas fa-cog fa-5x"></i> Configuracion
         </button>
       </ion-col>
     </ion-row>
@@ -53,7 +54,7 @@
     <ion-row>
       <ion-col>
         <button (click)="goToPage(6)" block>
-          <img src="assets/img/donar.png" alt="Donar">          
+          <i class="far fa-heart fa-5x"  style="color:#65A843"></i> Donaciones
         </button>
       </ion-col>
 
