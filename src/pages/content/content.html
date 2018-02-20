@@ -1,30 +1,42 @@
-<ion-content no-bounce padding fullscreen="true">
+<ion-content no-bounce padding>
 
   <!-- Image in the main Screen-->
   <img src="assets/img/main_logo.jpg" style="display:block;width:90%;height:auto;margin-left:auto;margin-right:auto;" />
 
   <!-- Grid with Icons-->
-  <ion-grid >
+  <ion-grid>
     <!-- First Row-->
     <ion-row>
-      <ion-col>
-        <button (click)="goToPage(0)" clear block class="text-on-bottom">
-          <i class="far fa-calendar-alt fa-4x" style="color:#1571AC"></i> 
-          <p>Solicitar cita</p>         
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(0)" class="square">
+          <div>
+            <div>
+                <i class="far fa-calendar-alt fa-4x" ></i>
+            </div>            
+            <label text-wrap>Solicitar cita</label>
+          </div>
         </button>
       </ion-col>
 
-      <ion-col>
-        <button (click)="goToPage(1)" clear block class="text-on-bottom">
-          <i class="far fa-clipboard fa-4x" style="color:#9CBD25"></i> 
-          <p>Instructivos Examenes</p> 
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(1)" class="square">
+          <div>
+              <i class="far fa-clipboard fa-4x"></i>
+              <div>
+                  <label text-wrap>Instructivos Examenes</label>                  
+              </div>
+          </div>
         </button>
       </ion-col>
 
-      <ion-col>
-        <button (click)="goToPage(2)" clear block class="text-on-bottom">
-          <i class="fas fa-user-md fa-4x" style="color:#98CADF"></i>
-          <p>Nuestros Profesionales </p>
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(2)" class="square">
+         <div>
+            <i class="fas fa-user-md fa-4x"></i>
+          <div>
+              <label text-wrap>Nuestros Profesionales</label>
+          </div>
+         </div>
         </button>
       </ion-col>
     </ion-row>
@@ -32,24 +44,36 @@
 
     <!-- Second Row-->
     <ion-row>
-      <ion-col>
-        <button (click)="goToPage(3)" clear block class="text-on-bottom">
-            <i class="fas fa-map-signs fa-4x" style="color:#98CADF"></i>
-            <p>Como Llegar</p>
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(3)" class="square">
+          <div>
+              <div>
+                  <i class="fas fa-map-signs fa-4x"></i>
+              </div>
+              <label text-wrap>Como Llegar</label>
+          </div>
         </button>
       </ion-col>
 
-      <ion-col>
-        <button (click)="goToPage(4)" clear block class="text-on-bottom">
-            <i class="fas fa-laptop fa-4x"></i>
-            <p>Check In</p>           
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(4)" class="square">
+          <div>
+              <div>
+                  <i class="fas fa-laptop fa-4x"></i>
+              </div>
+              <label text-wrap>Check In</label>
+          </div>
         </button>
       </ion-col>
 
-      <ion-col>
-        <button (click)="goToPage(5)" clear block class="text-on-bottom">
-          <i class="fas fa-cog fa-4x"></i>
-          <p>Configuracion</p>
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(5)" class="square">
+          <div>
+              <div>
+                  <i class="fas fa-cog fa-4x"></i>
+              </div>
+              <label text-wrap>Configuracion</label>
+          </div>
         </button>
       </ion-col>
     </ion-row>
@@ -57,23 +81,36 @@
 
     <!-- Third Row-->
     <ion-row>
-      <ion-col>
-        <button (click)="goToPage(6)" clear block class="text-on-bottom">
-          <i class="far fa-heart fa-4x"  style="color:#65A843"></i>
-          <p>Donaciones</p>
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(6)" class="square">
+          <div>
+              <div>
+                  <i class="far fa-heart fa-4x"></i>
+              </div>
+              <label text-wrap>Donaciones</label>
+          </div>
         </button>
       </ion-col>
 
-      <ion-col>
-        <button (click)="goToPage(7)" clear block class="text-on-bottom">
-            <i class="far fa-envelope-open fa-4x"></i> 
-            <p>Contactenos</p>        
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage(7)" class="square">
+          <div>
+              <div>
+                  <i class="far fa-envelope-open fa-4x"></i>
+              </div>
+              <label text-wrap>Contactenos</label>
+          </div>
         </button>
       </ion-col>
 
-      <ion-col>
-        <button (click)="goToPage()" clear block class="text-on-bottom">
-            <i class="fas fa-flask  fa-4x"></i>          
+      <ion-col col-4>
+        <button ion-button clear full (click)="goToPage()" class="square">
+          <div>
+            <div>
+                <i class="fas fa-flask  fa-4x"></i>
+            </div>
+            <label text-wrap>Laboratorio</label>
+          </div>
         </button>
       </ion-col>
     </ion-row>
