@@ -10,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 */
 @Injectable()
 export class RestProvider {
-  apiUrl = 'https://hptuapp.herokuapp.com/api';
+  apiUrl = 'http://hptuapps/backend-movil';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,8 +24,9 @@ export class RestProvider {
   /* Method that returns all the physicians */
   getUsers() {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/contacts').subscribe(data => {
-        resolve(data);        
+      this.http.get(this.apiUrl+'/medicos.php').subscribe(data => {
+        resolve(data); 
+        console.log(data);      
       }, err => {
         console.log(err);
       });
