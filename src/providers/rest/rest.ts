@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 
+import "rxjs/Rx";
+
 /*
   Generated class for the RestProvider provider.
 
@@ -39,7 +41,7 @@ export class RestProvider {
     return new Promise(resolve => {
       this.http.get('https://hptuapp.herokuapp.com/api/exams').subscribe(data => {
         resolve(data);
-        console.log(data);         
+        console.log(data);       
       }, err => {
         console.log(err);
       });
