@@ -27,7 +27,7 @@ export class RestProvider {
   /* Method that returns all the physicians */
   getUsers() {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/medicos.php').subscribe(data => {
+      this.http.get('http://hptuapps/backend-movil/medicos.php').subscribe(data => {
         resolve(data); 
         console.log(data);      
       }, err => {
