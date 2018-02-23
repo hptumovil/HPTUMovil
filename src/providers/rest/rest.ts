@@ -61,16 +61,13 @@ export class RestProvider {
 
   sendMessage(data) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiVieja+'/contactenos', JSON.stringify(data), this.httpOptions)
+      this.http.post('https://hptuapp.herokuapp.com/api/contactenos', JSON.stringify(data), this.httpOptions)
         .subscribe(res => {
           resolve(res);
           console.log("POST call successful value returned in body", res);
         }, (err) => {
           reject(err);
         });
-    });
-
-    
+    });   
   }
-
 }
