@@ -1,12 +1,10 @@
-// Style Android buttons
+  // Style Android buttons
 .md button {
-  text-transform: none;
-  color: #1571ac; 
+  text-transform: none;  
 }
 
 .ios button {
-  text-transform: none;
-  color: #1571ac;   
+  text-transform: none;    
 }
 
 .square {  
@@ -16,7 +14,7 @@
   padding: 50% 0% 50% 0% !important;
   }
 
-  label {
+label {
     flex-direction: column;
     font-size: 1em;
     font-weight: normal;
@@ -24,3 +22,4 @@
     padding: 0 16px;
     color: #1571ac;    
     }
+

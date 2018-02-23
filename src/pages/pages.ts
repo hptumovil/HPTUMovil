@@ -20,4 +20,5 @@ export const PhysiciansPage = 'PhysiciansPage';
 export const DonatePage = 'DonatePage';
 export const MedExamsPage = 'MedExamsPage';
 export const LabPage = 'LabPage';
+export const IndoorNavigatorPage = 'IndoorNavigatorPage';
 
