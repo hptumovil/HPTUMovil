@@ -15,7 +15,7 @@
 
 <ion-content padding>
 
-  <ion-list *ngIf="!show">
+  <ion-list>
 
     <ion-item>
       <ion-label>Origen</ion-label>
@@ -39,12 +39,13 @@
       </ion-select>
     </ion-item>
 
-  </ion-list>
+  </ion-list> 
+
+  <button ion-button block (click)="show = !show">Como Llegar</button>
+  <br>
 
   <img src="assets/img/example.gif" *ngIf="show">
-
-  <button ion-button block (click)="show = !show" *ngIf="!show">Como Llegar</button>
-  <button ion-button block (click)="show = !show" *ngIf="show">Buscar de Nuevo</button>
+  
 
   
 
