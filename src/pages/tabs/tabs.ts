@@ -20,7 +20,7 @@ export class TabsPage {
 
   tab1Title = "Inicio";
   tab2Title = "Solicitar Cita";
-  tab3Title = "Laboratorio";
+  tab3Title = "Mis Resultados";
   tab4Title = "Mas";
 
   constructor(public navCtrl: NavController, public translateService: TranslateService) {
