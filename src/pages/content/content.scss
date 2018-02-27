@@ -1,18 +1,25 @@
-.icons-basic-page {  
+  // Style Android buttons
+.md button {
+  text-transform: none;  
+}
 
-    ion-icon {
-      font-size: 70px;
+.ios button {
+  text-transform: none;    
+}
+
+.square {  
+  display: block;
+  width: 100% !important;
+  height:0 !important;
+  padding: 50% 0% 50% 0% !important;
+  }
+
+label {
+    flex-direction: column;
+    font-size: 1em;
+    font-weight: normal;
+    display: block;
+    padding: 0 16px;
+    color: #1571ac;    
     }
-  
-    ion-row {
-      height: 100%;
-      flex-wrap: wrap;
-    }
-  
-    ion-col {
-      flex: 0 0 25%;
-      max-width: 25%;
-      text-align: center;
-      padding: 10px 5px;
-    }
-  }  
+

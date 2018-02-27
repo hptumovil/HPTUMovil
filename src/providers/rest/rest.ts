@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
+
+import "rxjs/Rx";
 
 /*
   Generated class for the RestProvider provider.
@@ -9,16 +12,36 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class RestProvider {
-  apiUrl = 'https://hptuapp.herokuapp.com/api';
+  apiUrl = 'http://hptuapps/backend-movil';
+  apiVieja: 'https://hptuapp.herokuapp.com/api';
 
-  constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'      
+    })
+  };
+
+  constructor(public http: HttpClient) {    
   }
 
+  /* Method that returns all the physicians */
   getUsers() {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/contacts').subscribe(data => {
+      this.http.get('http://hptuapps/backend-movil/medicos.php').subscribe(data => {
+        resolve(data); 
+        console.log(data);      
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  /* Method that returns all the instrectutions and recommendations for exams */
+  getExamsInstructions() {
+    return new Promise(resolve => {
+      this.http.get('https://hptuapp.herokuapp.com/api/exams').subscribe(data => {
         resolve(data);
+        console.log(data);       
       }, err => {
         console.log(err);
       });
@@ -36,4 +59,15 @@ export class RestProvider {
     });
   }
 
+  sendMessage(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post('https://hptuapp.herokuapp.com/api/contactenos', JSON.stringify(data), this.httpOptions)
+        .subscribe(res => {
+          resolve(res);
+          console.log("POST call successful value returned in body", res);
+        }, (err) => {
+          reject(err);
+        });
+    });   
+  }
 }

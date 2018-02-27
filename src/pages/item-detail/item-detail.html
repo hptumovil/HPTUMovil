@@ -1,18 +1,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ item.name }}</ion-title>
+    <ion-title>{{ item.firstname }} {{ item.lastname}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+  <!--
   <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
   </div>
+-->
 
-  <div class="item-detail" padding>
-    <h2>{{item.name}}</h2>
-    <p>{{item.about}}</p>
-  </div>
+  <ion-card>
+      <img src= {{item.profilePic}} />
+
+      <ion-card-content>
+        <ion-card-title>
+          {{item.firstname}} {{item.lastname}}
+        </ion-card-title>        
+        <br>
+        <h2>{{item.cargo}}</h2>        
+        <h2>Email: {{item.email}}</h2>
+        <br>
+        <p text-justify>{{item.perfil}}</p>
+      </ion-card-content>
+  </ion-card>
+  
+  <ion-list inset>
+    <ion-list-header><h1>Especialidades</h1></ion-list-header>
+    <ion-item *ngFor="let e of item.especialidad" text-wrap>      
+      <div>{{e}}</div>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -22,19 +22,23 @@ export class CheckinPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckinPage');
-    this.openWebpage();
+    console.log('ionViewDidLoad CheckinPage');    
   }
 
   openWebpage(){
     //Setup options
     const options: InAppBrowserOptions = {
-      zoom: 'no',
-      location: 'yes'
+      zoom: 'yes',
+      location: 'yes',
+      hardwareback: 'yes',
+      footer: 'yes'
     }
 
+    // Opening a URL and returning an InAppBrowserObject
+    const browser = this.inAppbrowser.create(this.url, '_system', options);   
+    
+    // Inject scripts, css and more with browser.X
 
-    const browser = this.inAppbrowser.create(this.url, '_self', options);    
   }
 
 }

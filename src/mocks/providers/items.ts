@@ -7,7 +7,7 @@ export class Items {
   items: Item[] = [];
 
   defaultItem: any = {
-    "name": "Burt Bear",
+    "firstname": "Burt Bear",
     "profilePic": "assets/img/speakers/bear.jpg",
     "about": "Burt is a Bear.",
   };
