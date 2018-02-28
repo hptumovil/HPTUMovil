@@ -39,9 +39,8 @@ export class RestProvider {
   /* Method that returns all the instrectutions and recommendations for exams */
   getExamsInstructions() {
     return new Promise(resolve => {
-      this.http.get('https://hptuapp.herokuapp.com/api/exams').subscribe(data => {
-        resolve(data);
-        console.log(data);       
+      this.http.get('http://hptuapps/backend-movil/instrucciones-examenes.php').subscribe(data => {
+        resolve(data);             
       }, err => {
         console.log(err);
       });
@@ -61,10 +60,10 @@ export class RestProvider {
 
   sendMessage(data) {
     return new Promise((resolve, reject) => {
-      this.http.post('https://hptuapp.herokuapp.com/api/contactenos', JSON.stringify(data), this.httpOptions)
+      this.http.post('http://hptuapps/backend-movil/contactenos.php', JSON.stringify(data), this.httpOptions)
         .subscribe(res => {
           resolve(res);
-          console.log("POST call successful value returned in body", res);
+          console.log(res);          
         }, (err) => {
           reject(err);
         });

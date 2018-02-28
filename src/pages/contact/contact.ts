@@ -39,28 +39,7 @@ export class ContactPage {
     this.verify();
     
 
-    this.restProvider.sendMessage(this.contactUsForm.value);
-    /**
-    this.emailComposer.isAvailable().then(
-      (available: boolean) => {
-        if (available) {
-          console.log("available");
-        }else{
-          console.log("no hay correo");
-        }
-      }
-    );
-
-    let email = {
-      to: 'juandavid.torres@gmail.com',
-      subject: 'Mail from HPTU movil',
-      body: this.contactUsForm.value.message + ' telefono de contacto: ' + this.contactUsForm.value.phone,
-      isHtml: true
-    };
-    
-    // Send a text message using default options
-    this.emailComposer.open(email);
-    **/
+    this.restProvider.sendMessage(this.contactUsForm.value);   
   }
 
   verify() {

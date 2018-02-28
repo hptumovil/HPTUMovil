@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{exam.title}}</ion-title>
+    <ion-title>{{exam.Titulo}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,9 +19,11 @@
       <h2>Descripción</h2>
     </ion-card-header>
     <ion-card-content>
-      {{exam.descripcion}}
+      {{exam.Descripcion}}
     </ion-card-content>
   </ion-card>
+
+  
 
   <ion-list class="accordion-list">
     <!-- First Level -->
@@ -30,17 +32,19 @@
       <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
         <ion-icon item-left name="add" *ngIf="!item.open"></ion-icon>
         <ion-icon item-left name="remove" *ngIf="item.open"></ion-icon>
-        {{ item.name }}
+        {{ item.Nombre }}
       </button>
-
-      <ion-list *ngIf="item.children && item.open">
+    
+      <ion-list *ngIf="item.instrucciones && item.open">
         <!-- Secon Level-->
-        <ion-item *ngFor="let child of item.children; let j = index" style="text-transform: none;" text-wrap>
+        <ion-item *ngFor="let child of item.instrucciones; let j = index" style="text-transform: none;" text-wrap>
           {{child}}
         </ion-item>
       </ion-list>
-
     </ion-list-header>
+
+  
+
   </ion-list>
 
 </ion-content>

@@ -40,7 +40,7 @@ export class MedExamsPage {
   getExams() {
     this.restProvider.getExamsInstructions()
       .then(data => {
-        this.exams = data;        
+        this.exams = data;            
         this.initializeItems();
       });
   }
@@ -49,7 +49,7 @@ export class MedExamsPage {
   groupExams(exams) {
 
     let sortedExams = exams.sort(function(a, b) {      
-      return a.title > b.title; 
+      return a.Titulo > b.Titulo; 
     });    
     
     let currentLetter = false;
@@ -57,9 +57,9 @@ export class MedExamsPage {
 
     sortedExams.forEach((value, index) => {
 
-      if (value.title.charAt(0) != currentLetter) {
+      if (value.Titulo.charAt(0) != currentLetter) {
 
-        currentLetter = value.title.charAt(0);
+        currentLetter = value.Titulo.charAt(0);
 
         let newGroup = {
           letter: currentLetter,
@@ -90,7 +90,7 @@ export class MedExamsPage {
       this.initializeItems();
       return;
     }
-    let Exams = this.exams.filter(item  => item.title.toLowerCase().includes(val.toLowerCase()) );   
+    let Exams = this.exams.filter(item  => item.Titulo.toLowerCase().includes(val.toLowerCase()) );   
     this.groupedExams = [];
     this.groupExams(Exams);     
     
