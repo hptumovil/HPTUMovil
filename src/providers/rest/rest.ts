@@ -62,8 +62,7 @@ export class RestProvider {
     return new Promise((resolve, reject) => {
       this.http.post('http://hptuapps/backend-movil/contactenos.php', JSON.stringify(data), this.httpOptions)
         .subscribe(res => {
-          resolve(res);
-          console.log(res);          
+          resolve(res);                    
         }, (err) => {
           reject(err);
         });
