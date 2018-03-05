@@ -60,16 +60,9 @@ export class RestProvider {
 
   sendMessage(data) {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
       this.http.post('http://hptuapps/backend-movil/contactenos.php', JSON.stringify(data), this.httpOptions)
         .subscribe(res => {
           resolve(res);                    
-=======
-      this.http.post('https://hptuapp.herokuapp.com/api/contactenos', JSON.stringify(data), this.httpOptions)
-        .subscribe(res => {
-          resolve(res);
-          console.log("POST call successful value returned in body", res);
->>>>>>> 8ae1816657b650b5b5d7e4f9067e6806564ef5bc
         }, (err) => {
           reject(err);
         });
