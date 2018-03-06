@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage, MainPage } from '../pages/pages';
+import { MenuPage } from '../pages/menu/menu';
 import { Settings } from '../providers/providers';
 
 @Component({
@@ -91,6 +92,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 }

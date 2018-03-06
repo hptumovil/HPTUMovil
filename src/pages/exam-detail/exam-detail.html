@@ -23,7 +23,7 @@
     </ion-card-content>
   </ion-card>
 
-  
+
 
   <ion-list class="accordion-list">
     <!-- First Level -->
@@ -34,7 +34,7 @@
         <ion-icon item-left name="remove" *ngIf="item.open"></ion-icon>
         {{ item.Nombre }}
       </button>
-    
+
       <ion-list *ngIf="item.instrucciones && item.open">
         <!-- Secon Level-->
         <ion-item *ngFor="let child of item.instrucciones; let j = index" style="text-transform: none;" text-wrap>
@@ -43,8 +43,25 @@
       </ion-list>
     </ion-list-header>
 
-  
+
 
   </ion-list>
+
+  <div>
+  <button ion-button icon-left block (click)="call('3604788')">
+    <ion-icon name="call"></ion-icon>
+    Linea 1
+  </button>
+
+  <button ion-button icon-left block (click)="call('4459572')">
+    <ion-icon name="call"></ion-icon>
+    Linea 2
+  </button> 
+
+  </div>
+
+
+
+
 
 </ion-content>

@@ -20,6 +20,7 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
+    "@ionic-native/call-number": "^4.5.3",
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/email-composer": "^4.5.3",
@@ -32,6 +33,7 @@
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "@types/google-maps": "^3.2.0",
+    "call-number": "^1.0.1",
     "cordova-android": "7.0.0",
     "cordova-browser": "5.0.3",
     "cordova-ios": "^4.5.4",
@@ -78,7 +80,8 @@
         "MAX_STORE": "2"
       },
       "cordova-plugin-webp": {},
-      "cordova-plugin-email-composer": {}
+      "cordova-plugin-email-composer": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "android",

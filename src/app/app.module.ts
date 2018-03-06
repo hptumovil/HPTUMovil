@@ -16,7 +16,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
-import { EmailComposer } from '@ionic-native/email-composer';
+import { CallNumber } from '@ionic-native/call-number';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { serviciosMedicos } from '../mocks/providers/serviciosMedicos';
 import { RestProvider } from '../providers/rest/rest';
@@ -58,7 +58,7 @@ export function provideSettings(storage: Storage) {
         deps: [HttpClient]
       }
     }),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {tabsPlacement: 'bottom', tabsHideOnSubPages: false}),
     IonicStorageModule.forRoot()
     
   ],
@@ -78,10 +78,10 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Network,
-    Geolocation,
-    EmailComposer,
+    Geolocation,    
     InAppBrowser,
-    RestProvider
+    RestProvider,
+    CallNumber
   ]
 })
 export class AppModule { }
