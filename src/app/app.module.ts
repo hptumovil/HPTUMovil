@@ -14,6 +14,7 @@ import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
+import { TabsPage } from '../pages/tabs/tabs';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
@@ -47,7 +48,8 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -59,13 +61,14 @@ export function provideSettings(storage: Storage) {
         deps: [HttpClient]
       }
     }),
-    IonicModule.forRoot(MyApp, {tabsPlacement: 'bottom', tabsHideOnSubPages: false}),
+    IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
     
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TabsPage
   ],
   providers: [
     Api,
