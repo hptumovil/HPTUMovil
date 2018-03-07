@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.hptu.movilapp" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>HPTUMovil</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <author email="hptumovil@hptu.org.co" href="http://www.hptu.org.co/">Hospital Pablo tobon Uribe</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -95,8 +95,8 @@
     </plugin>
     <plugin name="cordova-plugin-webp" spec="^2.2.0" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="browser" spec="5.0.3" />
-    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

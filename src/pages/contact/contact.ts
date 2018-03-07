@@ -35,25 +35,15 @@ export class ContactPage {
     console.log('ionViewDidLoad ContactPage');
   }
 
-  /**
-   * save() {
-    if(this.verify()){
-      this.restProvider.sendMessage(this.contactUsForm.value);
-      this.navCtrl.push(ContentPage);
-    }
-    else{
-      console.log("No se verifico de forma correcta")
-    }    
-  }
-  **/
-
-  save() {
+  //Method tha send the info in the form, to a server
+  sendInfo() {
+    //this verify if the form is empty, or it if wasn't type correctly
     if (!this.contactUsForm.valid) {
       this.submitAttempt = true;
-      console.log("fail!")
+      console.log("fail! Info ")
     }
     else {
-      console.log("success!")
+      console.log("All data was entered correctly!")
       console.log(this.contactUsForm.value);
 
       try {

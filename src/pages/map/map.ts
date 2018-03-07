@@ -1,7 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
-import { Network } from '@ionic-native/network';
 
 /**
  * Generated class for the MapPage page.
@@ -24,10 +22,10 @@ export class MapPage {
 
   //The GoogleMaps data for api conection goes here
   map: any;
-  mapInitialised: boolean = false;  
-  apiKey = 'AIzaSyAuYJr53z_ljCFv7iVbY5YX39HJOXMfIUo';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private network: Network, private geolocation: Geolocation) {    
+  subscription: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -35,24 +33,29 @@ export class MapPage {
     this.showMap();
     this.startNavigating();
   }
+  //Stop watch the position when exit this page
+  ionViewWillLeave() {
+    navigator.geolocation.clearWatch(this.subscription);
+  }
 
-  showMap(){
+  //Method that draw map
+  showMap() {
     //location Lat & Long
-    const location = new google.maps.LatLng(6.2770054, -75.5807295);    
-    
+    const location = new google.maps.LatLng(6.2770054, -75.5807295);
+
     //Map options
-     const options = {
+    const options = {
       center: location,
       zoom: 15,
       streetViewControl: false,
       mapTypeId: 'roadmap'
     }
-    
-    //Create new Google Maps with center in Hospital Pablo Tobon Uribe
-    this.map = new google.maps.Map(this.mapElement.nativeElement, options);    
-  }
-    
 
+    //Create new Google Maps with center in Hospital Pablo Tobon Uribe
+    this.map = new google.maps.Map(this.mapElement.nativeElement, options);
+  }
+
+  // Method that wacth the position and calculates the route
   startNavigating() {
 
     let directionsService = new google.maps.DirectionsService;
@@ -63,12 +66,11 @@ export class MapPage {
       var options = {
         enableHighAccuracy: true
       };
-      navigator.geolocation.watchPosition(position => {
+      //Instatiates the watchPosition object and save the objects's id in this.subscription
+      this.subscription = navigator.geolocation.watchPosition(position => {
         console.info('using navigator');
         console.info(position.coords.latitude);
         console.info(position.coords.longitude);
-
-        
 
         directionsDisplay.setMap(this.map);
         directionsDisplay.setPanel(this.directionsPanel.nativeElement);
@@ -85,7 +87,7 @@ export class MapPage {
             console.warn(status);
           }
 
-        });        
+        });
       }, error => {
         console.log(error);
       }, options);

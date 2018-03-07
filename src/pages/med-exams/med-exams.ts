@@ -25,7 +25,7 @@ export class MedExamsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedExamsPage');
-    this.getExams();    
+    this.getExams();
   }
 
   /**
@@ -40,7 +40,7 @@ export class MedExamsPage {
   getExams() {
     this.restProvider.getExamsInstructions()
       .then(data => {
-        this.exams = data;            
+        this.exams = data;
         this.initializeItems();
       });
   }
@@ -48,12 +48,12 @@ export class MedExamsPage {
   //Method that sorts all the instrutions for exams in groups by first letter
   groupExams(exams) {
 
-    let sortedExams = exams.sort(function(a, b) {      
-      return a.Titulo > b.Titulo; 
-    });    
-    
+    let sortedExams = exams.sort(function (a, b) {
+      return a.Titulo > b.Titulo;
+    });
+
     let currentLetter = false;
-    let currentExams = [];    
+    let currentExams = [];
 
     sortedExams.forEach((value, index) => {
 
@@ -72,34 +72,34 @@ export class MedExamsPage {
       }
       currentExams.push(value);
     });
-    
+
   }
 
   /**
-   * Perform a service for the proper items.
+   * Perform a service search for the proper items.
    */
   getItems(ev) {
     // Reset items back to all of the items
     this.initializeItems();
 
     // set val to the value of the searchbar
-    let val = ev.target.value;    
+    let val = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    if (!val || !val.trim()) {      
+    if (!val || !val.trim()) {
       this.initializeItems();
       return;
     }
-    let Exams = this.exams.filter(item  => item.Titulo.toLowerCase().includes(val.toLowerCase()) );   
+    let Exams = this.exams.filter(item => item.Titulo.toLowerCase().includes(val.toLowerCase()));
     this.groupedExams = [];
-    this.groupExams(Exams);     
-    
+    this.groupExams(Exams);
+
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(exam: Exam) {    
+  openItem(exam: Exam) {
     this.navCtrl.push('ExamDetailPage', {
       exam: exam
     });
@@ -108,11 +108,11 @@ export class MedExamsPage {
   /**
    * Show all the items when the searchbar is cleaned
    */
-  onClear(ev){
+  onClear(ev) {
     this.initializeItems();
   }
 
-  onCancel(ev){
+  onCancel(ev) {
     this.initializeItems();
   }
 

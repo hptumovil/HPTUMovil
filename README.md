@@ -7,47 +7,64 @@ Aplicacion movil que permite al usuario ver e interactuar con los servicios que 
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
-2. [Pages](#pages)
+2. [Paginas](#pages)
 3. [Providers](#providers)
 4. [i18n](#i18n) (adding languages)
 
 ## <a name="getting-started"></a>Getting Started
 
-To test this starter out, install the latest version of the Ionic CLI and run:
+Para probar el poryecto, instale la ultima version de Ionic CLI y ejecute el siguiente comando:
 
 ```bash
-ionic start mySuperApp super
+ionic lab
 ```
+dentro de la carpeta del proyecto.
 
-## Pages
+## Paginas
 
-The Super Starter comes with a variety of ready-made pages. These pages help
-you assemble common building blocks for your app so you can focus on your
-unique features and branding.
+El proyecto lo componen diferente paginas, este es el listado de ella y su funcion.
 
-The app loads with the `FirstRunPage` set to `TutorialPage` as the default. If
-the user has already gone through this page once, it will be skipped the next
-time they load the app.
+-appointments: el módulo para agendar citas.
 
-If the tutorial is skipped but the user hasn't logged in yet, the Welcome page
-will be displayed which is a "splash" prompting the user to log in or create an
-account.
+-checkin: permite a los pacientes realizar el check in, llenando un formulario, se programa por medio de  este módulo.
 
-Once the user is authenticated, the app will load with the `MainPage` which is
-set to be the `TabsPage` as the default.
+-contact: componente que permite al usuario llenar una formulario para poder contactar con el hospital.
 
-The entry and main pages can be configured easily by updating the corresponding
-variables in
-[src/pages/pages.ts](https://github.com/ionic-team/starters/blob/master/ionic-angular/official/super/src/pages/pages.ts).
+-content: La pantalla principal que contiene los iconos a las funciones más usadas, se configura por medio de este módulo.
 
-Please read the
-[Pages](https://github.com/ionic-team/starters/tree/master/ionic-angular/official/super/src/pages)
-readme, and the readme for each page in the source for more documentation on
-each.
+-donate: Componente que permite a los usuarios hacer donaciones.
+
+-exam-detail: cuando el usuario busca sobre las instrucciones y/o recomendaciones de un examen médico la información detallada se muestra por medio de este componente.
+
+-item-detail: cuando el usuario busca la información de un profesional, dicha información se muestra detallada por medio de este módulo.
+
+-login: el módulo que permite hacer ingresar por medio usuario y contraseña a la aplicación.
+
+-map: la función de como llegar se configura en este componente.
+
+-med-exams: el buscador de instructivos para los exámenes médicos se configura en este componente.
+
+-menu: el menú lateral de la aplicación se programa en este módulo.
+
+-physicians: el módulo que permite buscar a nuestros profesionales se programa en este componente.
+
+-settings: el área de configuracion general de la app va este componente.
+
+-signup: El módulo que permite registrarse como nuevo usuario.
+
+-tabs: este módulo se encarga de las pestañas que se ven la parte inferior de la aplicación.
+
+-tutorial: pequeño tutorial que se muestra la primera vez que el usuario abre la aplicación.
+
+-welcome: pantalla de bienvenida que muestra las opciones de ingresar o registrarse.
+
+-pages.ts: archivo donde se exportan todas clases para que puedan ser usadas por otros componentes dentro de la aplicacion, asi nos evitamos tener que importar cada página cuando la vayamos a usar en otro lugar dentro del programa.
+
+
 
 ## Providers
 
-The Super Starter comes with some basic implementations of common providers.
+Se implementa un calse llmada rest, que contiene las conexiones a la base de datos por medio de una interface RESTful y nos provee los datos en formato json.
 
 ### User
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { RestProvider } from '../../providers/rest/rest';
 import { medico } from '../../models/medico';
@@ -18,14 +18,14 @@ import { medico } from '../../models/medico';
 export class PhysiciansPage {
   users: any;
   groupedContacts = [];
-  
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PhysiciansPage');
-    this.getContacts();    
+    this.getContacts();
   }
 
   /**
@@ -33,7 +33,7 @@ export class PhysiciansPage {
    */
   initializeItems() {
     this.groupedContacts = [];
-    this.groupContacts(this.users);    
+    this.groupContacts(this.users);
   }
 
   //Method that gets all the Physicians from the database
@@ -48,15 +48,16 @@ export class PhysiciansPage {
   //Method that sorts all the Physicians in groups by lastname
   groupContacts(contacts) {
 
-    let sortedContacts = contacts.sort(function(a, b) {      
-      return a.lastname > b.lastname; 
-    });    
-    
+    // sort physicians by alphabetical order
+    let sortedContacts = contacts.sort(function (a, b) {
+      return a.lastname > b.lastname;
+    });
+
+    //Variables to contain the letter and group under that letter
     let currentLetter = false;
     let currentContacts = [];
 
-    //this.users = sortedContacts;
-
+    //this groups the the letter groups and the physicians under this.groupedContacts
     sortedContacts.forEach((value, index) => {
 
       if (value.lastname.charAt(0) != currentLetter) {
@@ -74,10 +75,10 @@ export class PhysiciansPage {
       }
       currentContacts.push(value);
     });
-    
+
   }
-  
-  
+
+
   /**
    * Perform a service for the proper items.
    */
@@ -86,26 +87,26 @@ export class PhysiciansPage {
     this.initializeItems();
 
     // set val to the value of the searchbar
-    let val = ev.target.value;      
+    let val = ev.target.value;
     console.log(val);
 
     // if the value is an empty string don't filter the items
-    if (!val || !val.trim()) {      
+    if (!val || !val.trim()) {
       this.initializeItems();
       return;
     }
-    let Contacts = this.users.filter(item  => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()));   
+    let Contacts = this.users.filter(item => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()));
     this.groupedContacts = [];
-    this.groupContacts(Contacts);    
-      
+    this.groupContacts(Contacts);
+
     console.log(this.groupedContacts);
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(medico: medico) {    
-    this.navCtrl.push('ItemDetailPage', {
+  openItem(medico: medico) {
+    this.navCtrl.push('PhysicianDetailPage', {
       medico: medico
     });
   }
@@ -113,11 +114,11 @@ export class PhysiciansPage {
   /**
    * Show all the items when the searchbar is cleaned
    */
-  onClear(ev){
+  onClear(ev) {
     this.initializeItems();
   }
 
-  onCancel(ev){
+  onCancel(ev) {
     this.initializeItems();
   }
 

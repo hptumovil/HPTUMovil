@@ -16,16 +16,18 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 })
 export class CheckinPage {
 
+  //Url to redirect
   url: string = 'https://sgrc-hptu.patientsafety.com/webframe/modules/mod_meldingen/FormController.php?form_id=a412028d-903d-f004-6dab-c5207267ace7';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private inAppbrowser: InAppBrowser) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckinPage');    
+    console.log('ionViewDidLoad CheckinPage');
   }
 
-  openWebpage(){
+  //Method that open a browser in the mobil phone
+  openWebpage() {
     //Setup options
     const options: InAppBrowserOptions = {
       zoom: 'yes',
@@ -35,10 +37,7 @@ export class CheckinPage {
     }
 
     // Opening a URL and returning an InAppBrowserObject
-    const browser = this.inAppbrowser.create(this.url, '_system', options);   
-    
-    // Inject scripts, css and more with browser.X
-
+    const browser = this.inAppbrowser.create(this.url, '_system', options);
   }
 
 }

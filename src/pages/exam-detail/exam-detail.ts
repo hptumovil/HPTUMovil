@@ -26,6 +26,7 @@ export class ExamDetailPage {
     console.log('ionViewDidLoad ExamDetailPage');
   }
 
+  //These methods controls the accordion
   toggleSection(i) {
     this.exam.info[i].open = !this.exam.info[i].open;
   }
@@ -34,8 +35,9 @@ export class ExamDetailPage {
     this.exam.info[i].children[j].open = !this.exam.info[i].children[j].open;
   }
 
+  //Method that dial a numbre in the cellphone 
   call(phone: string) {
-    console.log("Llamando a "+phone)
+    console.log("Llamando a " + phone)
     this.callNumber.callNumber(phone, true)
       .then(() => console.log('Launched dialer!'))
       .catch(() => console.log('Error launching dialer'));
