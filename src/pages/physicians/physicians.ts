@@ -95,7 +95,7 @@ export class PhysiciansPage {
       this.initializeItems();
       return;
     }
-    let Contacts = this.users.filter(item => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()));
+    let Contacts = this.users.filter(item => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()) || item.cargo.toLowerCase().includes(val.toLowerCase()));
     this.groupedContacts = [];
     this.groupContacts(Contacts);
 

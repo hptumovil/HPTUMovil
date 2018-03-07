@@ -17,6 +17,7 @@ import { MyApp } from './app.component';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { serviciosMedicos } from '../mocks/providers/serviciosMedicos';
 import { RestProvider } from '../providers/rest/rest';
@@ -81,7 +82,8 @@ export function provideSettings(storage: Storage) {
     Geolocation,    
     InAppBrowser,
     RestProvider,
-    CallNumber
+    CallNumber,
+    EmailComposer
   ]
 })
 export class AppModule { }
