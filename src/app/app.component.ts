@@ -5,25 +5,40 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage, MainPage } from '../pages/pages';
-import { TabsPage } from '../pages/tabs/tabs';
 import { Settings } from '../providers/providers';
 
 @Component({
-  templateUrl: 'app.html'
+  template: `<ion-menu [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Pages</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+  <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
   //Para correr el tutorial y la pagina de binvenidad
   //rootPage = FirstRunPage;
   
   //Para ir directamente al menu mientras se esta desarrollando
-  rootPage = TabsPage;
+  rootPage = MainPage;
 
   @ViewChild(Nav) nav: Nav;
-  
+
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },    
+    //{ title: 'Tabs', component: 'TabsPage' },    
     { title: 'Inicio', component: 'ContentPage' },
     //{ title: 'Login', component: 'LoginPage' },
     //{ title: 'Signup', component: 'SignupPage' },
@@ -72,7 +87,7 @@ export class MyApp {
       this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
     });
   }
-  
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

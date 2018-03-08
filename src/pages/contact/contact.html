@@ -8,52 +8,70 @@
 
 
 <ion-content padding>
+  <!-- Logo and text -->
+  <div class="splash-bg"></div>
+  <div class="splash-info">    
+    <div class="splash-intro">
+      Escribenos tus dudas, sugenrencias o reclamos.    
+      Presiona llamar para comunicarte con nosotros.
+    </div>
+  </div>
 
-  <p *ngIf="submitAttempt" style="color: #ea6153;">Por favor complete todos los datos.</p>
+  <!-- Form's container -->
+  <div class="contactform">
+    <p *ngIf="submitAttempt" style="color: #ea6153;">Por favor complete todos los datos.</p>
 
-  <form id="contactenos-form3" [formGroup]="contactUsForm">
+    <form id="contactenos-form3" [formGroup]="contactUsForm">
 
-    <ion-item id="contactenos-nombre">
-      <ion-label floating>
-        Nombre
-      </ion-label>
-      <ion-input formControlName="name" type="text" [class.invalid]="!contactUsForm.controls.name.valid && (contactUsForm.controls.name.dirty || submitAttempt)"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!contactUsForm.controls.name.valid  && (contactUsForm.controls.name.dirty || submitAttempt)">
-      <p>Please enter a valid name.</p>
-    </ion-item>
+      <ion-item id="contactenos-nombre">
+        <ion-label floating>
+          Nombre
+        </ion-label>
+        <ion-input formControlName="name" type="text" [class.invalid]="!contactUsForm.controls.name.valid && (contactUsForm.controls.name.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!contactUsForm.controls.name.valid  && (contactUsForm.controls.name.dirty || submitAttempt)">
+        <p>Please enter a valid name.</p>
+      </ion-item>
 
-    <ion-item id="contactenos-email">
-      <ion-label floating>
-        Email
-      </ion-label>
-      <ion-input formControlName="email" type="text" type="text" [class.invalid]="!contactUsForm.controls.email.valid && submitAttempt"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!contactUsForm.controls.email.valid  && (contactUsForm.controls.email.dirty || submitAttempt)">
-      <p>Please enter a valid email.</p>
-    </ion-item>
+      <ion-item id="contactenos-email">
+        <ion-label floating>
+          Email
+        </ion-label>
+        <ion-input formControlName="email" type="text" type="text" [class.invalid]="!contactUsForm.controls.email.valid && submitAttempt"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!contactUsForm.controls.email.valid  && (contactUsForm.controls.email.dirty || submitAttempt)">
+        <p>Please enter a valid email.</p>
+      </ion-item>
 
-    <ion-item id="contactenos-phone">
-      <ion-label floating>
-        Telefono
-      </ion-label>
-      <ion-input formControlName="phone" type="text"></ion-input>
-    </ion-item>
+      <ion-item id="contactenos-phone">
+        <ion-label floating>
+          Telefono
+        </ion-label>
+        <ion-input formControlName="phone" type="text"></ion-input>
+      </ion-item>
 
-    <ion-item id="contactenos-textarea">
-      <ion-label floating>
-        Mensaje
-      </ion-label>
-      <ion-textarea formControlName="message"></ion-textarea>
-    </ion-item>
+      <ion-item id="contactenos-textarea">
+        <ion-label floating>
+          Mensaje
+        </ion-label>
+        <ion-textarea formControlName="message"></ion-textarea>
+      </ion-item>
 
-    <ion-item *ngIf="!contactUsForm.controls.message.valid  && (contactUsForm.controls.message.dirty || submitAttempt)">
-      <p>Please enter a message.</p>
-    </ion-item>
+      <ion-item *ngIf="!contactUsForm.controls.message.valid  && (contactUsForm.controls.message.dirty || submitAttempt)">
+        <p>Please enter a message.</p>
+      </ion-item>
 
-  </form>
-  
-  <button id="contactenos-button9" ion-button color="positive" block (click)="sendInfo()">
-    Enviar
-  </button>
+    </form>
+
+    <!-- Buttons' container -->
+    <div text-center>
+        <button id="contactenos-button9" ion-button color="positive" round icon-start (click)="sendInfo()">
+            Enviar
+          </button>
+      
+          <button ion-button round icon-end (click)="call('tel:0344459000')">
+            Llamar
+          </button>
+    </div>    
+  </div>
 </ion-content>

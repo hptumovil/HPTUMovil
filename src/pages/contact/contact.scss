@@ -23,6 +23,41 @@
         .invalid {
             border: 1px solid #ea6153;
         }
+
+        .splash-bg {
+            position: relative;
+            background: url('../assets/img/splashbg.png') no-repeat transparent;
+            background-size: cover;
+            height: 25%;
+            z-index: 1;
+            background-repeat: repeat-x;
+            animation: animatedBackground 40s linear infinite;
+          }
+
+          @keyframes animatedBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100% 0; }
+          }
+
+          .splash-info {
+            position: relative;
+            z-index: 2;
+            margin-top: -115px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #f2f2f2;
+          }
+                    
+            .splash-intro {
+            font-size: 18px;
+            font-weight: bold;
+            max-width: 80%;
+            margin: auto;
+          }
+
+          .contactform{
+            margin-top: 10px;
+          }
  
     }
  

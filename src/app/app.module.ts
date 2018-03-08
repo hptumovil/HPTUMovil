@@ -14,14 +14,13 @@ import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
-import { TabsPage } from '../pages/tabs/tabs';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
-import { CallNumber } from '@ionic-native/call-number';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { serviciosMedicos } from '../mocks/providers/serviciosMedicos';
 import { RestProvider } from '../providers/rest/rest';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 
@@ -48,8 +47,7 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp,
-    TabsPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -67,8 +65,7 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    TabsPage
+    MyApp
   ],
   providers: [
     Api,
@@ -82,11 +79,11 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Network,
-    Geolocation,    
+    Geolocation,
+    EmailComposer,
     InAppBrowser,
     RestProvider,
-    CallNumber,
-    EmailComposer
+    CallNumber
   ]
 })
 export class AppModule { }
