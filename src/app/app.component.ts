@@ -6,12 +6,13 @@ import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage, MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Pages</ion-title>
+        <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -35,21 +36,8 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    //{ title: 'Tabs', component: 'TabsPage' },    
-    { title: 'Inicio', component: 'ContentPage' },
-    //{ title: 'Login', component: 'LoginPage' },
-    //{ title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    //{ title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Directorio', component: 'SearchPage' },
-    { title: 'Como llegar', component: 'MapPage' },
-    { title: 'Contactenos', component: 'ContactPage' },
-    { title: 'Check in', component: 'CheckinPage' },
-    { title: 'Cards', component: 'CardsPage' },
+  pages: any[] = [       
+    { title: 'Inicio', component: 'ContentPage' }    
   ]
 
   constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
@@ -91,6 +79,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(TabsPage, {page: page.component});
   }
 }

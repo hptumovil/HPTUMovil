@@ -9,7 +9,7 @@ export const MainPage = 'TabsPage';
 export const Tab1Root = 'ContentPage';
 export const Tab2Root = 'AppointmentsPage';
 export const Tab3Root = 'LabPage';
-export const Tab4Root = 'SettingsPage';
+export const Tab4Root = 'MorePage';
 
 //The pages with the others functionalities
 export const AppointmentsPage = 'AppointmentsPage';
@@ -22,4 +22,5 @@ export const DonatePage = 'DonatePage';
 export const MedExamsPage = 'MedExamsPage';
 export const LabPage = 'LabPage';
 export const IndoorNavigatorPage = 'IndoorNavigatorPage';
+
 
