@@ -1,0 +1,23 @@
+page-services {
+    .banner{
+        height: 30vh;
+        width: 100%;
+    }
+
+    .button-ios-rounded {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        width: 125px;
+        height: 125px;
+      
+        line-height: 10px;
+        text-align: center;
+    }
+
+      
+      
+      ion-icon {
+        font-size: 60px; //Preferred size here
+    }
+}
