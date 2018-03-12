@@ -95,8 +95,8 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
-    <engine name="ios" spec="^4.5.4" />
-    <engine name="browser" spec="5.0.3" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <engine name="android" spec="7.0.0" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="browser" spec="5.0.3" />
 </widget>
