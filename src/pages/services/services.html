@@ -14,16 +14,16 @@
 
 
 <ion-content>
-  
+
 
   <div class="banner">
 
-    <ion-slides pager autoplay="5000" loop="true" speed="3000">
+    <ion-slides pager autoplay="5000" loop="true" speed="2000">
 
       <ion-slide *ngFor="let slide of slides">
-        <img [src]="slide.image" class="slide-image" />
-        <h4 [innerHTML]="slide.title"></h4>
-
+         <!-- <h4 [innerHTML]="slide.title" class="slide-title"></h4>  -->
+        <img [src]="slide.image" />
+        
       </ion-slide>
     </ion-slides>
 
@@ -36,37 +36,45 @@
     <ion-grid>
       <ion-row>
         <ion-col col-6>
-            <button class="button-ios-rounded" text-center>
-                <div>
-                  <ion-icon name="home"></ion-icon>
-                </div>
-                Cirugía
-              </button>
+          <button ion-button clear full class="button-ios-rounded" text-center>
+            <div>
+              <div>
+                <i class="fas fa-heartbeat fa-4x" style="color:#20CE99"></i>
+              </div>
+              <label text-wrap>Cirugía</label>
+            </div>
+          </button>
         </ion-col>
         <ion-col col-6>
-          <button class="button-ios-rounded" text-center>
+          <button ion-button clear full class="button-ios-rounded" text-center>
             <div>
-              <ion-icon name="home"></ion-icon>
+              <div>
+                <i class="fas fa-bed fa-4x" style="color:#29A5FF"></i>
+              </div>
+              <label text-wrap>Internación</label>
             </div>
-            Internación
           </button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-6>
-          <button class="button-ios-rounded" text-center>
+          <button ion-button clear full class="button-ios-rounded" text-center>
             <div>
-              <ion-icon name="home"></ion-icon>
+              <div>
+                <i class="fas fa-stethoscope fa-4x" style="color:#634ED1"></i>
+              </div>
+              <label text-wrap>Consulta Externa</label>
             </div>
-            Consulta Externa
           </button>
         </ion-col>
         <ion-col col-6>
-          <button class="button-ios-rounded" text-center>
+          <button ion-button clear full class="button-ios-rounded" text-center>
             <div>
-              <ion-icon name="home"></ion-icon>
+              <div>
+                <i class="fas fa-question fa-4x" style="color:#FF9D01"></i>
+              </div>
+              <label text-wrap>ADXCTER</label>
             </div>
-            ADXCTER
           </button>
         </ion-col>
       </ion-row>

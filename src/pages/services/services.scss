@@ -4,9 +4,15 @@ page-services {
         width: 100%;
     }
 
+    .slide-title{
+        position: absolute; 
+        top: 7px; 
+        left: 0; 
+        width: 100%;        
+    }
+
     .button-ios-rounded {
-        display: inline-block;
-        vertical-align: middle;
+        display: block;        
         position: relative;
         width: 125px;
         height: 125px;
@@ -15,9 +21,8 @@ page-services {
         text-align: center;
     }
 
-      
-      
-      ion-icon {
-        font-size: 60px; //Preferred size here
-    }
+    label{
+        color: black;
+        padding-top: 10px;
+    }      
 }

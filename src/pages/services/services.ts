@@ -17,19 +17,16 @@ export class ServicesPage {
 
   slides = [
     {
-      title: "Cirugía",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
-      image: "assets/img/services/cheetah-small.jpg",
+      title: "Cirugía",      
+      image: "assets/img/services/cirugia.jpg",
     },
     {
-      title: "Consulta Externa",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "assets/img/services/kitten-small.jpg",
+      title: "Consulta Externa",      
+      image: "assets/img/services/consulta.jpg",
     },
     {
-      title: "Urgencias",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "assets/img/services/puppy-small.jpg",
+      title: "Urgencias",      
+      image: "assets/img/services/urgencias.jpg",
     }
 ];
 
