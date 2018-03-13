@@ -18,8 +18,7 @@ import { servicioMedico } from '../../models/servicioMedico';
 })
 export class ServicesPage {
 
-  isValid: boolean = true;
-  hide: boolean = true;
+  isValid: boolean = true;  
 
   currentItems: servicioMedico[];
 
@@ -54,7 +53,7 @@ export class ServicesPage {
   }
 
   /**
-   * Perform a service for the proper items.
+   * Perform a search for the proper items.
    */
   getItems(ev) {
     this.isValid = false; 
@@ -68,17 +67,20 @@ export class ServicesPage {
       return;
     }
     this.currentItems = this.items.query({
-      nombre: val
+      Nombre: val,
+      Grupo: val
     });
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: servicioMedico) {
-    this.navCtrl.push('ItemDetailPage', {
-      item: item
-    });
+  openItem(category: String) {
+    let categoryServices = this.items.query({      
+      Grupo: category
+    });    
+
+    this.navCtrl.push('ServicesDetailPage',{services: categoryServices, category: category});
   }
 
   /**
