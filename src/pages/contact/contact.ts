@@ -44,8 +44,8 @@ export class ContactPage {
       this.submitAttempt = true;
       //Let's show an alert that something went wrong
       let alert = this.alertCtrl.create({
-        title: 'No se pudo Enviar el mensaje',
-        subTitle: 'Losentimos, hubo un error mientras se enviaba el mensaje, por favor intente mas tarde',
+        title: 'Debes Ingresar todos los datos',
+        subTitle: 'Debes llenar todos los datos solicitados.',
         buttons: ['OK']
       });
       alert.present();
@@ -57,16 +57,26 @@ export class ContactPage {
 
       try {
         this.restProvider.sendMessage(this.contactUsForm.value);
+
+        //Let's show an alert that everything goes fine
+        let alert = this.alertCtrl.create({
+          title: 'Mensaje Enviado!',
+          subTitle: 'Tu mensaje ha sido enviado exitosamente.',
+          buttons: ['OK']
+        });
+        alert.present();
       } catch (error) {
-        console.error(error)
-      }
-      //Let's show an alert that everything goes fine
+        console.error(error);
+        //Let's show an alert that something went wrong
       let alert = this.alertCtrl.create({
-        title: 'Mensaje Enviado!',
-        subTitle: 'Tu mensaje ha sido enviado exitosamente.',
+        title: 'No se pudo Enviar el mensaje',
+        subTitle: 'Losentimos, hubo un error mientras se enviaba el mensaje, por favor intente mas tarde',
         buttons: ['OK']
       });
       alert.present();
+
+      }
+
 
       this.navCtrl.push(ContentPage);
     }
