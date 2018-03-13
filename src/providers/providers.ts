@@ -1,13 +1,14 @@
 import { Api } from './api/api';
 import { Items } from '../mocks/providers/items';
-import { serviciosMedicos } from '../mocks/providers/serviciosMedicos';
+
+import { PortafolioServicios } from '../mocks/providers/portafolioServicios';
 import { Settings } from './settings/settings';
 import { User } from './user/user';
 
 export {
     Api,
     Items,
-    serviciosMedicos,
+    PortafolioServicios,
     Settings,
     User
 };

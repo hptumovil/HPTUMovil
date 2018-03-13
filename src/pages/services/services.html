@@ -14,24 +14,26 @@
 
 
 <ion-content>
-
-
+  
+  <!-- Slider with images of main services -->
   <div class="banner">
 
     <ion-slides pager autoplay="5000" loop="true" speed="2000">
 
       <ion-slide *ngFor="let slide of slides">
-         <!-- <h4 [innerHTML]="slide.title" class="slide-title"></h4>  -->
-        <img [src]="slide.image" style="display:block;width:auto;height:auto;margin-left:auto;margin-right:auto;"/>
-        
+        <!-- <h4 [innerHTML]="slide.title" class="slide-title"></h4>  -->
+        <img [src]="slide.image" style="display:block;width:auto;height:auto;margin-left:auto;margin-right:auto;" />
+
       </ion-slide>
     </ion-slides>
 
   </div>
 
+  <!-- Search bar -->
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
-  <div class="categories" padding>
+  <!-- Grid with services' Categories-->
+  <div class="categories" padding *ngIf="isValid;else other_content">
 
     <ion-grid>
       <ion-row>
@@ -81,6 +83,16 @@
     </ion-grid>
 
   </div>
-
+  
+  <!-- List of services searched -->
+  <ng-template #other_content>
+    <ion-list>
+      <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">        
+        <h3>{{item.nombre}}</h3>
+        <p>{{item.grupo}}</p>
+        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+      </button>
+    </ion-list>
+  </ng-template>
 
 </ion-content>

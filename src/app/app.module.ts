@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { Items } from '../mocks/providers/items';
+import { PortafolioServicios } from '../mocks/providers/portafolioServicios';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
@@ -18,9 +19,9 @@ import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { serviciosMedicos } from '../mocks/providers/serviciosMedicos';
 import { RestProvider } from '../providers/rest/rest';
 import { CallNumber } from '@ionic-native/call-number';
+
 
 
 
@@ -70,7 +71,7 @@ export function provideSettings(storage: Storage) {
   providers: [
     Api,
     Items,
-    serviciosMedicos,
+    PortafolioServicios,
     User,
     Camera,
     SplashScreen,
