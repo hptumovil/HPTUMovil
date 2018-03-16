@@ -21,7 +21,11 @@ export class ServicesDetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
-    console.log(this.category);     
+    
+    //Sort the services by name
+    this.services.sort(function (a, b) {
+      return a.Nombre > b.Nombre;
+    });      
   }
 
   ionViewDidLoad() {
@@ -34,6 +38,11 @@ export class ServicesDetailPage {
   initializeItems() {
     this.services = this.items.query({      
       Grupo: this.category
+    });
+
+    //Sort the services by name
+    this.services.sort(function (a, b) {
+      return a.Nombre > b.Nombre;
     });
   }
 
