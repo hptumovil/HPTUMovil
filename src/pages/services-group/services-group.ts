@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PortafolioServicios } from '../../providers/providers';
 
 /**
- * Generated class for the ServicesDetailPage page.
+ * Generated class for the ServicesGroupPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,28 +11,25 @@ import { PortafolioServicios } from '../../providers/providers';
 
 @IonicPage()
 @Component({
-  selector: 'page-services-detail',
-  templateUrl: 'services-detail.html',
+  selector: 'page-services-group',
+  templateUrl: 'services-group.html',
 })
-export class ServicesDetailPage {
+export class ServicesGroupPage {
+
   services: any;
   groupedServices = [];
   category: String;
-  subcategory: String;
+  isValid: boolean = true; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
-    this.subcategory = navParams.get('subcategory');
     
-    //Sort the services by name
-    this.services.sort(function (a, b) {
-      return a.Nombre > b.Nombre;
-    });      
+    this.groupServices(this.services);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicesDetailPage');
+    console.log('ionViewDidLoad ServicesGroupPage');
   }
 
   /**
@@ -72,7 +69,7 @@ export class ServicesDetailPage {
 
     // sort physicians by alphabetical order
     let sortedServices = services.sort(function (a, b) {
-      return a.Nombre > b.Nombre;
+      return a.Subgrupo > b.Subgrupo;
     });
 
     //Variables to contain the letter and group under that letter
@@ -82,16 +79,16 @@ export class ServicesDetailPage {
     //this groups the the letter groups and the physicians under this.groupedContacts
     sortedServices.forEach((value, index) => {
 
-      if (value.Subgrupo.charAt(0) != currentSubgroup) {
+      if (value.Subgrupo != currentSubgroup) {
 
-        currentSubgroup = value.lastname.charAt(0);
+        currentSubgroup = value.Subgrupo;
 
         let newGroup = {
-          letter: currentSubgroup,
-          contacts: []
+          subgrupo: currentSubgroup,
+          services: []
         };
 
-        currentServices = newGroup.contacts;
+        currentServices = newGroup.services;
         this.groupedServices.push(newGroup);
 
       }
@@ -111,6 +108,24 @@ export class ServicesDetailPage {
   onCancel(ev){
     this.initializeItems();
      
+  }
+
+  /**
+   * Navigate to the detail page for this item.
+   */
+  openItem(subgroup: String) {
+    
+    /**
+     * let Subcategory = this.items.query({      
+      Grupo: this.category,
+      Subgrupo: subgroup
+    });
+    **/
+
+   let Subcategory = this.groupedServices.filter(services => services.subgrupo == subgroup);
+    console.log(Subcategory[0].services);
+
+    this.navCtrl.push('ServicesDetailPage',{services: Subcategory[0].services, category: this.category, subcategory: subgroup});
   }
 
 }

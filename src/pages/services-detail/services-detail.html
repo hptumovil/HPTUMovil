@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{category}}</ion-title>
+    <ion-title>{{subcategory}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,11 +18,22 @@
    <!-- Search bar -->
    <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
+   <!-- Group Description -->
+   <ion-card>
+    <ion-card-header>
+      Descripción
+    </ion-card-header>
+    <ion-card-content>
+      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+    </ion-card-content>
+  </ion-card> 
+
+
   <!-- List o Services -->
     <ion-list inset>
         <button ion-item *ngFor="let item of services">    
           <h3>{{item.Nombre}}</h3>
-          <p>{{item.Grupo}}</p>          
+          <p>{{item.Subgrupo}}</p>          
         </button>
       </ion-list>
 

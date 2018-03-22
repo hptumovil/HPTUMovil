@@ -60,9 +60,9 @@ export class PhysiciansPage {
     //this groups the the letter groups and the physicians under this.groupedContacts
     sortedContacts.forEach((value, index) => {
 
-      if (value.lastname.charAt(0) != currentLetter) {
+      if (value.Subgrupo != currentLetter) {
 
-        currentLetter = value.lastname.charAt(0);
+        currentLetter = value.Subgrupo;
 
         let newGroup = {
           letter: currentLetter,

@@ -78,9 +78,9 @@ export class ServicesPage {
   openItem(category: String) {
     let categoryServices = this.items.query({      
       Grupo: category
-    });    
+    });
 
-    this.navCtrl.push('ServicesDetailPage',{services: categoryServices, category: category});
+    this.navCtrl.push('ServicesGroupPage',{services: categoryServices, category: category});
   }
 
   /**
