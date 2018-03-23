@@ -16,13 +16,21 @@ import { servicioMedico } from '../../models/servicioMedico';
 })
 export class ServiceDetailPage {
   service: servicioMedico;
+  showVisitingHours = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.service = navParams.get('service');   
+    this.service = navParams.get('service');
+    this.hasVisitingHours();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServiceDetailPage');
+  }
+
+  hasVisitingHours(){
+    if(this.service.Horario_visitas == "NULL"){
+      this.showVisitingHours = false;
+    }
   }
 
 }

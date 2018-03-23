@@ -27,6 +27,12 @@
       <br>
       <h2><strong>Horario de Atención:</strong> {{service.Horario_atencion}}</h2>
 
+      <div  *ngIf="showVisitingHours">
+          <br>
+          <h2><strong>Horario de Visitas:</strong> {{service.Horario_visitas}}</h2>
+      </div>
+
+
       <br>
       <h2><strong>Nota:</strong> La prestación de servicios de salud, está sujeta a las condiciones de contratación vigente con su aseguradora a excepción de las urgencias vitales.
       </h2>
