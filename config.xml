@@ -94,9 +94,9 @@
         <variable name="UPDATE_METHOD" value="background" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
-    </plugin>    
+    </plugin>
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
-    <edit-config file= "HPTUMovil-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+    <edit-config file="HPTUMovil-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>Necesitmaos tu ubicacion para indicar la ruta</string>
     </edit-config>
     <engine name="android" spec="7.0.0" />
