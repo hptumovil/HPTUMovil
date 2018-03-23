@@ -19,12 +19,12 @@ export class ServicesGroupPage {
   services: any;
   groupedServices = [];
   category: String;
-  isValid: boolean = true; 
+  isValid: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
-    
+
     this.groupServices(this.services);
   }
 
@@ -36,7 +36,7 @@ export class ServicesGroupPage {
    * Load all items in the array
    */
   initializeItems() {
-    this.services = this.items.query({      
+    this.services = this.items.query({
       Grupo: this.category
     });
 
@@ -55,7 +55,7 @@ export class ServicesGroupPage {
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {
-      this.initializeItems();     
+      this.initializeItems();
       return;
     }
     this.services = this.items.query({
@@ -100,32 +100,24 @@ export class ServicesGroupPage {
   /**
    * Show all the items when the searchbar is cleaned
    */
-  onClear(ev){
+  onClear(ev) {
     this.initializeItems();
-       
+
   }
 
-  onCancel(ev){
+  onCancel(ev) {
     this.initializeItems();
-     
+
   }
 
   /**
    * Navigate to the detail page for this item.
    */
   openItem(subgroup: String) {
-    
-    /**
-     * let Subcategory = this.items.query({      
-      Grupo: this.category,
-      Subgrupo: subgroup
-    });
-    **/
 
-   let Subcategory = this.groupedServices.filter(services => services.subgrupo == subgroup);
-    console.log(Subcategory[0].services);
+    let Subcategory = this.groupedServices.filter(services => services.subgrupo == subgroup);
 
-    this.navCtrl.push('ServicesDetailPage',{services: Subcategory[0].services, category: this.category, subcategory: subgroup});
+    this.navCtrl.push('ServicesDetailPage', { services: Subcategory[0].services, category: this.category, subcategory: subgroup });
   }
 
 }

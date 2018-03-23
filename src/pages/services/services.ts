@@ -84,6 +84,15 @@ export class ServicesPage {
   }
 
   /**
+   * Navigate to the detail page for this item.
+   */
+  openSearchedItem(service: servicioMedico) {
+    this.navCtrl.push('ServiceDetailPage', {
+      service: service
+    });   
+  }
+
+  /**
    * Show all the items when the searchbar is cleaned
    */
   onClear(ev){

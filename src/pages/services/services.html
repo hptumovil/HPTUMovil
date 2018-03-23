@@ -94,7 +94,7 @@
   <!-- List of services searched -->
   <ng-template #other_content>
     <ion-list>
-      <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">        
+      <button ion-item (click)="openSearchedItem(item)" *ngFor="let item of currentItems">        
         <h3>{{item.Nombre}}</h3>
         <p>{{item.Grupo}}</p>        
       </button>

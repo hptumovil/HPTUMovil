@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PortafolioServicios } from '../../providers/providers';
+import { servicioMedico } from '../../models/servicioMedico';
 
 /**
  * Generated class for the ServicesDetailPage page.
@@ -19,11 +20,17 @@ export class ServicesDetailPage {
   groupedServices = [];
   category: String;
   subcategory: String;
+  description: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
     this.subcategory = navParams.get('subcategory');
+    let descriptionObject = this.items.queryDescription({
+      Nombre: this.subcategory
+    });
+    this.description = descriptionObject[0].Descripcion;
+    
     
     //Sort the services by name
     this.services.sort(function (a, b) {
@@ -98,6 +105,15 @@ export class ServicesDetailPage {
       currentServices.push(value);
     });
 
+  }
+
+  /**
+   * Navigate to the detail page for this item.
+   */
+  openItem(service: servicioMedico) {
+    this.navCtrl.push('ServiceDetailPage', {
+      service: service
+    });   
   }
 
   /**

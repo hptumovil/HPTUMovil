@@ -24,14 +24,14 @@
       Descripción
     </ion-card-header>
     <ion-card-content>
-      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+      {{description}}
     </ion-card-content>
   </ion-card> 
 
 
   <!-- List o Services -->
     <ion-list inset>
-        <button ion-item *ngFor="let item of services">    
+        <button ion-item *ngFor="let item of services" (click) ="openItem(item)">    
           <h3>{{item.Nombre}}</h3>
           <p>{{item.Subgrupo}}</p>          
         </button>
