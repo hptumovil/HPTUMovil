@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { RestProvider } from '../../providers/rest/rest';
-import { medico } from '../../models/medico';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Physician } from '../../models/physician';
 /**
  * Generated class for the PhysiciansPage page.
  *
@@ -17,75 +17,47 @@ import { medico } from '../../models/medico';
 })
 export class PhysiciansPage {
   users: any;
+  physicianCollection: AngularFirestoreCollection<Physician>;
+  physicians: Array<any>;
   groupedContacts = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PhysiciansPage');
-    this.getContacts();
+    this.physicianCollection = this.asf.collection('medicos');
+    this.initializeItems();
   }
 
   /**
    * Load all items in the array
    */
-  initializeItems() {
-    this.groupedContacts = [];
-    this.groupContacts(this.users);
-  }
-
-  //Method that gets all the Physicians from the database
-  getContacts() {
-    this.restProvider.getUsers()
-      .then(data => {
-        this.users = data;
-        this.initializeItems();
-      });
-  }
-
-  //Method that sorts all the Physicians in groups by lastname
-  groupContacts(contacts) {
-
-    // sort physicians by alphabetical order
-    let sortedContacts = contacts.sort(function (a, b) {
-      return a.lastname > b.lastname;
+  initializeItems() {    
+    this.physicianCollection.snapshotChanges().subscribe(physiciansList =>{
+      this.physicians = physiciansList.map(item => {
+        return{
+              MedicoID: item.payload.doc.id,
+              firstname: item.payload.doc.data().firstname,
+              lastname: item.payload.doc.data().lastname,
+              departamento: item.payload.doc.data().departamento,
+              cargo: item.payload.doc.data().cargo,
+              email: item.payload.doc.data().email,
+              perfil: item.payload.doc.data().perfil,
+              thumbnail: item.payload.doc.data().thumbnail,
+              profilePic: item.payload.doc.data().profilepic,
+              idiomas: item.payload.doc.data().idiomas,
+              especialidad: item.payload.doc.data().especialidad
+        }
+      })
     });
-
-    //Variables to contain the letter and group under that letter
-    let currentLetter = false;
-    let currentContacts = [];
-
-    //this groups the the letter groups and the physicians under this.groupedContacts
-    sortedContacts.forEach((value, index) => {
-
-      if (value.Subgrupo != currentLetter) {
-
-        currentLetter = value.Subgrupo;
-
-        let newGroup = {
-          letter: currentLetter,
-          contacts: []
-        };
-
-        currentContacts = newGroup.contacts;
-        this.groupedContacts.push(newGroup);
-
-      }
-      currentContacts.push(value);
-    });
-
-  }
-
+  }  
 
   /**
    * Perform a service for the proper items.
    */
   getItems(ev) {
-    // Reset items back to all of the items
-    this.initializeItems();
-
     // set val to the value of the searchbar
     let val = ev.target.value;
     console.log(val);
@@ -95,17 +67,14 @@ export class PhysiciansPage {
       this.initializeItems();
       return;
     }
-    let Contacts = this.users.filter(item => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()) || item.cargo.toLowerCase().includes(val.toLowerCase()));
-    this.groupedContacts = [];
-    this.groupContacts(Contacts);
-
-    console.log(this.groupedContacts);
+    let Contacts = this.physicians.filter(item => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()) || item.cargo.toLowerCase().includes(val.toLowerCase()));
+    this.physicians = Contacts;
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(medico: medico) {
+  openItem(medico: Physician) {
     this.navCtrl.push('PhysicianDetailPage', {
       medico: medico
     });

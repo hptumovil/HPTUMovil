@@ -22,6 +22,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RestProvider } from '../providers/rest/rest';
 import { CallNumber } from '@ionic-native/call-number';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 
 
@@ -46,6 +49,15 @@ export function provideSettings(storage: Storage) {
   });
 }
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyBDNGYpxKPV8uTHp66mGZfUGc_VXyJWlu8",
+  authDomain: "hptumovilapp.firebaseapp.com",
+  databaseURL: "https://hptumovilapp.firebaseio.com",
+  projectId: "hptumovilapp",
+  storageBucket: "hptumovilapp.appspot.com",
+  messagingSenderId: "692673823673"
+}
+
 @NgModule({
   declarations: [
     MyApp
@@ -61,8 +73,9 @@ export function provideSettings(storage: Storage) {
       }
     }),
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
-    
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

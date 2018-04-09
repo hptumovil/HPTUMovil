@@ -28,8 +28,7 @@ export class RestProvider {
   getUsers() {
     return new Promise(resolve => {
       this.http.get('http://hptuapps/backend-movil/medicos.php').subscribe(data => {
-        resolve(data); 
-        console.log(data);      
+        resolve(data);              
       }, err => {
         console.log(err);
       });
