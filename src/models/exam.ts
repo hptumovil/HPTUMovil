@@ -11,5 +11,7 @@ export class Exam {
 }
 
 export interface Exam {
-  [prop: string]: any;
+  Titulo: string;
+  Descripcion: string;
+  info: any;
 }

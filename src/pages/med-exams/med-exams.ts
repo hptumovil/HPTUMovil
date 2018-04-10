@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { RestProvider } from '../../providers/rest/rest';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Exam } from '../../models/exam';
 
 /**
@@ -17,26 +17,56 @@ import { Exam } from '../../models/exam';
   templateUrl: 'med-exams.html',
 })
 export class MedExamsPage {
-  exams: any;
-  groupedExams = [];
+  exams: Array<any>;
+  examCollection: AngularFirestoreCollection<Exam>;
+  groupedExams: any;
+  //groupedExams = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedExamsPage');
-    this.getExams();
+    this.examCollection = this.asf.collection('instructivos-examenes', ref => ref.orderBy('Titulo'));    
+    this.initializeItems();
+     
+    //this.getExams();
+    
   }
 
   /**
    * Load all items in the array
    */
   initializeItems() {
-    this.groupedExams = [];
-    this.groupExams(this.exams);
+    //this.groupedExams = [];
+    //this.groupExams(this.exams);
+    this.examCollection.snapshotChanges().subscribe(examsList =>{
+      this.exams = examsList.map(item => {
+        return{
+          Titulo: item.payload.doc.data().Titulo,
+          Descripcion: item.payload.doc.data().Descripcion,
+          info: [
+            {
+              Nombre: "Preparacion",
+              instrucciones: item.payload.doc.data().Preparacion
+            },
+            {
+              Nombre:"Recomendaciones",
+              instrucciones: item.payload.doc.data().Recomendaciones
+            },
+            {
+              Nombre:"Recuerde",
+              instrucciones: item.payload.doc.data().Recuerde
+            }
+          ]
+          
+        }
+      })
+    });    
   }
 
   //Method that gets all the instructions for exams from the database
+  /** 
   getExams() {
     this.restProvider.getExamsInstructions()
       .then(data => {
@@ -44,6 +74,7 @@ export class MedExamsPage {
         this.initializeItems();
       });
   }
+  */
 
   //Method that sorts all the instrutions for exams in groups by first letter
   groupExams(exams) {
@@ -79,9 +110,6 @@ export class MedExamsPage {
    * Perform a service search for the proper items.
    */
   getItems(ev) {
-    // Reset items back to all of the items
-    this.initializeItems();
-
     // set val to the value of the searchbar
     let val = ev.target.value;
 
@@ -90,10 +118,11 @@ export class MedExamsPage {
       this.initializeItems();
       return;
     }
-    let Exams = this.exams.filter(item => item.Titulo.toLowerCase().includes(val.toLowerCase()));
-    this.groupedExams = [];
-    this.groupExams(Exams);
-
+    let search = this.exams.filter(item => item.Titulo.toLowerCase().includes(val.toLowerCase()));
+    this.exams = search;  
+    
+    //this.groupedExams = [];
+    //this.groupExams(Exams);
   }
 
   /**

@@ -59,8 +59,7 @@ export class PhysiciansPage {
    */
   getItems(ev) {
     // set val to the value of the searchbar
-    let val = ev.target.value;
-    console.log(val);
+    let val = ev.target.value;    
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {
