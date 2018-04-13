@@ -17,25 +17,21 @@ import { servicioMedico } from '../../models/servicioMedico';
 })
 export class ServicesDetailPage {
   services: any;
-  groupedServices = [];
+  servicesList = [];
   category: String;
   subcategory: String;
   description: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
-    this.services = navParams.get('services');
-    this.category = navParams.get('category');
-    this.subcategory = navParams.get('subcategory');
+    this.services = navParams.get('services');    
+    this.category = navParams.get('category');   
+    this.subcategory = navParams.get('subcategory');    
     let descriptionObject = this.items.queryDescription({
       Nombre: this.subcategory
     });
     this.description = descriptionObject[0].Descripcion;
     
-    
-    //Sort the services by name
-    this.services.sort(function (a, b) {
-      return a.Nombre > b.Nombre;
-    });      
+    this.initializeItems();     
   }
 
   ionViewDidLoad() {
@@ -46,9 +42,7 @@ export class ServicesDetailPage {
    * Load all items in the array
    */
   initializeItems() {
-    this.services = this.items.query({      
-      Grupo: this.category
-    });
+    this.servicesList = this.services;
 
     //Sort the services by name
     this.services.sort(function (a, b) {
@@ -68,45 +62,35 @@ export class ServicesDetailPage {
       this.initializeItems();     
       return;
     }
-    this.services = this.items.query({
+    this.servicesList = this.query({
       Nombre: val,
       Grupo: val
     });
   }
 
-  //Method that sorts all the Physicians in groups by lastname
-  groupServices(services) {
-
-    // sort physicians by alphabetical order
-    let sortedServices = services.sort(function (a, b) {
-      return a.Nombre > b.Nombre;
-    });
-
-    //Variables to contain the letter and group under that letter
-    let currentSubgroup = false;
-    let currentServices = [];
-
-    //this groups the the letter groups and the physicians under this.groupedContacts
-    sortedServices.forEach((value, index) => {
-
-      if (value.Subgrupo.charAt(0) != currentSubgroup) {
-
-        currentSubgroup = value.lastname.charAt(0);
-
-        let newGroup = {
-          letter: currentSubgroup,
-          contacts: []
-        };
-
-        currentServices = newGroup.contacts;
-        this.groupedServices.push(newGroup);
-
+  /**
+   * Method that allows to search within the json
+   * @param params the keys within the json to filter the search
+   */
+  query(params?: any) {
+    if (!params) {
+      return this.servicesList;
+    }
+    
+    return this.servicesList.filter((item) => {
+      for (let key in params) {
+        let field = item[key];
+        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+          return item;
+        } else if (field == params[key]) {
+          return item;
+        }
       }
-      currentServices.push(value);
+      return null;
     });
-
   }
 
+  
   /**
    * Navigate to the detail page for this item.
    */
@@ -125,8 +109,7 @@ export class ServicesDetailPage {
   }
 
   onCancel(ev){
-    this.initializeItems();
-     
+    this.initializeItems();     
   }
 
 }

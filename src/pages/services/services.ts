@@ -102,6 +102,19 @@ export class ServicesPage {
   /**
    * Navigate to the detail page for this item.
    */
+  openUrgencies(subgroup: String) {
+    let categoryServices = this.query({      
+      Grupo: 'Servicio de Urgencias'
+    });
+
+    let Subcategory = categoryServices.filter(services => services.subgrupo == subgroup);
+
+    this.navCtrl.push('ServicesDetailPage', { services: categoryServices, category: 'Servicio de Urgencias', subcategory: subgroup });
+  }
+
+  /**
+   * Navigate to the detail page for this item.
+   */
   openSearchedItem(service: servicioMedico) {
     this.navCtrl.push('ServiceDetailPage', {
       service: service

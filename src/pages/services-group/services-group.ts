@@ -46,27 +46,7 @@ export class ServicesGroupPage {
     this.services.sort(function (a, b) {
       return a.Nombre > b.Nombre;
     });
-  }
-
-  /**
-   * Perform a search for the proper items.
-   */
-  /** 
-   getItems(ev) {
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (!val || !val.trim()) {
-      this.initializeItems();
-      return;
-    }
-    this.services = this.items.query({
-      Nombre: val,
-      Grupo: val
-    });
-  }
-  */
+  }  
 
   //Method that sorts all the Physicians in groups by lastname
   groupServices(services) {
