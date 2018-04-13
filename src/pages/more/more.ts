@@ -22,10 +22,9 @@ type PageList = PageItem[]
 export class MorePage {
 
   pages: any[] = [
-    { title: 'Servicios', component: 'ServicesPage' },         
-    { title: 'Settings', component: 'SettingsPage' },    
-    { title: 'Como llegar', component: 'MapPage' },
-    { title: 'Contactenos', component: 'ContactPage' },
+    { title: 'Servicios', component: 'ServicesPage' },   
+    { title: 'Cómo llegar', component: 'MapPage' },
+    { title: 'Contáctenos', component: 'ContactPage' },
     { title: 'Check in', component: 'CheckinPage' }    
   ]
 

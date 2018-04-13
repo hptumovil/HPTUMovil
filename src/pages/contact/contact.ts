@@ -6,6 +6,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { ContentPage } from '../pages';
 import { CallNumber } from '@ionic-native/call-number';
 import { AlertController } from 'ionic-angular';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 /**
  * Generated class for the ContactPage page.
@@ -22,15 +23,26 @@ import { AlertController } from 'ionic-angular';
 export class ContactPage {
   contactUsForm: FormGroup;
   submitAttempt: boolean = false;
+  contactenosCollection : AngularFirestoreCollection<any>;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private callNumber: CallNumber, public alertCtrl: AlertController, private restProvider: RestProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public formBuilder: FormBuilder, 
+    private callNumber: CallNumber, 
+    public alertCtrl: AlertController, 
+    private restProvider: RestProvider,
+    private db: AngularFirestore
+  ) {
     this.contactUsForm = formBuilder.group({
       name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       phone: [''],
       message: ['', Validators.compose([Validators.required])]
     });
+    //This create a nre collection from database in firebase
+    this.contactenosCollection = db.collection('contactenos');
   }
 
   ionViewDidLoad() {
@@ -55,8 +67,20 @@ export class ContactPage {
       console.log("All data was entered correctly!")
       console.log(this.contactUsForm.value);
 
-      try {
-        this.restProvider.sendMessage(this.contactUsForm.value);
+      try {        
+        //Let's create a new document and add to the colection
+        this.contactenosCollection.add(
+          {
+            name: this.contactUsForm.value.name,
+            email: this.contactUsForm.value.email,
+            phone: this.contactUsForm.value.phone,
+            message: this.contactUsForm.value.message
+          }).then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
 
         //Let's show an alert that everything goes fine
         let alert = this.alertCtrl.create({

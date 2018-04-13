@@ -97,7 +97,7 @@
     </plugin>
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <edit-config file="HPTUMovil-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-        <string>Necesitmaos tu ubicacion para indicar la ruta</string>
+        <string>Necesitamos tu ubicación para indicar la ruta</string>
     </edit-config>
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.4" />
