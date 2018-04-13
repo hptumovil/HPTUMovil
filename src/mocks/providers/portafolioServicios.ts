@@ -18,7 +18,7 @@ export class PortafolioServicios {
 
 
   constructor() {  
-    this.load();
+    //this.load();
     this.loadDescriptions();
   }
 
@@ -57,6 +57,7 @@ export class PortafolioServicios {
       return null;
     });
   }
+  
   
   loadDescriptions(){
     this.subgroupDescription = [
@@ -107,6 +108,7 @@ export class PortafolioServicios {
     ]
   }
 
+  /** 
   load(){
     let items = [
       {
@@ -1515,5 +1517,6 @@ export class PortafolioServicios {
       this.portafolio.push(new servicioMedico(item));
     }
   }
- 
+ **/
+  
 }

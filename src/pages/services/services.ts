@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { PortafolioServicios } from '../../providers/providers';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { servicioMedico } from '../../models/servicioMedico';
 
 /**
@@ -17,7 +17,7 @@ import { servicioMedico } from '../../models/servicioMedico';
   templateUrl: 'services.html',
 })
 export class ServicesPage {
-
+  portfolioCollection: AngularFirestoreCollection<any>;
   isValid: boolean = true;  
 
   currentItems: servicioMedico[];
@@ -37,19 +37,35 @@ export class ServicesPage {
     }
 ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
+    this.portfolioCollection = this.db.collection('PortafolioServicios');
+    this.initializeItems();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesPage');
+    
   }
 
   /**
    * Load all items in the array
    */
   initializeItems() {
-    this.currentItems = this.items.query();
+    //this.currentItems = this.items.query();
+    this.portfolioCollection.snapshotChanges().subscribe(servicesList =>{
+      this.currentItems = servicesList.map(item => {
+        return{
+          id: item.payload.doc.id,
+          Grupo: item.payload.doc.data().Grupo,
+          Subgrupo: item.payload.doc.data().Subgrupo,
+          Nombre: item.payload.doc.data().Nombre,
+          Descripcion: item.payload.doc.data().Descripcion,
+          Horario_atencion: item.payload.doc.data().Horario_atencion,
+          Horario_visitas: item.payload.doc.data().Horario_visitas,
+          Ubicacion: item.payload.doc.data().Ubicacion
+        }
+      })
+    });
   }
 
   /**
@@ -66,7 +82,7 @@ export class ServicesPage {
       this.isValid = true;
       return;
     }
-    this.currentItems = this.items.query({
+    this.currentItems = this.query({
       Nombre: val,
       Grupo: val
     });
@@ -76,7 +92,7 @@ export class ServicesPage {
    * Navigate to the detail page for this item.
    */
   openItem(category: String) {
-    let categoryServices = this.items.query({      
+    let categoryServices = this.query({      
       Grupo: category
     });
 
@@ -93,15 +109,41 @@ export class ServicesPage {
   }
 
   /**
+   * Method that allows to search within the json
+   * @param params the keys within the json to filter the search
+   */
+  query(params?: any) {
+    if (!params) {
+      return this.currentItems;
+    }
+    
+    return this.currentItems.filter((item) => {
+      for (let key in params) {
+        let field = item[key];
+        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+          return item;
+        } else if (field == params[key]) {
+          return item;
+        }
+      }
+      return null;
+    });
+  }
+
+  /**
    * Show all the items when the searchbar is cleaned
    */
   onClear(ev){
     this.isValid = true;
-       
+    this.initializeItems();       
   }
 
+  /**
+   * Show all the items when the searchbar is canceled
+   */
   onCancel(ev){
     this.isValid = true;
-     
+    this.initializeItems();    
   }
+
 }

@@ -22,13 +22,13 @@ export class PhysiciansPage {
   groupedContacts = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
+    this.physicianCollection = this.db.collection('medicos');
+    this.initializeItems();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PhysiciansPage');
-    this.physicianCollection = this.asf.collection('medicos');
-    this.initializeItems();
+    console.log('ionViewDidLoad PhysiciansPage');    
   }
 
   /**

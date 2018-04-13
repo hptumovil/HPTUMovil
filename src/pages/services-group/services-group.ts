@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { PortafolioServicios } from '../../providers/providers';
 
 /**
@@ -16,12 +17,13 @@ import { PortafolioServicios } from '../../providers/providers';
 })
 export class ServicesGroupPage {
 
+  portfolioCollection: AngularFirestoreCollection<any>;
   services: any;
   groupedServices = [];
   category: String;
   isValid: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items: PortafolioServicios) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore, public items: PortafolioServicios) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
 
@@ -49,7 +51,8 @@ export class ServicesGroupPage {
   /**
    * Perform a search for the proper items.
    */
-  getItems(ev) {
+  /** 
+   getItems(ev) {
     // set val to the value of the searchbar
     let val = ev.target.value;
 
@@ -63,6 +66,7 @@ export class ServicesGroupPage {
       Grupo: val
     });
   }
+  */
 
   //Method that sorts all the Physicians in groups by lastname
   groupServices(services) {
