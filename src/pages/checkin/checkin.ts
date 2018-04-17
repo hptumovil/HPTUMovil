@@ -37,7 +37,8 @@ export class CheckinPage {
     }
 
     // Opening a URL and returning an InAppBrowserObject
-    const browser = this.inAppbrowser.create(this.url, '_system', options);
+    const browser = this.inAppbrowser.create(this.url, '_self', options);
+    browser.show();
   }
 
 }
