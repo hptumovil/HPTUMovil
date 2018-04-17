@@ -47,8 +47,8 @@ export class MedExamsPage {
           Descripcion: item.payload.doc.data().Descripcion,
           info: [
             {
-              Nombre: "Preparacion",
-              instrucciones: item.payload.doc.data().Preparacion
+              Nombre: "Preparación",
+              instrucciones: item.payload.doc.data().Preparación
             },
             {
               Nombre:"Recomendaciones",

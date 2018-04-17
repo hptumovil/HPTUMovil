@@ -13,6 +13,26 @@
 </ion-header>
 
 
-<ion-content padding>
- Aqui va ir el modulo para agendar citas
+<ion-content>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-card (click)="goTo()">
+    <img src="assets/img/diagnostic.jpg"/>
+    <div class="card-title">Ayudas Diagnosticas</div>    
+  </ion-card>
+
+  <ion-card (click)="goTo()">
+    <img src="assets/img/cancerology.jpg"/>
+    <div class="double-title">Cancerologia <br> Consulta Externa</div>
+    <!--<div class="card-subtitle"></div>-->
+  </ion-card>
+
+  <ion-card (click)="goTo()">
+    <img src="assets/img/laboratory.jpg"/>
+    <div class="card-title">Laboratorio</div>    
+  </ion-card>
+
+  <ion-card (click)="goTo()">
+    <img src="assets/img/radiology.jpg"/>
+    <div class="card-title">Radiologia & Imagenes Dx</div>    
+</ion-card>
 </ion-content>
