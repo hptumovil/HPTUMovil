@@ -72,7 +72,7 @@ export class ServicesPage {
    * Perform a search for the proper items.
    */
   getItems(ev) {
-    this.isValid = false; 
+    this.isValid = false;    
 
     // set val to the value of the searchbar
     let val = ev.target.value;
@@ -80,12 +80,15 @@ export class ServicesPage {
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {      
       this.isValid = true;
+      this.initializeItems();
       return;
     }
-    this.currentItems = this.query({
+    let searchedItems = this.query({
       Nombre: val,
       Grupo: val
     });
+
+    this.currentItems = searchedItems;
   }
 
   /**
