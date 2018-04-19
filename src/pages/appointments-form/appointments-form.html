@@ -64,10 +64,12 @@
       </ion-select>
     </ion-item>
 
+    <!--
     <div padding>
         <button ion-button>Cargar imagen</button>
         <p>Adjunte la orden del asegurador y/o médico tratante</p>
     </div>
+    -->
   </ion-list>
 
   <ion-item>
@@ -76,7 +78,7 @@
   </ion-item>
 
   <div padding>
-      <button ion-button full>Enviar</button>
+      <button ion-button full (click)="sendInfo()">Enviar</button>
   </div>
 
 </ion-content>

@@ -14,25 +14,41 @@
 
 
 <ion-content no-bounce>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-card (click)="goTo()">
-    <img src="assets/img/diagnostic.jpg"/>
-    <div class="card-title">Ayudas Diagnosticas</div>    
-  </ion-card>
+  <!-- Search bar -->
+  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
-  <ion-card (click)="goTo()">
-    <img src="assets/img/cancerology.jpg"/>
-    <div class="double-title">Cancerologia <br> Consulta Externa</div>
-    <!--<div class="card-subtitle"></div>-->
-  </ion-card>
+  <!--services' Categories-->
+  <div class="Categories" *ngIf="isValid;else other_content">
+    <ion-card (click)="goTo()">
+      <img src="assets/img/diagnostic.jpg" />
+      <div class="card-title">Ayudas Diagnosticas</div>
+    </ion-card>
 
-  <ion-card (click)="goTo()">
-    <img src="assets/img/laboratory.jpg"/>
-    <div class="card-title">Laboratorio</div>    
-  </ion-card>
+    <ion-card (click)="goTo()">
+      <img src="assets/img/cancerology.jpg" />
+      <div class="double-title">Cancerologia
+        <br> Consulta Externa</div>
+    </ion-card>
 
-  <ion-card (click)="goTo()">
-    <img src="assets/img/radiology.jpg"/>
-    <div class="card-title">Radiologia & Imagenes Dx</div>    
-</ion-card>
+    <ion-card (click)="goTo()">
+      <img src="assets/img/laboratory.jpg" />
+      <div class="card-title">Laboratorio</div>
+    </ion-card>
+
+    <ion-card (click)="goTo()">
+      <img src="assets/img/radiology.jpg" />
+      <div class="card-title">Radiologia & Imagenes Dx</div>
+    </ion-card>
+  </div>
+
+  <!-- List of services searched -->
+  <ng-template #other_content>
+      <ion-list>
+        <button ion-item (click)="openSearchedItem(item)" *ngFor="let item of itemsToShow">        
+          <h3>{{item.Nombre}}</h3>
+          <p>{{item.Categoria}}</p>
+        </button>
+      </ion-list>
+    </ng-template>
+
 </ion-content>

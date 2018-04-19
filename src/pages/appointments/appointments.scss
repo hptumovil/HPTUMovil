@@ -1,11 +1,11 @@
 page-appointments {
-    ion-card {
-        position: relative;
-        text-align: center;
-        width: 100%;
-        height: 20%;
-      }
-    
+   
+  ion-card {
+      position: relative;
+      text-align: center;
+      width: 100%;
+      height: 20%;
+    }   
       .card-title {
         position: absolute;
         top: 36%;
@@ -22,7 +22,6 @@ page-appointments {
         font-weight: bold;
         color: #fff;
       }
-    
       .card-subtitle {
         font-size: 1.0em;
         position: absolute;
