@@ -25,17 +25,18 @@ export class AppointmentsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
     this.medicalServiceCollection = this.db.collection('medical-services');
-    this.initializeItems();
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AppointmentsPage');
+    this.initializeItems();
   }
 
    /**
    * Load all items in the array
    */
-  initializeItems() {
+  async initializeItems() {
     //this.currentItems = this.items.query();
     this.medicalServiceCollection.snapshotChanges().subscribe(servicesList =>{
       this.itemsToShow = servicesList.map(item => {
@@ -75,6 +76,17 @@ export class AppointmentsPage {
 
     this.itemsToShow = searchedItems;
   }  
+
+  /**
+   * Navigate to the detail page for this item.
+   */
+  openItem(category: String) {
+    let categoryServices = this.query({      
+      Categoria: category
+    });
+
+    this.navCtrl.push('AppointmentsGroupPage',{services: categoryServices, category: category});
+  }
 
   /**
    * Navigate to the detail page for this item.
@@ -127,10 +139,6 @@ export class AppointmentsPage {
   onCancel(ev){
     this.isValid = true;
     this.initializeItems();    
-  }
-
-  goTo(){
-    this.navCtrl.push('AppointmentsFormPage')
-  }
+  } 
 
 }

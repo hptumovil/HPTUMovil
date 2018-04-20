@@ -27,7 +27,7 @@ export class AppointmentsFormPage {
     //Let's show an alert that everything goes fine
     let alert = this.alertCtrl.create({
       title: 'Solicitud de cita enviada',
-      subTitle: 'En menos de 24 horas uno de nuestros asesores se comunicara con usted para indicar dia y hora de su cita.',
+      subTitle: 'Gracias por confiar en nosotros. Usted será contactado en las próximas 24 horas hábiles para agendar su cita',
       buttons: ['OK']
     });
     alert.present();

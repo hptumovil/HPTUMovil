@@ -27,4 +27,8 @@ export class AppointmentsMessagePage {
     console.log('ionViewDidLoad AppointmentsMessagePage');
   }
 
+  goToHomePage(){
+    this.navCtrl.setRoot('ContentPage');
+  }
+
 }

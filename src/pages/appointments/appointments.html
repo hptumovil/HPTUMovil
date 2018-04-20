@@ -19,23 +19,23 @@
 
   <!--services' Categories-->
   <div class="Categories" *ngIf="isValid;else other_content">
-    <ion-card (click)="goTo()">
+    <ion-card (click)="openItem('Ayudas Diagnósticas')">
       <img src="assets/img/diagnostic.jpg" />
-      <div class="card-title">Ayudas Diagnosticas</div>
+      <div class="card-title">Ayudas Diagnósticas</div>
     </ion-card>
 
-    <ion-card (click)="goTo()">
+    <ion-card (click)="openItem('Cancerología')">
       <img src="assets/img/cancerology.jpg" />
       <div class="double-title">Cancerologia
         <br> Consulta Externa</div>
     </ion-card>
 
-    <ion-card (click)="goTo()">
+    <ion-card (click)="openItem('Laboratorio')">
       <img src="assets/img/laboratory.jpg" />
       <div class="card-title">Laboratorio</div>
     </ion-card>
 
-    <ion-card (click)="goTo()">
+    <ion-card (click)="openItem('Radiología')">
       <img src="assets/img/radiology.jpg" />
       <div class="card-title">Radiologia & Imagenes Dx</div>
     </ion-card>
