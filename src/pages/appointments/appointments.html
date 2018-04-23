@@ -18,7 +18,7 @@
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
   <!--services' Categories-->
-  <div padding>
+  <div *ngIf="isValid;else other_content" padding>
     <button ion-button block outline large icon-right color="dark" (click)="openItem('Ayudas Diagnósticas')">
       <div padding>Ayudas Diagnósticas</div>      
       <i class="fas fa-heartbeat fa-2x"></i>
@@ -38,8 +38,6 @@
       <div padding>Radiología & Imagenes Dx</div>      
       <i class="fas fa-x-ray fa-2x"></i>
     </button>
-
-
   </div>
   
 
