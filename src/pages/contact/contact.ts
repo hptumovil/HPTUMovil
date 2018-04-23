@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RestProvider } from '../../providers/rest/rest';
 import { ContentPage } from '../pages';
 import { CallNumber } from '@ionic-native/call-number';
 import { AlertController } from 'ionic-angular';
@@ -25,14 +24,12 @@ export class ContactPage {
   submitAttempt: boolean = false;
   contactenosCollection : AngularFirestoreCollection<any>;
 
-
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public formBuilder: FormBuilder, 
     private callNumber: CallNumber, 
-    public alertCtrl: AlertController, 
-    private restProvider: RestProvider,
+    public alertCtrl: AlertController,
     private db: AngularFirestore
   ) {
     this.contactUsForm = formBuilder.group({
@@ -94,13 +91,11 @@ export class ContactPage {
         //Let's show an alert that something went wrong
       let alert = this.alertCtrl.create({
         title: 'No se pudo Enviar el mensaje',
-        subTitle: 'Losentimos, hubo un error mientras se enviaba el mensaje, por favor intente mas tarde',
+        subTitle: 'Lo sentimos, hubo un error mientras se enviaba el mensaje, por favor intente mas tarde',
         buttons: ['OK']
       });
       alert.present();
-
       }
-
 
       this.navCtrl.push(ContentPage);
     }

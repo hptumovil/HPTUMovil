@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Solicitud de cita</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,49 +15,50 @@
 
 <ion-content>
 
-  <ion-list>
+  <form id="appoinments-form" [formGroup]="appoinmentForm">
 
     <ion-item>
       <ion-label floating>Nombre(s)</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input formControlName="name" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Apellidos</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input formControlName="lastname" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Identificación</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input formControlName="id" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>E-mail</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Celular</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input formControlName="cellphone" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Telefono</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input formControlName="phone" type="text"></ion-input>
     </ion-item>
-
+    
+    <!--
     <ion-item>
       <ion-label>Procedimiento o examen</ion-label>
-      <ion-select [(ngModel)]="procedimiento-examen" interface="popover">
+      <ion-select [(ngModel)]="procedimientoExamen" [ngModelOptions]="{standalone: true}" interface="popover">
         <ion-option value="Procedimiento">Procedimiento</ion-option>
         <ion-option value="Examen">Examen</ion-option>
       </ion-select>
     </ion-item>
-
+    -->
     <ion-item>
       <ion-label>Responsable Pago</ion-label>
-      <ion-select [(ngModel)]="responsable-pago" interface="popover">
+      <ion-select [(ngModel)]="responsablePago" [ngModelOptions]="{standalone: true}" interface="popover">
         <ion-option value="EPS">EPS</ion-option>
         <ion-option value="Póliza y medicina">Póliza y medicina</ion-option>
         <ion-option value="Pago directo">Pago directo</ion-option>
@@ -70,7 +71,7 @@
         <p>Adjunte la orden del asegurador y/o médico tratante</p>
     </div>
     -->
-  </ion-list>
+  </form>
 
   <ion-item>
     <ion-label>Acepta términos y condiciones de uso de datos</ion-label>

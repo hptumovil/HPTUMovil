@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ContentPage } from '../pages';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 /**
  * Generated class for the AppointmentsFormPage page.
@@ -15,24 +17,97 @@ import { ContentPage } from '../pages';
   templateUrl: 'appointments-form.html',
 })
 export class AppointmentsFormPage {
+  service: any;
+  title: string = "Solicitud de citas";
+  appoinmentForm: FormGroup;
+  submitAttempt: boolean = false;
+  contactenosCollection: AngularFirestoreCollection<any>;
+  responsablePago: string;
+  //procedimientoExamen: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public formBuilder: FormBuilder,
+    private db: AngularFirestore
+  ) {
+    this.appoinmentForm = formBuilder.group({
+      name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      lastname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      id: ['', Validators.compose([Validators.required])],      
+      email: ['', Validators.compose([Validators.required, Validators.email])],      
+      cellphone: ['', Validators.compose([Validators.required])],
+      phone: ['']
+    });
+    //This create a nre collection from database in firebase
+    this.contactenosCollection = db.collection('solicitudesCitas');
+    this.service = navParams.get('service')
+    console.log(this.service);
+    this.title = this.service.Nombre;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AppointmentsFormPage');
   }
 
-  sendInfo() {
-    //Let's show an alert that everything goes fine
-    let alert = this.alertCtrl.create({
-      title: 'Solicitud de cita enviada',
-      subTitle: 'Gracias por confiar en nosotros. Usted será contactado en las próximas 24 horas hábiles para agendar su cita',
-      buttons: ['OK']
-    });
-    alert.present();
+  //Method tha send the info in the form, to a server
+  sendInfo() {//this verify if the form is empty, or it if wasn't type correctly
+    if (!this.appoinmentForm.valid) {
+      this.submitAttempt = true;
+      //Let's show an alert that something went wrong
+      let alert = this.alertCtrl.create({
+        title: 'Debes Ingresar todos los datos',
+        subTitle: 'Debes llenar todos los datos solicitados.',
+        buttons: ['OK']
+      });
+      alert.present();
+      console.log("fail! Info ")
+    }
+    else {
+      console.log("All data was entered correctly!")
+      console.log(this.appoinmentForm.value);
 
-    this.navCtrl.push(ContentPage);
+      try {
+        //Let's create a new document and add to the colection
+        this.contactenosCollection.add(
+          {
+            name: this.appoinmentForm.value.name,
+            lastname: this.appoinmentForm.value.lastname,
+            id: this.appoinmentForm.value.id,
+            userEmail: this.appoinmentForm.value.email,
+            email: this.service.Email,
+            cellphone: this.appoinmentForm.value.cellphone,
+            phone: this.appoinmentForm.value.phone,
+            tipo: this.service.tipo,
+            responsablePago: this.responsablePago            
+          }).then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+          })
+          .catch(function (error) {
+            console.error("Error adding document: ", error);
+          });
+
+        //Let's show an alert that everything goes fine
+        let alert = this.alertCtrl.create({
+          title: 'Solicitud de cita enviada',
+          subTitle: 'Gracias por confiar en nosotros. Usted será contactado en las próximas 24 horas hábiles para agendar su cita',
+          buttons: ['OK']
+        });
+        alert.present();
+      } catch (error) {
+        console.error(error);
+        //Let's show an alert that something went wrong
+        let alert = this.alertCtrl.create({
+          title: 'No se pudo Conectar con el servidor',
+          subTitle: 'Lo sentimos, hubo un error mientras se conectaba con el servidor, por favor intente mas tarde',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+
+      this.navCtrl.push(ContentPage);
+    }
   }
 
 }
