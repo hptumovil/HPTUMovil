@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { ContentPage } from '../pages';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
@@ -23,11 +24,15 @@ export class AppointmentsFormPage {
   submitAttempt: boolean = false;
   contactenosCollection: AngularFirestoreCollection<any>;
   responsablePago: string;
+  imageURI:any;
+  imageFileName:any;
   //procedimientoExamen: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private camera: Camera,
+    public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public formBuilder: FormBuilder,
     private db: AngularFirestore
@@ -52,7 +57,8 @@ export class AppointmentsFormPage {
   }
 
   //Method tha send the info in the form, to a server
-  sendInfo() {//this verify if the form is empty, or it if wasn't type correctly
+  sendInfo() {
+    //this verify if the form is empty, or it if wasn't type correctly
     if (!this.appoinmentForm.valid) {
       this.submitAttempt = true;
       //Let's show an alert that something went wrong
@@ -79,8 +85,8 @@ export class AppointmentsFormPage {
             email: this.service.Email,
             cellphone: this.appoinmentForm.value.cellphone,
             phone: this.appoinmentForm.value.phone,
-            tipo: this.service.tipo,
-            responsablePago: this.responsablePago            
+            responsablePago: this.responsablePago,
+            servicio: this.service.Nombre        
           }).then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
           })
@@ -108,6 +114,36 @@ export class AppointmentsFormPage {
 
       this.navCtrl.push(ContentPage);
     }
+  }
+
+  getImage(){
+    
+  const options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+  }
+
+  this.camera.getPicture(options).then((imageData) => {
+    this.imageURI = imageData;
+  }, (err) => {
+    console.log(err);
+    this.presentToast(err);
+  });
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }

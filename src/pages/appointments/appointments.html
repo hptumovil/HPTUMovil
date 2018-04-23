@@ -18,28 +18,30 @@
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
   <!--services' Categories-->
-  <div class="Categories" *ngIf="isValid;else other_content">
-    <ion-card (click)="openItem('Ayudas Diagnósticas')">
-      <img src="assets/img/diagnostic.jpg" />
-      <div class="card-title">Ayudas Diagnósticas</div>
-    </ion-card>
+  <div padding>
+    <button ion-button block outline large icon-right color="dark" (click)="openItem('Ayudas Diagnósticas')">
+      <div padding>Ayudas Diagnósticas</div>      
+      <i class="fas fa-heartbeat fa-2x"></i>
+    </button>
 
-    <ion-card (click)="openItem('Cancerología')">
-      <img src="assets/img/cancerology.jpg" />
-      <div class="double-title">Cancerologia
-        <br> Consulta Externa</div>
-    </ion-card>
+    <button ion-button block outline large icon-right color="secondary" (click)="openItem('Cancerología')">
+      <div padding>Cancerología Consulta Ext</div>      
+      <i class="fas fa-life-ring fa-2x"></i>
+    </button>
 
-    <ion-card (click)="openItem('Laboratorio')">
-      <img src="assets/img/laboratory.jpg" />
-      <div class="card-title">Laboratorio</div>
-    </ion-card>
+    <button ion-button block outline large icon-right color="danger" (click)="openItem('Laboratorio')">
+      <div padding>Laboratorio</div>      
+      <i class="fas fa-flask fa-2x"></i>
+    </button>
 
-    <ion-card (click)="openItem('Radiología')">
-      <img src="assets/img/radiology.jpg" />
-      <div class="card-title">Radiologia & Imagenes Dx</div>
-    </ion-card>
+    <button ion-button block outline large icon-right (click)="openItem('Radiología')">
+      <div padding>Radiología & Imagenes Dx</div>      
+      <i class="fas fa-x-ray fa-2x"></i>
+    </button>
+
+
   </div>
+  
 
   <!-- List of services searched -->
   <ng-template #other_content>
