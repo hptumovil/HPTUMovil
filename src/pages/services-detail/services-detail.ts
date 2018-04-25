@@ -79,7 +79,7 @@ export class ServicesDetailPage {
     return this.servicesList.filter((item) => {
       for (let key in params) {
         let field = item[key];
-        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+        if (typeof field == 'string' && field.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(params[key].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
           return item;
         } else if (field == params[key]) {
           return item;

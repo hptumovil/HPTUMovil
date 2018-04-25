@@ -61,7 +61,6 @@ export class AppointmentsPage {
 
     // set val to the value of the searchbar
     let val = ev.target.value;
-    console.log(val);
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {      
@@ -106,6 +105,7 @@ export class AppointmentsPage {
   /**
    * Method that allows to search within the json
    * @param params the keys within the json to filter the search
+   * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for tildes problem
    */
   query(params?: any) {
     if (!params) {
@@ -115,7 +115,7 @@ export class AppointmentsPage {
     return this.itemsToShow.filter((item) => {
       for (let key in params) {
         let field = item[key];
-        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+        if (typeof field == 'string' && field.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(params[key].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
           return item;
         } else if (field == params[key]) {
           return item;

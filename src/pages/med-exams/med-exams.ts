@@ -91,18 +91,19 @@ export class MedExamsPage {
 
   /**
    * Perform a service search for the proper items.
+   * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for tildes problem
    */
   getItems(ev) {
     // set val to the value of the searchbar
     let val = ev.target.value;
-    console.log(val);
+    val = val.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");    
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {
       this.initializeItems();
       return;
     }
-    let search = this.exams.filter(item => item.Titulo.toLowerCase().includes(val.toLowerCase()));
+    let search = this.exams.filter(item => item.Titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val));
     this.exams = search;
   }
 

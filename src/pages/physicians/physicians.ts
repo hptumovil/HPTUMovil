@@ -56,17 +56,19 @@ export class PhysiciansPage {
 
   /**
    * Perform a service for the proper items.
+   * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for tildes problem
    */
   getItems(ev) {
     // set val to the value of the searchbar
-    let val = ev.target.value;    
+    let val = ev.target.value;
+    val = val.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");   
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {
       this.initializeItems();
       return;
     }
-    let Contacts = this.physicians.filter(item => item.firstname.toLowerCase().includes(val.toLowerCase()) || item.lastname.toLowerCase().includes(val.toLowerCase()) || item.cargo.toLowerCase().includes(val.toLowerCase()));
+    let Contacts = this.physicians.filter(item => item.firstname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.lastname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.cargo.toLowerCase().includes(val));
     this.physicians = Contacts;
   }
 
