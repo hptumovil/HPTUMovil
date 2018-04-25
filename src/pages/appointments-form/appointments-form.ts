@@ -27,6 +27,7 @@ export class AppointmentsFormPage {
   contactenosCollection: AngularFirestoreCollection<any>;
   responsablePago: string;
   imageURI:any = null;
+  image:any;
   downloadURL: Observable<string>;
   //procedimientoExamen: string;
 
@@ -46,7 +47,8 @@ export class AppointmentsFormPage {
       id: ['', Validators.compose([Validators.required])],      
       email: ['', Validators.compose([Validators.required, Validators.email])],      
       cellphone: ['', Validators.compose([Validators.required])],
-      phone: ['']
+      phone: [''],
+      responsablePago: ['', Validators.compose([Validators.required])]
     });
     //This create a nre collection from database in firebase
     this.contactenosCollection = db.collection('solicitudesCitas');
@@ -126,14 +128,15 @@ export class AppointmentsFormPage {
     
   const options: CameraOptions = {
     quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
+    destinationType: this.camera.DestinationType.DATA_URL,
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
   }
 
   this.camera.getPicture(options).then((imageData) => {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
-    this.imageURI = 'data:image/jpeg;base64,' +  imageData;
+    this.imageURI = imageData;
+    this.image = 'data:image/jpeg;base64,' +  imageData;
   }, (err) => {
     console.log(err);
     this.presentToast(err);
@@ -141,11 +144,24 @@ export class AppointmentsFormPage {
   }
 
   uploadImage(){
-    const filePath = '/citas/';
+    const filePath = '/Photos/';
+    //const task = this.storage.upload(filePath, this.imageURI);
     const ref = this.storage.ref(filePath);
-    const task = ref.putString(this.imageURI);
+    const task = ref.child(this.generateUUID()).child('myPhoto.jpg')
+    .putString(this.imageURI, 'base64', { contentType: 'image/jpg' })
     // get notified when the download URL is available
-    this.downloadURL = task.downloadURL();    
+    this.downloadURL = task.downloadURL();
+    console.log(this.downloadURL);
+  }
+
+  private generateUUID(): any {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
+      var r = (d + Math.random() * 16) % 16 | 0;
+      d = Math.floor(d / 16);
+      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
   }
 
   presentToast(msg) {

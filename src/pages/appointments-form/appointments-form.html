@@ -49,7 +49,7 @@
     
     <ion-item>
       <ion-label>Responsable Pago</ion-label>
-      <ion-select [(ngModel)]="responsablePago" [ngModelOptions]="{standalone: true}" interface="popover">
+      <ion-select [(ngModel)]="responsablePago" formControlName="responsablePago" interface="popover">
         <ion-option value="EPS">EPS</ion-option>
         <ion-option value="Póliza y medicina">Póliza y medicina</ion-option>
         <ion-option value="Pago directo">Pago directo</ion-option>
@@ -57,7 +57,7 @@
     </ion-item>
     
     <div padding>
-        <img [src]="imageURI" *ngIf="imageURI" height="40%" width="40%"/>
+        <img [src]="image" *ngIf="imageURI" height="40%" width="40%"/>
         <button ion-button (click)="getImage()">Cargar imagen</button>
         <p>Adjunte la orden del asegurador y/o médico tratante</p>
     </div>
