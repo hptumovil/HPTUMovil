@@ -20,7 +20,6 @@ export class MedExamsPage {
   exams: Array<any>;
   examCollection: AngularFirestoreCollection<Exam>;
   groupedExams: any;
-  //groupedExams = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore) {
   }
@@ -28,18 +27,13 @@ export class MedExamsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedExamsPage');
     this.examCollection = this.asf.collection('instructivos-examenes', ref => ref.orderBy('Titulo'));    
-    this.initializeItems();
-     
-    //this.getExams();
-    
+    this.initializeItems();    
   }
 
   /**
    * Load all items in the array
    */
   initializeItems() {
-    //this.groupedExams = [];
-    //this.groupExams(this.exams);
     this.examCollection.snapshotChanges().subscribe(examsList =>{
       this.exams = examsList.map(item => {
         return{
@@ -63,18 +57,7 @@ export class MedExamsPage {
         }
       })
     });    
-  }
-
-  //Method that gets all the instructions for exams from the database
-  /** 
-  getExams() {
-    this.restProvider.getExamsInstructions()
-      .then(data => {
-        this.exams = data;
-        this.initializeItems();
-      });
-  }
-  */
+  }  
 
   //Method that sorts all the instrutions for exams in groups by first letter
   groupExams(exams) {
@@ -112,6 +95,7 @@ export class MedExamsPage {
   getItems(ev) {
     // set val to the value of the searchbar
     let val = ev.target.value;
+    console.log(val);
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {
@@ -119,10 +103,7 @@ export class MedExamsPage {
       return;
     }
     let search = this.exams.filter(item => item.Titulo.toLowerCase().includes(val.toLowerCase()));
-    this.exams = search;  
-    
-    //this.groupedExams = [];
-    //this.groupExams(Exams);
+    this.exams = search;
   }
 
   /**
@@ -143,6 +124,11 @@ export class MedExamsPage {
 
   onCancel(ev) {
     this.initializeItems();
+  }
+
+  onBackSpace(ev){
+    this.initializeItems();  
+    this.getItems(ev);
   }
 
 }

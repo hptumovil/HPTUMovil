@@ -80,7 +80,7 @@ export class AppointmentsFormPage {
           {
             name: this.appoinmentForm.value.name,
             lastname: this.appoinmentForm.value.lastname,
-            id: this.appoinmentForm.value.id,
+            document: this.appoinmentForm.value.id,
             userEmail: this.appoinmentForm.value.email,
             email: this.service.Email,
             cellphone: this.appoinmentForm.value.cellphone,

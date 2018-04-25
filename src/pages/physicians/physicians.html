@@ -14,7 +14,7 @@
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por apellido"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por apellido"></ion-searchbar>
 
   <ion-list>
     <ion-item *ngFor="let item of physicians">

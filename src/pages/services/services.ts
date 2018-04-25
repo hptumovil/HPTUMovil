@@ -161,5 +161,10 @@ export class ServicesPage {
     this.isValid = true;
     this.initializeItems();    
   }
+  
+  onBackSpace(ev){
+    this.initializeItems();  
+    this.getItems(ev);
+  }
 
 }

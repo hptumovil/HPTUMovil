@@ -63,8 +63,7 @@ export class ServicesDetailPage {
       return;
     }
     this.servicesList = this.query({
-      Nombre: val,
-      Grupo: val
+      Nombre: val
     });
   }
 
@@ -110,6 +109,11 @@ export class ServicesDetailPage {
 
   onCancel(ev){
     this.initializeItems();     
+  }
+
+  onBackSpace(ev){
+    this.initializeItems();  
+    this.getItems(ev);
   }
 
 }

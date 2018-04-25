@@ -15,7 +15,7 @@
 
 <ion-content no-bounce>
   <!-- Search bar -->
-  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
   <!--services' Categories-->
   <div *ngIf="isValid;else other_content" padding>
@@ -24,17 +24,18 @@
       <i class="fas fa-heartbeat fa-2x"></i>
     </button>
 
-    <button ion-button block outline large icon-right color="secondary" (click)="openItem('Cancerología')">
-      <div padding>Cancerología Consulta Ext</div>      
+    <button ion-button block outline large color="dark" (click)="openItem('Cancerología')">
       <i class="fas fa-life-ring fa-2x"></i>
+      <div padding>Cancerología Consulta Ext</div>      
+      
     </button>
 
-    <button ion-button block outline large icon-right color="danger" (click)="openItem('Laboratorio')">
+    <button ion-button block outline large icon-right color="dark" (click)="openItem('Laboratorio')">
       <div padding>Laboratorio</div>      
       <i class="fas fa-flask fa-2x"></i>
     </button>
 
-    <button ion-button block outline large icon-right (click)="openItem('Radiología')">
+    <button ion-button block outline large icon-right color="dark" (click)="openItem('Radiología')">
       <div padding>Radiología & Imagenes Dx</div>      
       <i class="fas fa-x-ray fa-2x"></i>
     </button>

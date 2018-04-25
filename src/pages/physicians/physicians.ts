@@ -90,4 +90,9 @@ export class PhysiciansPage {
     this.initializeItems();
   }
 
+  onBackSpace(ev){
+    this.initializeItems();  
+    this.getItems(ev);
+  }
+
 }

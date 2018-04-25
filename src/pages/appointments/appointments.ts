@@ -140,5 +140,10 @@ export class AppointmentsPage {
     this.isValid = true;
     this.initializeItems();    
   } 
+  
+  onBackSpace(ev){
+    this.initializeItems();  
+    this.getItems(ev);
+  }
 
 }

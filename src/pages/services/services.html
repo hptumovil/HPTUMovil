@@ -30,7 +30,7 @@
   </div>
 
   <!-- Search bar -->
-  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
 
   <!-- Grid with services' Categories-->
   <div class="categories" padding *ngIf="isValid;else other_content">

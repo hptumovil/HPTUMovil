@@ -14,24 +14,12 @@
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Nombre Examen"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Nombre Examen"></ion-searchbar>
 
   
     <ion-item *ngFor="let exam of exams">
       <button ion-item (click)="openItem(exam)">
         <h2>{{exam.Titulo}}</h2>
       </button>
-    </ion-item>
-  
-
-  <!--
-  <ion-item-group *ngFor="let group of groupedExams">
-    <ion-item-divider light>{{group.letter}}</ion-item-divider>
-    <ion-item *ngFor="let exam of group.exams">
-      <button ion-item (click)="openItem(exam)">
-        <h2>{{exam.Titulo}}</h2>
-      </button>
-    </ion-item>
-  </ion-item-group>
--->
+    </ion-item>  
 </ion-content>
