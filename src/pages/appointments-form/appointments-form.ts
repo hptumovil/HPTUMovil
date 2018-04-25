@@ -143,7 +143,7 @@ export class AppointmentsFormPage {
   uploadImage(){
     const filePath = '/citas/';
     const ref = this.storage.ref(filePath);
-    const task = ref.put(this.imageURI, { customMetadata: { blah: 'blah' } });
+    const task = ref.putString(this.imageURI);
     // get notified when the download URL is available
     this.downloadURL = task.downloadURL();    
   }
