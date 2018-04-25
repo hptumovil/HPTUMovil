@@ -4,6 +4,8 @@ import { ContentPage } from '../pages';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the AppointmentsFormPage page.
@@ -24,8 +26,8 @@ export class AppointmentsFormPage {
   submitAttempt: boolean = false;
   contactenosCollection: AngularFirestoreCollection<any>;
   responsablePago: string;
-  imageURI:any;
-  imageFileName:any;
+  imageURI:any = null;
+  downloadURL: Observable<string>;
   //procedimientoExamen: string;
 
   constructor(
@@ -35,7 +37,8 @@ export class AppointmentsFormPage {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public formBuilder: FormBuilder,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private storage: AngularFireStorage
   ) {
     this.appoinmentForm = formBuilder.group({
       name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -73,6 +76,9 @@ export class AppointmentsFormPage {
     else {
       console.log("All data was entered correctly!")
       console.log(this.appoinmentForm.value);
+      if(this.imageURI != null){
+        this.uploadImage();
+      }
 
       try {
         //Let's create a new document and add to the colection
@@ -125,11 +131,21 @@ export class AppointmentsFormPage {
   }
 
   this.camera.getPicture(options).then((imageData) => {
-    this.imageURI = imageData;
+    // imageData is either a base64 encoded string or a file URI
+    // If it's base64:
+    this.imageURI = 'data:image/jpeg;base64,' +  imageData;
   }, (err) => {
     console.log(err);
     this.presentToast(err);
   });
+  }
+
+  uploadImage(){
+    const filePath = '/citas/';
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(this.imageURI, { customMetadata: { blah: 'blah' } });
+    // get notified when the download URL is available
+    this.downloadURL = task.downloadURL();    
   }
 
   presentToast(msg) {

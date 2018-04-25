@@ -45,17 +45,8 @@
     <ion-item>
       <ion-label floating>Telefono</ion-label>
       <ion-input formControlName="phone" type="text"></ion-input>
-    </ion-item>
+    </ion-item>   
     
-    <!--
-    <ion-item>
-      <ion-label>Procedimiento o examen</ion-label>
-      <ion-select [(ngModel)]="procedimientoExamen" [ngModelOptions]="{standalone: true}" interface="popover">
-        <ion-option value="Procedimiento">Procedimiento</ion-option>
-        <ion-option value="Examen">Examen</ion-option>
-      </ion-select>
-    </ion-item>
-    -->
     <ion-item>
       <ion-label>Responsable Pago</ion-label>
       <ion-select [(ngModel)]="responsablePago" [ngModelOptions]="{standalone: true}" interface="popover">
@@ -66,6 +57,7 @@
     </ion-item>
     
     <div padding>
+        <img [src]="imageURI" *ngIf="imageURI" height="40%" width="40%"/>
         <button ion-button (click)="getImage()">Cargar imagen</button>
         <p>Adjunte la orden del asegurador y/o médico tratante</p>
     </div>
