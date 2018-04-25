@@ -17,6 +17,7 @@ import { servicioMedico } from '../../models/servicioMedico';
 export class ServiceDetailPage {
   service: servicioMedico;
   showVisitingHours = true;
+  showAtentionHours = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.service = navParams.get('service');
@@ -28,8 +29,11 @@ export class ServiceDetailPage {
   }
 
   hasVisitingHours(){
-    if(this.service.Horario_visitas == "NULL"){
+    if(this.service.Horario_visitas == null){
       this.showVisitingHours = false;
+    }
+    if(this.service.Horario_atencion == null){
+      this.showAtentionHours = false;
     }
   }
 

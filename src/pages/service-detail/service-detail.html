@@ -16,36 +16,36 @@
 <ion-content>
 
   <ion-card>
-    <ion-card-header>
-      {{service.Nombre}}
-    </ion-card-header>
+    <div class="Title" padding>
+      <h1>{{service.Nombre}}</h1>
+    </div>
+
     <ion-card-content>
-      {{service.Descripcion}}
+      <h2>{{service.Descripcion}}</h2>
       <br><br>
-      <h2><strong>Ubicacion:</strong> {{service.Ubicacion}}</h2>      
 
-      <br>
-      <h2><strong>Horario de Atención:</strong> {{service.Horario_atencion}}</h2>
+      <h2><strong>Ubicación:</strong> {{service.Ubicacion}}</h2>
 
-      <div  *ngIf="showVisitingHours">
-          <br>
-          <h2><strong>Horario de Visitas:</strong> {{service.Horario_visitas}}</h2>
+      <div *ngIf="showAtentionHours">
+        <br>
+        <h2>
+          <strong>Horario de atención:</strong> {{service.Horario_atencion}}
+        </h2>
       </div>
 
+      <div *ngIf="showVisitingHours">
+        <br>
+        <h2>
+          <strong>Horario de visitas:</strong> {{service.Horario_visitas}}
+        </h2>
+      </div>
 
       <br>
-      <h2><strong>Nota:</strong> La prestación de servicios de salud, está sujeta a las condiciones de contratación vigente con su aseguradora a excepción de las urgencias vitales.
-      </h2>
-      
+      <h3>
+        <strong>Nota:</strong> La prestación de servicios de salud, está sujeta a las condiciones de contratación vigente con su
+        aseguradora a excepción de las urgencias vitales.
+      </h3>
+
     </ion-card-content>
   </ion-card>
-  <!--
-  <div padding>    
-      <button ion-button full round>Llamar para más Información</button>
-      <br>
-      <button ion-button full round color="secondary">Solicitar cita</button>
-  </div>
-  -->
-  
-
 </ion-content>
