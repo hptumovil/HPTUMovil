@@ -29,6 +29,7 @@ export class AppointmentsFormPage {
   imageURI:any = null;
   image:any;
   downloadURL: Observable<string>;
+  medicalOrderFile: string = "";
   //procedimientoExamen: string;
 
   constructor(
@@ -94,7 +95,8 @@ export class AppointmentsFormPage {
             cellphone: this.appoinmentForm.value.cellphone,
             phone: this.appoinmentForm.value.phone,
             responsablePago: this.responsablePago,
-            servicio: this.service.Nombre        
+            servicio: this.service.Nombre,
+            medicalOrderFile: this.medicalOrderFile             
           }).then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
           })
@@ -143,15 +145,19 @@ export class AppointmentsFormPage {
   });
   }
 
-  uploadImage(){
-    const filePath = '/Photos/';
-    //const task = this.storage.upload(filePath, this.imageURI);
+  async uploadImage(){
+    const filePath = '/imagenes-citasAPP/';
     const ref = this.storage.ref(filePath);
-    const task = ref.child(this.generateUUID()).child('myPhoto.jpg')
-    .putString(this.imageURI, 'base64', { contentType: 'image/jpg' })
-    // get notified when the download URL is available
-    this.downloadURL = task.downloadURL();
-    console.log(this.downloadURL);
+    const task = ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' })
+    // get notified when the download URL is available    
+    this.downloadURL = await task.downloadURL();
+    (this.downloadURL).subscribe(url=>{
+      if(url){
+          console.log(url);
+          //wirte the url to firestore
+          this.medicalOrderFile = url;
+      }
+   });    
   }
 
   private generateUUID(): any {
