@@ -26,8 +26,8 @@ export class AppointmentsFormPage {
   submitAttempt: boolean = false;
   contactenosCollection: AngularFirestoreCollection<any>;
   responsablePago: string;
-  imageURI:any = null;
-  image:any;
+  imageURI: any = null;
+  image: any;
   downloadURL: Observable<string>;
   medicalOrderFile: string = "";
   //procedimientoExamen: string;
@@ -43,13 +43,14 @@ export class AppointmentsFormPage {
     private storage: AngularFireStorage
   ) {
     this.appoinmentForm = formBuilder.group({
-      name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      lastname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      id: ['', Validators.compose([Validators.required])],      
-      email: ['', Validators.compose([Validators.required, Validators.email])],      
+      name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ\s ]*'), Validators.required])],
+      lastname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ\s ]*'), Validators.required])],
+      id: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
       cellphone: ['', Validators.compose([Validators.required])],
       phone: [''],
-      responsablePago: ['', Validators.compose([Validators.required])]
+      responsablePago: ['', Validators.compose([Validators.required])],
+      terms: [false, Validators.pattern('true')]
     });
     //This create a nre collection from database in firebase
     this.contactenosCollection = db.collection('solicitudesCitas');
@@ -62,7 +63,7 @@ export class AppointmentsFormPage {
     console.log('ionViewDidLoad AppointmentsFormPage');
   }
 
-  //Method tha send the info in the form, to a server
+  //Method that send the info in the form, to a server
   sendInfo() {
     //this verify if the form is empty, or it if wasn't type correctly
     if (!this.appoinmentForm.valid) {
@@ -78,11 +79,10 @@ export class AppointmentsFormPage {
     }
     else {
       console.log("All data was entered correctly!")
-      console.log(this.appoinmentForm.value);
-      if(this.imageURI != null){
-        this.uploadImage();
+      console.log(this.appoinmentForm.value);      
+      if (this.imageURI != null) {
+        let Imageurl = this.uploadImage();                           
       }
-
       try {
         //Let's create a new document and add to the colection
         this.contactenosCollection.add(
@@ -96,9 +96,9 @@ export class AppointmentsFormPage {
             phone: this.appoinmentForm.value.phone,
             responsablePago: this.responsablePago,
             servicio: this.service.Nombre,
-            medicalOrderFile: this.medicalOrderFile             
+            medicalOrderFile: this.medicalOrderFile
           }).then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
+            console.log("Document written with ID: ", docRef.id);            
           })
           .catch(function (error) {
             console.error("Error adding document: ", error);
@@ -126,40 +126,52 @@ export class AppointmentsFormPage {
     }
   }
 
-  getImage(){
-    
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+  //Method that get the image from the photo library
+  getImage() {
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      this.imageURI = imageData;
+      this.image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+      this.presentToast(err);
+    });
   }
 
-  this.camera.getPicture(options).then((imageData) => {
-    // imageData is either a base64 encoded string or a file URI
-    // If it's base64:
-    this.imageURI = imageData;
-    this.image = 'data:image/jpeg;base64,' +  imageData;
-  }, (err) => {
-    console.log(err);
-    this.presentToast(err);
-  });
-  }
-
-  async uploadImage(){
+  //Method that uploadt the image to firebase storage
+  async uploadImage() {
     const filePath = '/imagenes-citasAPP/';
     const ref = this.storage.ref(filePath);
-    const task = ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' })
-    // get notified when the download URL is available    
+    return ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' }).then(
+      (savedPicture) =>{
+        this.medicalOrderFile = savedPicture.downloadURL;
+        return savedPicture.downloadURL;
+      });
+    // get notified when the download URL is available 
+    /**       
     this.downloadURL = await task.downloadURL();
-    (this.downloadURL).subscribe(url=>{
-      if(url){
-          console.log(url);
-          //wirte the url to firestore
-          this.medicalOrderFile = url;
+    (this.downloadURL).subscribe(url => {
+      if (url) {
+        console.log(url);
+        //wirte the url to firestore
+        return url;       
+        //this.contactenosCollection.doc(id).set({
+          //medicalOrderFile: url
+        //});
       }
-   });    
+    });*/
+    
   }
 
+  //Method that generate an Unique ID to the folder of the image to upload
   private generateUUID(): any {
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
@@ -170,17 +182,18 @@ export class AppointmentsFormPage {
     return uuid;
   }
 
+  //Method tha show a toast when the form is valid or invalid
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 3000,
       position: 'bottom'
     });
-  
+
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-  
+
     toast.present();
   }
 

@@ -14,63 +14,86 @@
 
 
 <ion-content>
+  <!-- Form's container -->
+  <div>
+    <p *ngIf="submitAttempt" style="color: #ea6153;" padding>Por favor complete todos los datos.</p>
+    <form id="appoinments-form" [formGroup]="appoinmentForm">
 
-  <form id="appoinments-form" [formGroup]="appoinmentForm">
+      <ion-item>
+        <ion-label floating>Nombre(s)</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.name.valid  && (appoinmentForm.controls.name.dirty || submitAttempt)">
+        <p>Por favor ingrese un nombre valido.</p>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Nombre(s)</ion-label>
-      <ion-input formControlName="name" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Apellidos</ion-label>
+        <ion-input formControlName="lastname" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.lastname.valid  && (appoinmentForm.controls.lastname.dirty || submitAttempt)">
+        <p>Por favor ingrese un apellido valido.</p>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Apellidos</ion-label>
-      <ion-input formControlName="lastname" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Identificación</ion-label>
+        <ion-input formControlName="id" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.id.valid  && (appoinmentForm.controls.id.dirty || submitAttempt)">
+        <p>El documento de identificación es obligatorio.</p>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Identificación</ion-label>
-      <ion-input formControlName="id" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>E-mail</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.email.valid  && (appoinmentForm.controls.email.dirty || submitAttempt)">
+        <p>Por Vafor ingrese una dirección de correo valida</p>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>E-mail</ion-label>
-      <ion-input formControlName="email" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Celular</ion-label>
+        <ion-input formControlName="cellphone" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.cellphone.valid  && (appoinmentForm.controls.cellphone.dirty || submitAttempt)">
+        <p>El numero de telefono celular es obligatorio.</p>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Celular</ion-label>
-      <ion-input formControlName="cellphone" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Telefono</ion-label>
+        <ion-input formControlName="phone" type="text"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Telefono</ion-label>
-      <ion-input formControlName="phone" type="text"></ion-input>
-    </ion-item>   
-    
-    <ion-item>
-      <ion-label>Responsable Pago</ion-label>
-      <ion-select [(ngModel)]="responsablePago" formControlName="responsablePago" interface="popover">
-        <ion-option value="EPS">EPS</ion-option>
-        <ion-option value="Póliza y medicina">Póliza y medicina</ion-option>
-        <ion-option value="Pago directo">Pago directo</ion-option>
-      </ion-select>
-    </ion-item>
-    
-    <div padding>
-        <img [src]="image" *ngIf="imageURI" height="40%" width="40%"/>
+      <ion-item>
+        <ion-label>Responsable Pago</ion-label>
+        <ion-select [(ngModel)]="responsablePago" formControlName="responsablePago" interface="popover">
+          <ion-option value="EPS">EPS</ion-option>
+          <ion-option value="Póliza y medicina">Póliza y medicina</ion-option>
+          <ion-option value="Pago directo">Pago directo</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.responsablePago.valid  && (appoinmentForm.controls.responsablePago.dirty || submitAttempt)">
+        <p>Seleccione un responsable de pago</p>
+      </ion-item>
+
+      <div padding>
+        <img [src]="image" *ngIf="imageURI" height="40%" width="40%" />
         <button ion-button (click)="getImage()">Cargar imagen</button>
         <p>Adjunte la orden del asegurador y/o médico tratante</p>
-    </div>
-    
-  </form>
+      </div>
 
-  <ion-item>
-    <ion-label>Acepta términos y condiciones de uso de datos</ion-label>
-    <ion-checkbox color="dark"></ion-checkbox>
-  </ion-item>
+      <ion-item>
+        <ion-label>Acepta términos y condiciones de uso de datos</ion-label>
+        <ion-checkbox formControlName="terms" color="dark"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="!appoinmentForm.controls.terms.valid  && (appoinmentForm.controls.terms.dirty || submitAttempt)">
+        <p style="color: #ea6153;">Debe aceptar los términos y condiciones</p>
+      </ion-item>
+    </form>
+  </div>
 
   <div padding>
-      <button ion-button full (click)="sendInfo()">Enviar</button>
+    <button ion-button full (click)="sendInfo()">Enviar</button>
   </div>
 
 </ion-content>

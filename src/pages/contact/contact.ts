@@ -33,9 +33,9 @@ export class ContactPage {
     private db: AngularFirestore
   ) {
     this.contactUsForm = formBuilder.group({
-      name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ\s ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      phone: [''],
+      phone: ['', Validators.compose([Validators.required])],
       message: ['', Validators.compose([Validators.required])]
     });
     //This create a nre collection from database in firebase

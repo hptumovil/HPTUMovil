@@ -24,8 +24,7 @@ export class AppointmentsPage {
   itemsToShow: servicioMedico[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.medicalServiceCollection = this.db.collection('medical-services');
-    
+    this.medicalServiceCollection = db.collection('medical-services', ref => ref.orderBy('Nombre'));    
   }
 
   ionViewDidLoad() {
