@@ -6,6 +6,15 @@ page-appointments {
       width: 100%;
       height: 99%;
   }
+
+  .etiqueta{
+    color: #1571ac; 
+  }
+
+  .button-inner{
+    justify-content:flex-start;
+}
+
   ion-card {
       position: relative;
       text-align: center;
@@ -35,5 +44,7 @@ page-appointments {
         width: 100%;
         color: #fff;
     }
+
+    
 
 }

@@ -7,6 +7,17 @@
   <ion-grid>
     <!-- First Row-->
     <ion-row>
+        <ion-col col-4>
+            <button ion-button clear full (click)="goToPage(0)" class="square">
+              <div>
+                <i class="far fa-calendar-check fa-3x" style="color:#1571ac"></i>
+                <div>
+                  <label text-wrap>Solicitar cita</label>
+                </div>
+              </div>
+            </button>
+          </ion-col>
+
       <ion-col col-4>
           <button ion-button clear full (click)="goToPage(8)" class="square">
               <div>
@@ -23,18 +34,7 @@
           <div>
             <i class="far fa-clipboard fa-3x" style="color:#1571ac"></i>
             <div>
-              <label text-wrap>Instructivos Exámenes</label>
-            </div>
-          </div>
-        </button>
-      </ion-col>
-
-      <ion-col col-4>
-        <button ion-button clear full (click)="goToPage(2)" class="square">
-          <div>
-            <i class="fa fa-user-md fa-3x" style="color:#1571ac"></i>
-            <div>
-              <label text-wrap>Nuestros Profesionales</label>
+              <label text-wrap>Instructivos exámenes</label>
             </div>
           </div>
         </button>
@@ -50,20 +50,20 @@
             <div>
               <i class="fa fa-map-signs fa-3x" style="color:#1571ac"></i>
             </div>
-            <label text-wrap>Cómo Llegar</label>
+            <label text-wrap>Cómo llegar</label>
           </div>
         </button>
       </ion-col>
 
       <ion-col col-4>
-        <button ion-button clear full (click)="goToPage(4)" class="square">
-          <div>
-            <div>
-              <i class="fa fa-laptop fa-3x" style="color:#1571ac"></i>
-            </div>
-            <label text-wrap>Check In</label>
-          </div>
-        </button>
+          <button ion-button clear full (click)="goToPage(2)" class="square">
+              <div>
+                <i class="fa fa-user-md fa-3x" style="color:#1571ac"></i>
+                <div>
+                  <label text-wrap>Nuestros profesionales</label>
+                </div>
+              </div>
+            </button>
       </ion-col>
 
       <ion-col col-4>

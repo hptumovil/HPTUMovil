@@ -19,8 +19,8 @@ export class TabsPage {
   tab4Root: any = Tab4Root;
 
   tab1Title = "Inicio";
-  tab2Title = "Solicitar Cita";
-  tab3Title = "Mis Resultados";
+  tab2Title = "Solicitar cita";
+  tab3Title = "Mis resultados";
   tab4Title = "Mas";
 
   constructor(public navCtrl: NavController, public translateService: TranslateService) {
