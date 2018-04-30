@@ -16,10 +16,14 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <h2>Descripción</h2>
+      <h2>
+        <strong>
+            Descripción
+        </strong>
+        </h2>
     </ion-card-header>
-    <ion-card-content>
-      {{exam.Descripcion}}
+    <ion-card-content text-justify>     
+      {{exam.Descripcion}}          
     </ion-card-content>
   </ion-card>
 
@@ -37,9 +41,9 @@
 
       <ion-list *ngIf="item.instrucciones && item.open">
         <!-- Secon Level-->
-        <ion-item *ngFor="let child of item.instrucciones; let j = index" style="text-transform: none;" text-wrap>
+        <ion-card-content *ngFor="let child of item.instrucciones; let j = index" style="text-transform: none;" text-wrap text-justify>
           {{child}}
-        </ion-item>
+        </ion-card-content>
       </ion-list>
     </ion-list-header>
 
@@ -47,7 +51,7 @@
 
   </ion-list>
   <div text-center>
-      <button ion-button round icon-end (click)="call('tel:0344459572')">
+      <button ion-button round icon-end (click)="call()">
           Llamar
         </button>
   </div>

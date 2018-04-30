@@ -14,13 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'appointments-message.html',
 })
 export class AppointmentsMessagePage {
-
   title: string;
+  message: string;
   service:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.service = navParams.get('service');
     this.title = this.service.Nombre;
-    
+    this.message = this.service.Mensaje;
   }
 
   ionViewDidLoad() {

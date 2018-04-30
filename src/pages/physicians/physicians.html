@@ -7,14 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Nuestros Profesionales</ion-title>
+    <ion-title>Nuestros profesionales</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por apellido"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por nombre, apellido o especialidad"></ion-searchbar>
 
   <ion-list>
     <ion-item *ngFor="let item of physicians">

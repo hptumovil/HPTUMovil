@@ -16,9 +16,13 @@
 <ion-content>
   <!-- Form's container -->
   <div>
-    <p *ngIf="submitAttempt" style="color: #ea6153;" padding>Por favor complete todos los datos.</p>
-    <form id="appoinments-form" [formGroup]="appoinmentForm">
+    <div class="info">
+      <p text-center padding>Por favor registre la siguiente información para avanzar con el proceso de asignación de la cita</p>
+    </div>
 
+    <p *ngIf="submitAttempt" style="color: #ea6153;" padding>Por favor complete todos los datos.</p>
+
+    <form id="appoinments-form" [formGroup]="appoinmentForm">
       <ion-item>
         <ion-label floating>Nombre(s)</ion-label>
         <ion-input formControlName="name" type="text"></ion-input>
@@ -83,7 +87,7 @@
       </div>
 
       <ion-item>
-        <ion-label>Acepta términos y condiciones de uso de datos</ion-label>
+        <ion-label text-wrap>Acepta términos y condiciones de uso de datos</ion-label>
         <ion-checkbox formControlName="terms" color="dark"></ion-checkbox>
       </ion-item>
       <ion-item *ngIf="!appoinmentForm.controls.terms.valid  && (appoinmentForm.controls.terms.dirty || submitAttempt)">

@@ -39,6 +39,7 @@ export class MedExamsPage {
         return{
           Titulo: item.payload.doc.data().Titulo,
           Descripcion: item.payload.doc.data().Descripcion,
+          Telefono: item.payload.doc.data().Telefono,
           info: [
             {
               Nombre: "Preparación",

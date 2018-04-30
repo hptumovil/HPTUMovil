@@ -16,10 +16,12 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class ExamDetailPage {
   exam: any;
+  phone: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private callNumber: CallNumber) {
     this.exam = navParams.get('exam');
-    console.log(this.exam);
+    this.phone = this.exam.Telefono;
+    //console.log(this.exam);
   }
 
   ionViewDidLoad() {
@@ -36,9 +38,9 @@ export class ExamDetailPage {
   }
 
   //Method that dial a numbre in the cellphone 
-  call(phone: string) {
-    console.log("Llamando a " + phone)
-    this.callNumber.callNumber(phone, true)
+  call() {
+    console.log("Llamando a " + this.phone)
+    this.callNumber.callNumber(this.phone, true)
       .then(() => console.log('Launched dialer!'))
       .catch(() => console.log('Error launching dialer'));
   }

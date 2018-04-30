@@ -15,7 +15,7 @@
 
 <ion-content no-bounce>
   <!-- Search bar -->
-  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar Servicio"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por especialidad o examen"></ion-searchbar>
 
   <!--services' Categories-->
   <div *ngIf="isValid;else other_content" padding>

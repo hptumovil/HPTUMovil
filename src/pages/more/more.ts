@@ -25,7 +25,7 @@ export class MorePage {
     { title: 'Servicios', component: 'ServicesPage' },   
     { title: 'Cómo llegar', component: 'MapPage' },
     { title: 'Contáctenos', component: 'ContactPage' },
-    { title: 'Check in', component: 'CheckinPage' }    
+    { title: 'Preguntas frecuentes', component: 'FrequentlyAskedQuestionsPage' }    
   ]
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

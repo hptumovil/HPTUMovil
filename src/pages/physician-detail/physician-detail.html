@@ -1,44 +1,45 @@
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>{{ physician.firstname }} {{ physician.lastname}}</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>{{ physician.firstname }} {{ physician.lastname}}</ion-title>
+  </ion-navbar>
 
-  </ion-header>
-
-
-  <ion-content>
-
-    <ion-card>
-
-      <img src={{physician.profilePic}} />
-
-      <ion-card-content>
-        <ion-card-title>
-          {{physician.firstname}} {{physician.lastname}}
-        </ion-card-title>
-        <br>
-        <h2>{{physician.cargo}}</h2>
-        <h2>Email: <a (click)="sendEmail()">{{physician.email}} </a></h2>
-        <br>
-        <p text-justify>{{physician.perfil}}</p>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-list inset>
-      <ion-list-header>
-        <h1>Especialidades</h1>
-      </ion-list-header>
-      <ion-item *ngFor="let esp of physician.especialidad" text-wrap>
-        <div>{{esp}}</div>
-      </ion-item>
-    </ion-list>
-
-<div text-center>
-
-  <button ion-button round (click)="goToWebPortal()">Mas información</button>
-
-</div>
+</ion-header>
 
 
-  </ion-content>
+<ion-content>
+
+  <ion-card>
+
+    <img src={{physician.profilePic}} />
+
+    <ion-card-content>
+      <ion-card-title>
+        {{physician.firstname}} {{physician.lastname}}
+      </ion-card-title>
+      <br>
+      <h2>{{physician.cargo}}</h2>
+      <h2>Email:
+        <a (click)="sendEmail()">{{physician.email}} </a>
+      </h2>
+      <br>
+      <p text-justify>{{physician.perfil}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list inset>
+    <ion-list-header>
+      <h1>Especialidades</h1>
+    </ion-list-header>
+    <ion-item *ngFor="let esp of physician.especialidad" text-wrap>
+      <div>{{esp}}</div>
+    </ion-item>
+  </ion-list>
+
+  <!--
+  <div text-center>
+    <button ion-button round (click)="goToWebPortal()">Mas información</button>
+  </div>
+-->
+
+</ion-content>

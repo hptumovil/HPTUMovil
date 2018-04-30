@@ -14,13 +14,27 @@
 
 
 <ion-content>
-    <div>
-        <ion-list inset>
-            <button ion-item *ngFor="let item of services" (click)="openForm(item)">
-                <h3>{{item.Nombre}}</h3>
-                <p>{{item.Categoria}}</p>
-            </button>
-          </ion-list>
-    </div> 
+  <!-- Search bar -->
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por especialidad o examen"></ion-searchbar>
+  
+  <!-- The items that belongs to this cetegory group-->
+  <div *ngIf="isValid;else other_content" padding>
+    <ion-list inset>
+      <button ion-item *ngFor="let item of itemsToShow" (click)="openForm(item)">
+        <h3>{{item.Nombre}}</h3>
+        <p>{{item.Categoria}}</p>
+      </button>
+    </ion-list>
+  </div>
+
+  <!-- List of services searched -->
+  <ng-template #other_content>
+      <ion-list>
+        <button ion-item (click)="openForm(item)" *ngFor="let item of itemsToShow">        
+          <h3>{{item.Nombre}}</h3>
+          <p>{{item.Categoria}}</p>
+        </button>
+      </ion-list>
+    </ng-template>
 
 </ion-content>
