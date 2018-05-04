@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Portafolio de Servicios</ion-title>
+    <ion-title>Portafolio de servicios</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +18,7 @@
   <!-- Slider with images of main services -->
   <div class="banner">
 
-    <ion-slides pager autoplay="2000" loop="true" speed="2000">
+    <ion-slides pager autoplay="2000" loop="true" speed="3000">
 
       <ion-slide *ngFor="let slide of slides">
         <!-- <h4 [innerHTML]="slide.title" class="slide-title"></h4>  -->
@@ -42,7 +42,7 @@
           <button ion-button clear full (click)="openItem('Servicios Ambulatorios')"  class="button-ios-rounded" text-center>
             <div>
               <div>
-                <i class="fas fa-stethoscope fa-3x" style="color:#634ED1"></i>
+                <i class="fas fa-stethoscope fa-3x" style="color:#696969"></i>
               </div>
               <label text-wrap>Servicios ambulatorios</label>
             </div>
@@ -54,7 +54,7 @@
             <button ion-button clear full (click)="openItem('Cirugía')" class="button-ios-rounded" text-center>
               <div>
                 <div>
-                  <i class="fas fa-heartbeat fa-3x" style="color:#20CE99"></i>
+                  <i class="fas fa-heartbeat fa-3x" style="color:#1571AC"></i>
                 </div>
                 <label text-wrap>Cirugía</label>
               </div>
@@ -69,7 +69,7 @@
         <button ion-button clear full (click)="openItem('Hospitalización')" class="button-ios-rounded" text-center>
           <div>
             <div>
-              <i class="fas fa-bed fa-3x" style="color:#29A5FF"></i>
+              <i class="fas fa-bed fa-3x" style="color:#1571AC"></i>
             </div>
             <label text-wrap>Hospitalización</label>
           </div>
@@ -80,7 +80,7 @@
           <button ion-button clear full (click)="openUrgencies('Servicio de Urgencias')" class="button-ios-rounded" text-center>
             <div>
               <div>
-                <i class="fas fa-ambulance fa-3x" style="color:#FF9D01"></i>
+                <i class="fas fa-ambulance fa-3x" style="color:#696969"></i>
               </div>
               <label text-wrap>Urgencias</label>
             </div>

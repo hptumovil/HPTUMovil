@@ -21,8 +21,7 @@
         <strong>{{question.Pregunta}}</strong>
       </h2>
     </ion-card-header>
-    <ion-card-content>
-      {{question.Respuesta}}
+    <ion-card-content [innerHtml]="question.Respuesta">
       <br>
       <br>
       <br>

@@ -25,15 +25,15 @@ export class ServicesPage {
   slides = [
     {
       title: "Cirugía",      
-      image: "assets/img/services/cirugia.jpg",
+      image: "assets/img/services/HibipaA.jpg",
     },
     {
       title: "Consulta Externa",      
-      image: "assets/img/services/consulta.jpg",
+      image: "assets/img/services/HibipaB.jpg",
     },
     {
       title: "Urgencias",      
-      image: "assets/img/services/urgencias.jpg",
+      image: "assets/img/services/HibipaC.jpg",
     }
 ];
 

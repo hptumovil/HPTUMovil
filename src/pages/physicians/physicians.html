@@ -14,18 +14,17 @@
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por nombre, apellido o especialidad"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)"
+    placeholder="Buscar por nombre, apellido o especialidad"></ion-searchbar>
 
   <ion-list>
-    <ion-item *ngFor="let item of physicians">
-        <button ion-item (click)="openItem(item)">
-            <ion-avatar item-start>
-              <img src="{{item.thumbnail}}">
-            </ion-avatar>
-            <h2>{{item.lastname}} {{item.firstname}}</h2>
-            <h3>{{item.cargo}}</h3>
-          </button>
-    </ion-item>
+    <button ion-item (click)="openItem(item)" *ngFor="let item of physicians">
+      <ion-avatar item-start>
+        <img src="{{item.thumbnail}}">
+      </ion-avatar>
+      <h2>{{item.lastname}} {{item.firstname}}</h2>
+      <h3>{{item.cargo}}</h3>
+    </button>
   </ion-list>
 
 

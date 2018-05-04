@@ -46,7 +46,9 @@ export class AppointmentsPage {
           Mensaje: item.payload.doc.data().Mensaje,
           Nombre: item.payload.doc.data().Nombre,
           RequiereCita: item.payload.doc.data().RequiereCita,
-          estaActivo: item.payload.doc.data().estaActivo
+          activeOther: item.payload.doc.data().activeOther,
+          estaActivo: item.payload.doc.data().estaActivo,
+          palabrasClaves: item.payload.doc.data().palabrasClaves          
         }
       })
     });    

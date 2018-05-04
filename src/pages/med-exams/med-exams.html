@@ -14,12 +14,15 @@
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Nombre Examen"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)"
+    placeholder="Nombre Examen"></ion-searchbar>
 
-  
-    <ion-item *ngFor="let exam of exams">
-      <button ion-item (click)="openItem(exam)">
-        <h2 text-wrap>{{exam.Titulo}}</h2>
-      </button>
-    </ion-item>  
+  <ion-list inset>
+
+    <button ion-item (click)="openItem(exam)" *ngFor="let exam of exams">
+      <h2 text-wrap>{{exam.Titulo}}</h2>
+    </button>
+
+  </ion-list>
+
 </ion-content>

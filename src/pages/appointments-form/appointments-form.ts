@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
+import * as tos from './terms-of-service';
 
 /**
  * Generated class for the AppointmentsFormPage page.
@@ -30,6 +31,7 @@ export class AppointmentsFormPage {
   image: any;
   downloadURL: Observable<string>;
   medicalOrderFile: string = "";
+  tos = tos.termsOfService;
   //procedimientoExamen: string;
 
   constructor(
@@ -49,6 +51,7 @@ export class AppointmentsFormPage {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       cellphone: ['', Validators.compose([Validators.required])],
       phone: [''],
+      moreInfo: [''],
       responsablePago: ['', Validators.compose([Validators.required])],
       terms: [false, Validators.pattern('true')]
     });
@@ -94,6 +97,7 @@ export class AppointmentsFormPage {
             email: this.service.Email,
             cellphone: this.appoinmentForm.value.cellphone,
             phone: this.appoinmentForm.value.phone,
+            moreInfo: this.appoinmentForm.value.moreInfo,
             responsablePago: this.responsablePago,
             servicio: this.service.Nombre,
             medicalOrderFile: this.medicalOrderFile
@@ -182,6 +186,33 @@ export class AppointmentsFormPage {
     return uuid;
   }
 
+  //Method that show the Terms of Service
+  showTOS(){
+    if(this.appoinmentForm.controls.terms.untouched){
+      let alert = this.alertCtrl.create({
+        title: 'Acuerdo de licencia de usuario final',
+        subTitle: this.tos,
+        buttons: [{
+          text: 'Aceptar',          
+          handler: () => {
+            console.log('accept clicked');
+            
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            this.appoinmentForm.controls.terms.setValue(false);
+          }
+        }]
+      });
+      alert.present();     
+    }
+    
+  }
+
   //Method tha show a toast when the form is valid or invalid
   presentToast(msg) {
     let toast = this.toastCtrl.create({
@@ -196,5 +227,7 @@ export class AppointmentsFormPage {
 
     toast.present();
   }
+
+
 
 }
