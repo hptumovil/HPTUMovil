@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="co.org.hptumovil" version="0.1.10" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="co.org.hptumovil" version="0.1.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>HPTUMovil</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hptumovil@hptu.org.co" href="http://www.hptu.org.co/">Hospital Pablo tobon Uribe</author>
@@ -84,9 +84,15 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
-    <edit-config file="HPTUMovil-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-        <string>Necesitamos tu ubicación para indicar la ruta</string>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationUsageDescription">
+        <string>Se requiere acceso a su ubicacion para mostrar la ruta hacia el hospital.</string>
     </edit-config>
+     <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysUsageDescription">
+        <string>Se requiere acceso a su ubicacion para mostrar la ruta hacia el hospital.</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>Necesitamos tu ubicación para indicar la ruta</string>
+    </edit-config>   
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <plugin name="cordova-plugin-webp" spec="^2.2.0" />
@@ -103,8 +109,11 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
         <string>Se rquiere permiso a sus fotos</string>
     </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+        <string>Requerimos su autorización para acceder a sus fotos</string>
+    </edit-config>
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <engine name="android" spec="7.0.0" />
+    <engine name="ios" spec="4.5.4" />
     <engine name="browser" spec="5.0.3" />
-    <engine name="ios" spec="~4.5.4" />
-    <engine name="android" spec="~7.0.0" />
 </widget>
