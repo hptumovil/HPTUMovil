@@ -55,7 +55,7 @@ export class ServicesGroupPage {
     let sortedServices = services.sort(function (a, b) {
       return a.Subgrupo > b.Subgrupo;
     });
-
+    
     //Variables to contain the letter and group under that letter
     let currentSubgroup = false;
     let currentServices = [];

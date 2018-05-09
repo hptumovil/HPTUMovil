@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ModalController } from 'ionic-angular';
 import { ContentPage } from '../pages';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -40,6 +40,7 @@ export class AppointmentsFormPage {
     private camera: Camera,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
+    public modalCtrl: ModalController,
     public formBuilder: FormBuilder,
     private db: AngularFirestore,
     private storage: AngularFireStorage
@@ -82,9 +83,9 @@ export class AppointmentsFormPage {
     }
     else {
       console.log("All data was entered correctly!")
-      console.log(this.appoinmentForm.value);      
+      console.log(this.appoinmentForm.value);
       if (this.imageURI != null) {
-        let Imageurl = this.uploadImage();                           
+        let Imageurl = this.uploadImage();
       }
       try {
         //Let's create a new document and add to the colection
@@ -102,7 +103,7 @@ export class AppointmentsFormPage {
             servicio: this.service.Nombre,
             medicalOrderFile: this.medicalOrderFile
           }).then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);            
+            console.log("Document written with ID: ", docRef.id);
           })
           .catch(function (error) {
             console.error("Error adding document: ", error);
@@ -117,7 +118,7 @@ export class AppointmentsFormPage {
         alert.present();
       } catch (error) {
         console.error(error);
-        //Let's show an alert that something went wrong
+        //Let's show an alert that something went wrong        
         let alert = this.alertCtrl.create({
           title: 'No se pudo Conectar con el servidor',
           subTitle: 'Lo sentimos, hubo un error mientras se conectaba con el servidor, por favor intente mas tarde',
@@ -155,7 +156,7 @@ export class AppointmentsFormPage {
     const filePath = '/imagenes-citasAPP/';
     const ref = this.storage.ref(filePath);
     return ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' }).then(
-      (savedPicture) =>{
+      (savedPicture) => {
         this.medicalOrderFile = savedPicture.downloadURL;
         return savedPicture.downloadURL;
       });
@@ -172,7 +173,7 @@ export class AppointmentsFormPage {
         //});
       }
     });*/
-    
+
   }
 
   //Method that generate an Unique ID to the folder of the image to upload
@@ -187,16 +188,17 @@ export class AppointmentsFormPage {
   }
 
   //Method that show the Terms of Service
-  showTOS(){
-    if(this.appoinmentForm.controls.terms.untouched){
+  showTOS() {
+    if (this.appoinmentForm.controls.terms.untouched) {
+
       let alert = this.alertCtrl.create({
         title: 'Acuerdo de licencia de usuario final',
-        subTitle: this.tos,
+        message: this.tos,
         buttons: [{
-          text: 'Aceptar',          
+          text: 'Aceptar',
           handler: () => {
             console.log('accept clicked');
-            
+
           }
         },
         {
@@ -208,9 +210,9 @@ export class AppointmentsFormPage {
           }
         }]
       });
-      alert.present();     
+      alert.present();
     }
-    
+
   }
 
   //Method tha show a toast when the form is valid or invalid
@@ -224,10 +226,7 @@ export class AppointmentsFormPage {
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-
     toast.present();
   }
-
-
-
 }
+

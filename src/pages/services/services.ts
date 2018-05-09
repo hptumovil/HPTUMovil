@@ -105,14 +105,14 @@ export class ServicesPage {
   /**
    * Navigate to the detail page for this item.
    */
-  openUrgencies(subgroup: String) {
+  openDirectly(subgroup: String) {
     let categoryServices = this.query({      
-      Grupo: 'Servicio de Urgencias'
+      Grupo: subgroup
     });
 
     let Subcategory = categoryServices.filter(services => services.subgrupo == subgroup);
 
-    this.navCtrl.push('ServicesDetailPage', { services: categoryServices, category: 'Servicio de Urgencias', subcategory: subgroup });
+    this.navCtrl.push('ServicesDetailPage', { services: categoryServices, category: subgroup, subcategory: subgroup });
   }
 
   /**

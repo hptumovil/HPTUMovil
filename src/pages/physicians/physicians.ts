@@ -23,7 +23,7 @@ export class PhysiciansPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.physicianCollection = this.db.collection('medicos');
+    this.physicianCollection = this.db.collection('medicos', ref => ref.orderBy('lastname'));
     this.initializeItems();
   }
 

@@ -9,12 +9,11 @@
 
 <ion-content padding>
   <!-- Logo and text -->
-  
-  <div>    
+
+  <div>
     <p text-center>
-        Escribenos tus dudas, sugerencias o reclamos. 
-        Presiona llamar para comunicarte con nosotros.
-    </p>     
+      Escribenos tus dudas, sugerencias o reclamos. Presiona llamar para comunicarte con nosotros.
+    </p>
   </div>
 
   <!-- Form's container -->
@@ -65,13 +64,15 @@
 
     <!-- Buttons' container -->
     <div text-center>
-        <button id="contactenos-button9" ion-button color="positive" round icon-start (click)="sendInfo()">
-            Enviar
-          </button>
-      
-          <button ion-button round icon-end (click)="call('tel: +5744459000')">
-            Llamar
-          </button>
-    </div>    
+      <button ion-button round icon-start icon-left (click)="call('tel: +5744459000')">
+        <ion-icon name="call"></ion-icon>
+        Llamar
+      </button>
+
+      <button ion-button round icon-end icon-left (click)="sendInfo()">
+        <ion-icon name="mail"></ion-icon>
+        Enviar
+      </button>
+    </div>
   </div>
 </ion-content>

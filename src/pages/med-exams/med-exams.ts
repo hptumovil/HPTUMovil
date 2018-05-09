@@ -26,7 +26,7 @@ export class MedExamsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedExamsPage');
-    this.examCollection = this.asf.collection('instructivos-examenes', ref => ref.orderBy('Titulo'));    
+    this.examCollection = this.asf.collection('instructivos-examenes', ref => ref.where('isActive', '==', true).orderBy('Titulo'));
     this.initializeItems();    
   }
 

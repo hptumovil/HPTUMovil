@@ -36,7 +36,7 @@
       <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
         <ion-icon item-left name="add" *ngIf="!item.open"></ion-icon>
         <ion-icon item-left name="remove" *ngIf="item.open"></ion-icon>
-        {{ item.Nombre }}
+        <strong>{{ item.Nombre }}</strong>
       </button>
 
       <ion-list *ngIf="item.instrucciones && item.open">
@@ -51,7 +51,8 @@
 
   </ion-list>
   <div text-center>
-      <button ion-button round icon-end (click)="call()">
+      <button ion-button round icon-end icon-left (click)="call()">
+          <ion-icon name="call"></ion-icon>
           Llamar
         </button>
   </div>
