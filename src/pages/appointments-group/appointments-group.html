@@ -31,7 +31,7 @@
   <ng-template #other_content>
       <ion-list>
         <button ion-item (click)="openForm(item)" *ngFor="let item of itemsToShow">        
-          <h3>{{item.Nombre}}</h3>
+          <div text-wrap>{{item.Nombre}}</div>
           <p>{{item.Categoria}}</p>
         </button>
       </ion-list>

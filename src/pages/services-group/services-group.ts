@@ -21,34 +21,42 @@ export class ServicesGroupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.services = navParams.get('services');
-    this.category = navParams.get('category');
-
-    this.services.sort(function (a, b) {
-      return a.Subgrupo > b.Subgrupo;
-    });
+    this.category = navParams.get('category');    
     this.groupServices(this.services);
+    console.log(this.groupedServices);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesGroupPage');
-  }  
+  }
 
   //Method that sorts all the services in groups
-  groupServices(sortedServices) {
+  agrupar(services){
+    let currentSubgroup: string = "";
+
+    services.forEach((value) =>{
+      if (value.Subgrupo != currentSubgroup) {
+
+      }
+    });
+  }
+
+
+  groupServices(services) {
 
     // sort services by alphabetical order
-    /**
+    
     let sortedServices = services.sort(function (a, b) {
       return a.Subgrupo > b.Subgrupo;
-    });
-    */
+    });    
+    
     
     //Variables to contain the letter and group under that letter
     let currentSubgroup: string = "";
     let currentServices = [];
 
     //this groups the the letter groups and the physicians under this.groupedContacts
-    sortedServices.forEach((value, index) => {
+    sortedServices.forEach((value) => {
 
       if (value.Subgrupo != currentSubgroup) {
 
@@ -64,6 +72,7 @@ export class ServicesGroupPage {
       }
       currentServices.push(value);
     });
+    
   }  
 
   /**
