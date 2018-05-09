@@ -26,26 +26,11 @@ export class ServicesGroupPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore, public items: PortafolioServicios) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
-
     this.groupServices(this.services);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesGroupPage');
-  }
-
-  /**
-   * Load all items in the array
-   */
-  initializeItems() {
-    this.services = this.items.query({
-      Grupo: this.category
-    });
-
-    //Sort the services by name
-    this.services.sort(function (a, b) {
-      return a.Nombre > b.Nombre;
-    });
   }  
 
   //Method that sorts all the Physicians in groups by lastname
@@ -74,25 +59,13 @@ export class ServicesGroupPage {
 
         currentServices = newGroup.services;
         this.groupedServices.push(newGroup);
-
       }
       currentServices.push(value);
     });
 
   }
 
-  /**
-   * Show all the items when the searchbar is cleaned
-   */
-  onClear(ev) {
-    this.initializeItems();
-
-  }
-
-  onCancel(ev) {
-    this.initializeItems();
-
-  }
+  
 
   /**
    * Navigate to the detail page for this item.
