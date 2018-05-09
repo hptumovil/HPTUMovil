@@ -62,10 +62,7 @@ export class ServicesGroupPage {
       }
       currentServices.push(value);
     });
-
-  }
-
-  
+  }  
 
   /**
    * Navigate to the detail page for this item.
