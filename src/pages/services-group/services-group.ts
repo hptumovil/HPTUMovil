@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { PortafolioServicios } from '../../providers/providers';
 
 /**
  * Generated class for the ServicesGroupPage page.
@@ -17,15 +15,17 @@ import { PortafolioServicios } from '../../providers/providers';
 })
 export class ServicesGroupPage {
 
-  portfolioCollection: AngularFirestoreCollection<any>;
   services: any;
   groupedServices = [];
   category: String;
-  isValid: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore, public items: PortafolioServicios) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.services = navParams.get('services');
     this.category = navParams.get('category');
+
+    this.services.sort(function (a, b) {
+      return a.Subgrupo > b.Subgrupo;
+    });
     this.groupServices(this.services);
   }
 
@@ -33,16 +33,18 @@ export class ServicesGroupPage {
     console.log('ionViewDidLoad ServicesGroupPage');
   }  
 
-  //Method that sorts all the Physicians in groups by lastname
-  groupServices(services) {
+  //Method that sorts all the services in groups
+  groupServices(sortedServices) {
 
-    // sort physicians by alphabetical order
+    // sort services by alphabetical order
+    /**
     let sortedServices = services.sort(function (a, b) {
       return a.Subgrupo > b.Subgrupo;
     });
+    */
     
     //Variables to contain the letter and group under that letter
-    let currentSubgroup = false;
+    let currentSubgroup: string = "";
     let currentServices = [];
 
     //this groups the the letter groups and the physicians under this.groupedContacts
