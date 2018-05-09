@@ -21,7 +21,7 @@ export class ServicesGroupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.services = navParams.get('services');
-    this.category = navParams.get('category');    
+    this.category = navParams.get('category');
     this.groupServices(this.services);
     console.log(this.groupedServices);
   }
@@ -31,26 +31,32 @@ export class ServicesGroupPage {
   }
 
   //Method that sorts all the services in groups
-  agrupar(services){
+  agrupar(services) {
     let currentSubgroup: string = "";
-
-    services.forEach((value) =>{
+    const map = new Map();
+    services.forEach((value) => {
       if (value.Subgrupo != currentSubgroup) {
-
+        const collection = map.get(currentSubgroup);
+        if (!collection) {
+          map.set(currentSubgroup, [value]);
+        } else {
+          collection.push(value);
+        }
       }
     });
+    //this.groupedServices = map;
   }
 
 
   groupServices(services) {
 
     // sort services by alphabetical order
-    
+
     let sortedServices = services.sort(function (a, b) {
       return a.Subgrupo > b.Subgrupo;
-    });    
-    
-    
+    });
+
+
     //Variables to contain the letter and group under that letter
     let currentSubgroup: string = "";
     let currentServices = [];
@@ -72,8 +78,8 @@ export class ServicesGroupPage {
       }
       currentServices.push(value);
     });
-    
-  }  
+
+  }
 
   /**
    * Navigate to the detail page for this item.

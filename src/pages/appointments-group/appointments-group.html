@@ -21,7 +21,7 @@
   <div *ngIf="isValid;else other_content" padding>
     <ion-list inset>
       <button ion-item *ngFor="let item of itemsToShow" (click)="openForm(item)">
-        <h3>{{item.Nombre}}</h3>
+        <div text-wrap>{{item.Nombre}}</div>
         <p>{{item.Categoria}}</p>
       </button>
     </ion-list>
