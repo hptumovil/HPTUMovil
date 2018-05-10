@@ -77,6 +77,7 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
     AngularFireStorageModule
   ],

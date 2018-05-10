@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Solicitar cita</ion-title>
+    <ion-title>Agendar cita</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,44 +15,73 @@
 
 <ion-content no-bounce>
   <!-- Search bar -->
-  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)" placeholder="Buscar por especialidad o examen"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)"
+    placeholder="Buscar especialidad o examen"></ion-searchbar>
 
   <!--services' Categories-->
   <div *ngIf="isValid;else other_content" padding>
     <button ion-button block outline large text-left (click)="openItem('Ayudas Diagnósticas')">
-        <i class="fas fa-diagnoses fa-2x" style="color:#1571ac" padding></i>
-      <div class="etiqueta">Ayudas diagnósticas</div>      
-      
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <i class="fas fa-diagnoses fa-2x" style="color:#1571ac"></i>
+          </ion-col>
+          <ion-col col-6>
+            <div class="etiqueta">Ayudas diagnósticas</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </button>
 
     <button ion-button block outline large text-left (click)="openItem('Consulta Externa')">
-      <i class="fas fa-user-md fa-2x" style="color:#1571ac" padding></i>
-      <div class="etiqueta">Consulta externa</div>      
-      
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <i class="fas fa-user-md fa-2x" style="color:#1571ac"></i>
+          </ion-col>
+          <ion-col col-6>
+            <div class="etiqueta">Consulta externa</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </button>
 
     <button ion-button block outline large text-left (click)="openItem('Laboratorio')">
-        <i class="fas fa-flask fa-2x" style="color:#1571ac" padding></i>
-      <div class="etiqueta">Laboratorio</div>      
-      
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <i class="fas fa-flask fa-2x" style="color:#1571ac"></i>
+          </ion-col>
+          <ion-col col-6>
+            <div class="etiqueta">Laboratorio</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </button>
 
     <button ion-button block outline large text-left (click)="openItem('Radiología')">
-        <i class="fas fa-x-ray fa-2x" style="color:#1571ac" padding></i>
-      <div class="etiqueta">Radiología e imágenes</div>      
-      
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <i class="fas fa-x-ray fa-2x" style="color:#1571ac"></i>
+          </ion-col>
+          <ion-col col-6>
+            <div class="etiqueta">Radiología e imágenes</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </button>
   </div>
-  
+
 
   <!-- List of services searched -->
   <ng-template #other_content>
-      <ion-list>
-        <button ion-item (click)="openSearchedItem(item)" *ngFor="let item of itemsToShow">        
-          <h3>{{item.Nombre}}</h3>
-          <p>{{item.Categoria}}</p>
-        </button>
-      </ion-list>
-    </ng-template>
+    <ion-list>
+      <button ion-item (click)="openSearchedItem(item)" *ngFor="let item of itemsToShow">
+        <h3>{{item.Nombre}}</h3>
+        <p>{{item.Categoria}}</p>
+      </button>
+    </ion-list>
+  </ng-template>
 
 </ion-content>

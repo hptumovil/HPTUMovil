@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { servicioMedico } from '../../models/servicioMedico';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the ServicesPage page.
@@ -38,7 +39,7 @@ export class ServicesPage {
 ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.portfolioCollection = this.db.collection('PortafolioServicios', ref => ref.orderBy('Subgrupo'));
+    this.portfolioCollection = this.db.collection<servicioMedico[]>('PortafolioServicios', ref => ref.orderBy('Subgrupo'));
     this.initializeItems();
   }
 
@@ -50,7 +51,8 @@ export class ServicesPage {
   /**
    * Load all items in the array
    */
-  initializeItems() {        
+  initializeItems() {
+        
     this.portfolioCollection.snapshotChanges().subscribe(servicesList =>{
       this.currentItems = servicesList.map(item => {
         return{

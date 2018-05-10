@@ -31,12 +31,7 @@ export class ServicesGroupPage {
 
   //Method that sorts all the services in groups
   groupServices(services) {
-    // sort services by alphabetical order
-    /**let sortedServices = services.sort(function (a, b) {
-      return a.Subgrupo > b.Subgrupo;
-    });*/
-
-
+    
     //Variables to contain the letter and group under that letter
     let currentSubgroup: string = "";
     let currentServices = [];
