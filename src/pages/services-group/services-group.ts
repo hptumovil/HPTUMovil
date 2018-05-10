@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { servicioMedico } from '../../models/servicioMedico';
 
 /**
  * Generated class for the ServicesGroupPage page.
@@ -13,48 +14,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-services-group',
   templateUrl: 'services-group.html',
 })
-export class ServicesGroupPage {
-
-  services: any;
+export class ServicesGroupPage {  
+  services = [];
   groupedServices = [];
   category: String;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {    
     this.services = navParams.get('services');
     this.category = navParams.get('category');
-    this.groupServices(this.services);
-    console.log(this.groupedServices);
+    this.groupServices(this.services);      
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicesGroupPage');
-  }
+    console.log('ionViewDidLoad ServicesGroupPage');    
+  }  
 
   //Method that sorts all the services in groups
-  agrupar(services) {
-    let currentSubgroup: string = "";
-    const map = new Map();
-    services.forEach((value) => {
-      if (value.Subgrupo != currentSubgroup) {
-        const collection = map.get(currentSubgroup);
-        if (!collection) {
-          map.set(currentSubgroup, [value]);
-        } else {
-          collection.push(value);
-        }
-      }
-    });
-    //this.groupedServices = map;
-  }
-
-
   groupServices(services) {
-
     // sort services by alphabetical order
-
-    let sortedServices = services.sort(function (a, b) {
+    /**let sortedServices = services.sort(function (a, b) {
       return a.Subgrupo > b.Subgrupo;
-    });
+    });*/
 
 
     //Variables to contain the letter and group under that letter
@@ -62,11 +42,13 @@ export class ServicesGroupPage {
     let currentServices = [];
 
     //this groups the the letter groups and the physicians under this.groupedContacts
-    sortedServices.forEach((value) => {
+    //sortedServices.forEach((value)
 
-      if (value.Subgrupo != currentSubgroup) {
+    //sortedServices
+    services.forEach(element => {
+      if (element.Subgrupo != currentSubgroup) {
 
-        currentSubgroup = value.Subgrupo;
+        currentSubgroup = element.Subgrupo;
 
         let newGroup = {
           subgrupo: currentSubgroup,
@@ -76,10 +58,9 @@ export class ServicesGroupPage {
         currentServices = newGroup.services;
         this.groupedServices.push(newGroup);
       }
-      currentServices.push(value);
+      currentServices.push(element);
     });
-
-  }
+  } 
 
   /**
    * Navigate to the detail page for this item.
@@ -92,3 +73,5 @@ export class ServicesGroupPage {
   }
 
 }
+
+

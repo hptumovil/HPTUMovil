@@ -38,7 +38,7 @@ export class ServicesPage {
 ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.portfolioCollection = this.db.collection('PortafolioServicios');
+    this.portfolioCollection = this.db.collection('PortafolioServicios', ref => ref.orderBy('Subgrupo'));
     this.initializeItems();
   }
 
@@ -50,8 +50,7 @@ export class ServicesPage {
   /**
    * Load all items in the array
    */
-  initializeItems() {
-    //this.currentItems = this.items.query();
+  initializeItems() {        
     this.portfolioCollection.snapshotChanges().subscribe(servicesList =>{
       this.currentItems = servicesList.map(item => {
         return{
