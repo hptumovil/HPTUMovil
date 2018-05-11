@@ -152,16 +152,26 @@ export class AppointmentsFormPage {
   }
 
   //Method that uploadt the image to firebase storage
-  async uploadImage() {
+  uploadImage() {
     const filePath = '/imagenes-citasAPP/';
     const ref = this.storage.ref(filePath);
+    const task = ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' });
+    const downloadURL = task.downloadURL();
+
+    downloadURL.subscribe(url=>{
+     if(url){
+         console.log(url);
+         //wirte the url to firestore
+     }
+  });
+    /**
     return ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' }).then(
       (savedPicture) => {
         this.medicalOrderFile = savedPicture.downloadURL;
         return savedPicture.downloadURL;
       });
     // get notified when the download URL is available 
-    /**       
+           
     this.downloadURL = await task.downloadURL();
     (this.downloadURL).subscribe(url => {
       if (url) {
