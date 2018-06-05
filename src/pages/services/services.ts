@@ -39,7 +39,7 @@ export class ServicesPage {
 ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.portfolioCollection = this.db.collection<servicioMedico[]>('PortafolioServicios', ref => ref.orderBy('Subgrupo'));
+    this.portfolioCollection = this.db.collection<servicioMedico[]>('PortafolioServicios', ref => ref.where('isActive', '==', true).orderBy('Subgrupo'));
     this.initializeItems();
   }
 
@@ -114,6 +114,17 @@ export class ServicesPage {
     let Subcategory = categoryServices.filter(services => services.subgrupo == subgroup);
 
     this.navCtrl.push('ServicesDetailPage', { services: categoryServices, category: subgroup, subcategory: subgroup });
+  }
+
+  /**
+   * Navigate to the detail page for this item.
+   */
+  openEmergency(subgroup: String) {
+    let categoryServices = this.query({      
+      Grupo: subgroup
+    });
+
+    this.navCtrl.push('ServiceDetailPage', { service: categoryServices[0] });
   }
 
   /**

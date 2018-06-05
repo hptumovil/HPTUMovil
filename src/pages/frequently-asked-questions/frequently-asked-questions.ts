@@ -39,7 +39,7 @@ export class FrequentlyAskedQuestionsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FrequentlyAskedQuestionsPage');
-    this.questionCollection = this.db.collection('preguntas-frecuentes', ref => ref.orderBy('Pregunta'));
+    this.questionCollection = this.db.collection('preguntas-frecuentes', ref => ref.where('isActive', '==', true).orderBy('Orden'));
     this.initializeItems();
   }
 
@@ -52,7 +52,6 @@ export class FrequentlyAskedQuestionsPage {
         return {
           Pregunta: item.payload.doc.data().Pregunta,
           Respuesta: item.payload.doc.data().Respuesta
-          //Link: item.payload.doc.data().Link
         }
       })
     });

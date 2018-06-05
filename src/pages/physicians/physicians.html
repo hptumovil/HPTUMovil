@@ -15,32 +15,32 @@
 
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)" (keydown.backspace)="onBackSpace($event)" (ionClear)="onClear($event)" (ionCancel)="onCancel($event)"
-    placeholder="Buscar por nombre, apellido o especialidad"></ion-searchbar>
+    placeholder="Buscar nombre o especialidad"></ion-searchbar>
 
-  <ion-list>
-    <button ion-item (click)="openItem(item)" *ngFor="let item of physicians">
-      <ion-avatar item-start>
-        <img src="{{item.thumbnail}}">
-      </ion-avatar>
-      <h2>{{item.lastname}} {{item.firstname}}</h2>
-      <h3 text-wrap>{{item.cargo}}</h3>
-    </button>
-  </ion-list>
-
-
-  <!--
-  <ion-item-group *ngFor="let group of groupedContacts">
-
-    <ion-item-divider light>{{group.letter}}</ion-item-divider>
-    <ion-item *ngFor="let contact of group.contacts">
-      <button ion-item (click)="openItem(contact)">
-        <ion-avatar item-start>
-          <img src="{{contact.thumbnail}}">
-        </ion-avatar>
-        <h2>{{contact.lastname}} {{contact.firstname}}</h2>
-        <h3>{{contact.cargo}}</h3>
+  <div *ngIf="isValid;else other_content">
+    <ion-list-header>
+      Especialidad
+    </ion-list-header>
+    <ion-list inset>
+      <button ion-item (click)="openCategory(especialidad.Nombre)" *ngFor="let especialidad of especialidades | async">
+        <div text-wrap>{{especialidad.Nombre}}</div>
       </button>
-    </ion-item>
-  </ion-item-group>
--->
+    </ion-list>
+  </div>
+
+  <!-- List of services searched -->
+  <ng-template #other_content>
+    <ion-list>
+      <button ion-item (click)="openItem(item)" *ngFor="let item of physicians">
+        <ion-avatar item-start>
+          <img src="{{item.thumbnail}}">
+        </ion-avatar>
+        <h2>{{item.lastname}} {{item.firstname}}</h2>
+        <h3 text-wrap>{{item.cargo}}</h3>
+      </button>
+    </ion-list>
+  </ng-template>
+
+
+
 </ion-content>

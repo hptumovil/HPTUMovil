@@ -18,13 +18,16 @@ import { Physician } from '../../models/physician';
 export class PhysiciansPage {
   users: any;
   physicianCollection: AngularFirestoreCollection<Physician>;
+  especialidades: any;
   physicians: Array<any>;
-  groupedContacts = [];
+  groupedPhysicians = [];
+  isValid: boolean = true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.physicianCollection = this.db.collection('medicos', ref => ref.orderBy('lastname'));
-    this.initializeItems();
+    this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
+    this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
+    this.initializeItems();    
   }
 
   ionViewDidLoad() {
@@ -48,23 +51,53 @@ export class PhysiciansPage {
               thumbnail: item.payload.doc.data().thumbnail,
               profilePic: item.payload.doc.data().profilepic,
               idiomas: item.payload.doc.data().idiomas,
+              indice_especialidad: item.payload.doc.data().indice_especialidad,
               especialidad: item.payload.doc.data().especialidad
         }
       })
     });
-  }  
+  }
+
+  /**This method grouped the physcians by indice_especialidad*/
+  groupPhysicians(physicians){
+    //Variables to contain the letter and group under that letter
+    let currentSubgroup: string = "";
+    let currentPhysicians = [];
+
+    //this groups the the letter groups and the physicians under this.groupedContacts
+    //sortedServices.forEach((value)
+
+    //sortedServices
+    physicians.forEach(element => {
+      if (element.indice_especialidad != currentSubgroup) {
+
+        currentSubgroup = element.indice_especialidad;
+
+        let newGroup = {
+          subgrupo: currentSubgroup,
+          physicians: []
+        };
+
+        currentPhysicians = newGroup.physicians;
+        this.groupedPhysicians.push(newGroup);
+      }
+      currentPhysicians.push(element);
+    });
+  }
 
   /**
-   * Perform a service for the proper items.
+   * This method Search the physician by name or speciality.
    * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for tildes problem
    */
   getItems(ev) {
+    this.isValid = false;
     // set val to the value of the searchbar
     let val = ev.target.value;
     val = val.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");   
 
     // if the value is an empty string don't filter the items
     if (!val || !val.trim()) {
+      this.isValid = true;
       this.initializeItems();
       return;
     }
@@ -82,13 +115,28 @@ export class PhysiciansPage {
   }
 
   /**
+   * Navigate to the Category detail page to show the physcian in that speciality.
+   */
+  openCategory(category: string){    
+    //this line search for all the physician within a category
+    let filteredPhysicians = this.physicians.filter(item => item.indice_especialidad.includes(category));
+    
+    this.navCtrl.push('PhysiciansCategoryPage',{
+      physicians: filteredPhysicians,
+      category: category
+    });
+  }
+
+  /**
    * Show all the items when the searchbar is cleaned
    */
   onClear(ev) {
+    this.isValid = true;
     this.initializeItems();
   }
 
   onCancel(ev) {
+    this.isValid = true;
     this.initializeItems();
   }
 

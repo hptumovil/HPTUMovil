@@ -64,7 +64,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Telefono</ion-label>
+        <ion-label floating>Teléfono</ion-label>
         <ion-input formControlName="phone" type="text"></ion-input>
       </ion-item>
 
@@ -87,7 +87,10 @@
 
       <div padding>
         <img [src]="image" *ngIf="imageURI" height="40%" width="40%" />
-        <button ion-button (click)="getImage()">Cargar imagen</button>
+        <button ion-button icon-start icon-left (click)="getImage()">
+          <ion-icon name="cloud-upload"></ion-icon>
+          Cargar imagen
+        </button>
         <p>Adjunte la orden del asegurador y/o médico tratante</p>
       </div>
 
@@ -104,7 +107,10 @@
   </div>
 
   <div padding>
-    <button ion-button full (click)="sendInfo()">Enviar</button>
+    <button ion-button full icon-end icon-left (click)="sendInfo()">
+      <ion-icon name="mail"></ion-icon>
+      Enviar
+    </button>
   </div>
 
 </ion-content>
