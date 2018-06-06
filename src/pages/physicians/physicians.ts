@@ -18,16 +18,18 @@ import { Physician } from '../../models/physician';
 export class PhysiciansPage {
   users: any;
   physicianCollection: AngularFirestoreCollection<Physician>;
-  especialidades: any;
   physicians: Array<any>;
+  especialidades: any;  
   groupedPhysicians = [];
   isValid: boolean = true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
-    this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
-    this.initializeItems();    
+    this.physicians = navParams.get('physicians');
+    this.especialidades = navParams.get('specialities');
+    //this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
+    //this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
+    //this.initializeItems();    
   }
 
   ionViewDidLoad() {

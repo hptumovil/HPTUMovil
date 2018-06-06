@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController, 
 import { ContentPage } from '../pages';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import * as tos from './terms-of-service';
@@ -15,6 +15,20 @@ import * as tos from './terms-of-service';
  * Ionic pages and navigation.
  */
 
+export interface Appointment {
+  name: string;
+  lastname: string;
+  document: string;
+  userEmail: string;
+  email: string;
+  cellphone: string;
+  phone: string;
+  moreInfo: string;
+  responsablePago: string;
+  servicio: string;
+  medicalOrderFile: string;
+}
+
 @IonicPage()
 @Component({
   selector: 'page-appointments-form',
@@ -25,7 +39,8 @@ export class AppointmentsFormPage {
   title: string = "Solicitud de citas";
   appoinmentForm: FormGroup;
   submitAttempt: boolean = false;
-  contactenosCollection: AngularFirestoreCollection<any>;
+  appointmentsCollection: AngularFirestoreCollection<any>;
+  appointmentDoc: AngularFirestoreDocument<Appointment>;
   responsablePago: string;
   imageURI: any = null;
   image: any;
@@ -57,7 +72,7 @@ export class AppointmentsFormPage {
       terms: [false, Validators.pattern('true')]
     });
     //This create a nre collection from database in firebase
-    this.contactenosCollection = db.collection('solicitudesCitas');
+    this.appointmentsCollection = db.collection('solicitudesCitas');
     this.service = navParams.get('service')
     console.log(this.service);
     this.title = this.service.Nombre;
@@ -83,13 +98,15 @@ export class AppointmentsFormPage {
     }
     else {
       console.log("All data was entered correctly!")
-      console.log(this.appoinmentForm.value);
-      if (this.imageURI != null) {
-        let Imageurl = this.uploadImage();
-      }
+      console.log(this.appoinmentForm.value);      
+
+      //Create a new document in firebase collection with a random id
+      const id = this.db.createId();
+      this.appointmentDoc = this.appointmentsCollection.doc(id);
+
       try {
         //Let's create a new document and add to the colection
-        this.contactenosCollection.add(
+        let appointment: Appointment =
           {
             name: this.appoinmentForm.value.name,
             lastname: this.appoinmentForm.value.lastname,
@@ -102,12 +119,12 @@ export class AppointmentsFormPage {
             responsablePago: this.responsablePago,
             servicio: this.service.Nombre,
             medicalOrderFile: this.medicalOrderFile
-          }).then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch(function (error) {
-            console.error("Error adding document: ", error);
-          });
+          }
+
+        this.appointmentDoc.set(appointment);
+
+        //Upload the image and save the url in the doc we create before
+        this.uploadImage();
 
         //Let's show an alert that everything goes fine
         let alert = this.alertCtrl.create({
@@ -159,31 +176,18 @@ export class AppointmentsFormPage {
     const downloadURL = task.downloadURL();
 
     downloadURL.subscribe(url=>{
-     if(url){
-         console.log(url);
-         //wirte the url to firestore
-     }
-  });
-    /**
-    return ref.child(this.generateUUID()).child('myPhoto.jpg').putString(this.imageURI, 'base64', { contentType: 'image/jpg' }).then(
-      (savedPicture) => {
-        this.medicalOrderFile = savedPicture.downloadURL;
-        return savedPicture.downloadURL;
-      });
-    // get notified when the download URL is available 
-           
-    this.downloadURL = await task.downloadURL();
-    (this.downloadURL).subscribe(url => {
-      if (url) {
-        console.log(url);
-        //wirte the url to firestore
-        return url;       
-        //this.contactenosCollection.doc(id).set({
-          //medicalOrderFile: url
-        //});
+      if(url){
+          console.log(url);              
+          this.db.firestore.runTransaction((t) => {
+            return t.get(this.appointmentDoc.ref).then((doc) => {
+              // update the users array after getting it from Firestore.
+              //const newArray = doc.get('medicalOrderFile');
+              //newArray.push(url);
+              t.update(this.appointmentDoc.ref, 'medicalOrderFile', url)
+            })
+          });
       }
-    });*/
-
+   });
   }
 
   //Method that generate an Unique ID to the folder of the image to upload
