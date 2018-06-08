@@ -14,7 +14,37 @@
 
 
 <ion-content>
-  <ion-list inset>
+
+  <!--http://hptu.org.co/donaciones/-->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Donaciones
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content [innerHtml]="habeasDataInfo">
+    </ion-card-content>
+  </ion-card>
+  
+  <!--div class="info">
+    <form id="habeas" [formGroup]="habeas">
+      <ion-item>
+        <ion-label text-wrap>Acepta términos y condiciones</ion-label>
+        <ion-checkbox formControlName="terms" color="dark"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="!habeas.controls.terms.valid  && (habeas.controls.terms.dirty || submitAttempt)">
+        <p style="color: #ea6153;">Marque la casilla para aceptar los términos</p>
+      </ion-item>
+    </form>
+  </div-->
+
+  <div padding>
+    <button ion-button full icon-end icon-left (click)="openWebpage()">
+      Autorizo
+    </button>
+  </div>
+
+  <!--ion-list inset>
     <ion-list-header>
       <div class="card-title">
         <h1>Donaciones</h1>
@@ -54,6 +84,6 @@
     <ion-card class="cifra-4">
       <div class="card-title">Donacion Frecuente</div>
     </ion-card>
-  </ion-list>
+  </ion-list-->
 
 </ion-content>

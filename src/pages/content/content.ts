@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+
+import { AppointmentsPage, MapPage, ContactPage, CheckinPage, PhysiciansPage, DonatePage, MedExamsPage, LabPage, IndoorNavigatorStartPage, ServicesPage} from '../pages';
+
 import { Physician } from '../../models/physician';
-
-import { AppointmentsPage, MapPage, ContactPage, CheckinPage, PhysiciansPage, DonatePage, MedExamsPage, LabPage, IndoorNavigatorPage, ServicesPage } from '../pages';
-
 
 @IonicPage()
 @Component({
@@ -13,34 +12,34 @@ import { AppointmentsPage, MapPage, ContactPage, CheckinPage, PhysiciansPage, Do
   templateUrl: 'content.html'
 })
 export class ContentPage {
+  //We need these variables to save the physician that will be pass to NuestrosProfesionales functionality
   physicianCollection: AngularFirestoreCollection<Physician>;
   physicians: Array<any>;
-  especialidadesMedicas: any; 
+  especialidades: any;
   //Array of pages to pass to navController
-  pages:any [] =[AppointmentsPage, ServicesPage, MedExamsPage, MapPage, PhysiciansPage, ContactPage, CheckinPage, IndoorNavigatorPage, DonatePage];
+  pages:any [] =[AppointmentsPage, ServicesPage, MedExamsPage, MapPage, PhysiciansPage, ContactPage, DonatePage, IndoorNavigatorStartPage, CheckinPage];
   
-  /**The info for Nuestros profesionales, it's downloaded before the user enters th functionality and pass like a paremeter */
   constructor(public navCtrl: NavController, private db: AngularFirestore) {
     this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
-    this.especialidadesMedicas = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
-    this.initializeItems(); 
+    this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
+    this.initializeItems();
    }
-  
+
   //Method that load the selected page
   goToPage(page: number) {
     if(page == 4){
-      this.navCtrl.push(this.pages[page],{
+      this.navCtrl.push(this.pages[page], {
         physicians: this.physicians,
-        specialities: this.especialidadesMedicas
+        specialities: this.especialidades      
       });
     }else{
-      this.navCtrl.push(this.pages[page]); 
+      this.navCtrl.push(this.pages[page]);
     }
-      
+    
   }
 
   /**
-   * Load all items in the array
+   * Load all Physicians in the array that will be pass to NuestroProfesionales
    */
   initializeItems() {    
     this.physicianCollection.snapshotChanges().subscribe(physiciansList =>{

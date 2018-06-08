@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { MapGif } from '../../models/mapGif';
 
 /**
  * Generated class for the IndoorNavigatorPage page.
@@ -14,15 +16,42 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'indoor-navigator.html',
 })
 export class IndoorNavigatorPage {
-  show: boolean = false;
-
+  maps: Array<any>;
+  location1: any;
+  location2: any;
+  mapsCollection: AngularFirestoreCollection<MapGif>;
   myColor: string = 'secondary';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
+    this.location1 = navParams.get('location1');
+    this.location2 = navParams.get('location2');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IndoorNavigatorPage');
+   this.mapsCollection = this.db.collection('mapas-internos', ref => ref.where('inicio', '==', this.location1.titulo).where('fin', '==', this.location2.titulo));
+    this.initializeItems();    
   }
 
+    /**
+   * Load all active locations
+   **/
+  initializeItems() {
+    this.mapsCollection.snapshotChanges().subscribe(mapsList => {
+      this.maps = mapsList.map(item => {
+        return {
+          archivo: item.payload.doc.data().archivo
+         // inicio: item.payload.doc.data().inicio,
+         // fin: item.payload.doc.data().fin
+        }
+      })
+      //console.info(this.map);
+    });
+  }
+    /**
+   * Navigate to the end page for the start location.
+   */
+  newSearch() {
+    this.navCtrl.push('IndoorNavigatorStartPage');
+  }
 }

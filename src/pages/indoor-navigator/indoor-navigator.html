@@ -18,35 +18,24 @@
   <ion-list>
 
     <ion-item>
-      <ion-label>Origen</ion-label>
-      <ion-select [(ngModel)]="origen" interface="popover">
-        <ion-option value="puerta A">Puerta A</ion-option>
-        <ion-option value="puerta B">Puerta B</ion-option>
-        <ion-option value="parqueadero">Parqueadero</ion-option>
-        <ion-option value="parqueadero2">Parqueadero Motos</ion-option>        
-      </ion-select>
+      <ion-label color="primary" stacked>Origen</ion-label>
+      <ion-label>{{location1.titulo}}</ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label>Destino</ion-label>
-      <ion-select [(ngModel)]="destino" interface="popover">
-        <ion-option value="Consulta Clinica">Consulta Clinica</ion-option>
-        <ion-option value="Bancolombia">Bancolombia</ion-option>
-        <ion-option value="Ascensores torre A">Ascensores torre A</ion-option>
-        <ion-option value="Ascensores torre B">Ascensores torre B</ion-option>
-        <ion-option value="Cancerologia">Cancerologia</ion-option>
-        <ion-option value="Radiologia">Radiologia</ion-option>
-      </ion-select>
+      <ion-label color="primary" stacked>Destino</ion-label>
+      <ion-label>{{location2.titulo}}</ion-label>
     </ion-item>
+  </ion-list>
 
-  </ion-list> 
+  <ion-list no-lines>
+    <ion-item *ngFor="let map of maps">
+      <!-- TODO: show an image with a message "relación no válida"or something
+      img src="assets/img/example.gif" *ngIf="show" 
+      use the ngIf property-->
+      <img src="{{map.archivo}}">
+    </ion-item>
+  </ion-list>
 
-  <button ion-button block (click)="show = !show">Como Llegar</button>
-  <br>
-
-  <img src="assets/img/example.gif" *ngIf="show">
-  
-
-  
-
+  <button ion-button block (click)="newSearch()">Nueva búsqueda</button>
 </ion-content>
