@@ -39,7 +39,9 @@ export class PhysiciansPage {
   /**
    * Load all items in the array
    */
-  initializeItems() {    
+  initializeItems() {
+    this.physicians = this.navParams.get('physicians');
+    /** 
     this.physicianCollection.snapshotChanges().subscribe(physiciansList =>{
       this.physicians = physiciansList.map(item => {
         return{
@@ -58,6 +60,7 @@ export class PhysiciansPage {
         }
       })
     });
+    */
   }
 
   /**This method grouped the physcians by indice_especialidad*/
@@ -103,7 +106,7 @@ export class PhysiciansPage {
       this.initializeItems();
       return;
     }
-    let Contacts = this.physicians.filter(item => item.firstname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.lastname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.cargo.toLowerCase().includes(val));
+    let Contacts = this.physicians.filter(item => item.firstname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.lastname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.cargo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val));
     this.physicians = Contacts;
   }
 
