@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 import { AppointmentsPage, MapPage, ContactPage, CheckinPage, PhysiciansPage, DonatePage, MedExamsPage, LabPage, IndoorNavigatorStartPage, ServicesPage} from '../pages';
 
@@ -16,10 +17,13 @@ export class ContentPage {
   physicianCollection: AngularFirestoreCollection<Physician>;
   physicians: Array<any>;
   especialidades: any;
+
+  //URL to redirect to payment page
+  url: string = 'https://www.zonapagos.com/t_hptu/pagos.asp';
   //Array of pages to pass to navController
   pages:any [] =[AppointmentsPage, ServicesPage, MedExamsPage, MapPage, PhysiciansPage, ContactPage, DonatePage, IndoorNavigatorStartPage, CheckinPage];
   
-  constructor(public navCtrl: NavController, private db: AngularFirestore) {
+  constructor(public navCtrl: NavController, private db: AngularFirestore, private inAppbrowser: InAppBrowser) {
     this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
     this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
     this.initializeItems();
@@ -60,5 +64,21 @@ export class ContentPage {
         }
       })
     });
+  }
+
+  //Method that open a browser in the mobil phone
+  openWebpage() {
+    //Set options
+    const options: InAppBrowserOptions = {
+      zoom: 'yes',
+      location: 'yes',
+      hardwareback: 'yes',
+      footer: 'yes',
+      toolbar: 'yes'
+    }
+
+    // Opening a URL and returning an InAppBrowserObject
+    this.inAppbrowser.create(this.url, '_system', 'zoom=yes,location=no,hardwareback=no,footer=yes,toolbar=yes');
+    //this.inAppbrowser.create(this.url, '_self', options);
   }
 }
