@@ -14,12 +14,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'indoor-navigator-end.html',
 })
 export class IndoorNavigatorEndPage {
-  location1: any;
+  location1: string;
   locations: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.location1 = navParams.get('location1');
     this.locations = navParams.get('locations');
+    this.locations = this.locations;
     //console.info(this.location1);
   }
 

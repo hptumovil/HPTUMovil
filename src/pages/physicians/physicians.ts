@@ -64,6 +64,7 @@ export class PhysiciansPage {
   }
 
   /**This method grouped the physcians by indice_especialidad*/
+  /** 
   groupPhysicians(physicians){
     //Variables to contain the letter and group under that letter
     let currentSubgroup: string = "";
@@ -89,6 +90,7 @@ export class PhysiciansPage {
       currentPhysicians.push(element);
     });
   }
+  */
 
   /**
    * This method Search the physician by name or speciality.
@@ -106,7 +108,12 @@ export class PhysiciansPage {
       this.initializeItems();
       return;
     }
-    let Contacts = this.physicians.filter(item => item.firstname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.lastname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || item.cargo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val));
+    let Contacts = this.physicians.filter(item => 
+      item.firstname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || 
+      item.lastname.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || 
+      item.cargo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val) || 
+      item.indice_especialidad.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(val)
+    );
     this.physicians = Contacts;
   }
 

@@ -27,6 +27,7 @@ export interface Appointment {
   responsablePago: string;
   servicio: string;
   medicalOrderFile: string;
+  creationDate: Date;
 }
 
 @IonicPage()
@@ -118,13 +119,16 @@ export class AppointmentsFormPage {
             moreInfo: this.appoinmentForm.value.moreInfo,
             responsablePago: this.responsablePago,
             servicio: this.service.Nombre,
-            medicalOrderFile: this.medicalOrderFile
+            medicalOrderFile: this.medicalOrderFile,
+            creationDate: new Date()
           }
 
         this.appointmentDoc.set(appointment);
 
         //Upload the image and save the url in the doc we create before
-        this.uploadImage();
+        if(this.imageURI != null){
+          this.uploadImage();
+        }        
 
         //Let's show an alert that everything goes fine
         let alert = this.alertCtrl.create({

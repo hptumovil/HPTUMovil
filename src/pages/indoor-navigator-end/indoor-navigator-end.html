@@ -13,12 +13,18 @@
 </ion-header>
 
 <ion-content class="card-background-page">
-
   <ion-item>
-    <ion-label>Seleccione el punto de destino</ion-label>
+    <div class="informacion" text-wrap padding>
+      Punto de partidad seleccionado:
+      <strong>{{location1.titulo}}.</strong>
+      <br><br>
+      Ahora seleccione el punto de destino
+    </div>
+
+
+
   </ion-item>
   <ion-list no-lines>
-
     <ion-item *ngFor="let location of locations" text-wrap>
 
       <ion-card (click)="openItem(location)">

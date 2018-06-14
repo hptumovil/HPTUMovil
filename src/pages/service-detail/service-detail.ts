@@ -21,6 +21,7 @@ export class ServiceDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.service = navParams.get('service');
+    console.log(this.service);
     this.hasVisitingHours();
   }
 
