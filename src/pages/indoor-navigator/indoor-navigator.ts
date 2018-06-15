@@ -29,28 +29,28 @@ export class IndoorNavigatorPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IndoorNavigatorPage');
-   this.mapsCollection = this.db.collection('mapas-internos', ref => ref.where('inicio', '==', this.location1.titulo).where('fin', '==', this.location2.titulo));
-    this.initializeItems();    
+    this.mapsCollection = this.db.collection('mapas-internos', ref => ref.where('inicio', '==', this.location1.titulo).where('fin', '==', this.location2.titulo));
+    this.initializeItems();
   }
 
-    /**
-   * Load all active locations
-   **/
+  /**
+ * Load all active locations
+ **/
   initializeItems() {
     this.mapsCollection.snapshotChanges().subscribe(mapsList => {
       this.maps = mapsList.map(item => {
         return {
           archivo: item.payload.doc.data().archivo
-         // inicio: item.payload.doc.data().inicio,
-         // fin: item.payload.doc.data().fin
+          // inicio: item.payload.doc.data().inicio,
+          // fin: item.payload.doc.data().fin
         }
       })
       //console.info(this.map);
     });
   }
-    /**
-   * Navigate to the end page for the start location.
-   */
+  /**
+ * Navigate to the end page for the start location.
+ */
   newSearch() {
     this.navCtrl.push('IndoorNavigatorStartPage');
   }

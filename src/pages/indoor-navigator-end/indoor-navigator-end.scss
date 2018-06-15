@@ -5,9 +5,12 @@ page-indoor-navigator-end {
       }
     
       .card-title {
-        position: absolute;
-        top: 36%;
+         position: absolute;
+        padding-right: 30px;
+        padding-left: 30px;
+        top: 25%;
         font-size: 2.0em;
+        text-shadow: 2px 2px #242829;
         width: 100%;
         font-weight: bold;
         color: #fff;
