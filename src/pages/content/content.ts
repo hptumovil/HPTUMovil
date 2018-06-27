@@ -21,7 +21,7 @@ export class ContentPage {
   //URL to redirect to payment page
   url: string = 'https://www.zonapagos.com/t_hptu/pagos.asp';
   //Array of pages to pass to navController
-  pages:any [] =[AppointmentsPage, ServicesPage, MedExamsPage, MapPage, PhysiciansPage, ContactPage, DonatePage, IndoorNavigatorStartPage, CheckinPage];
+  pages:any [] =[AppointmentsPage, ServicesPage, MedExamsPage, MapPage, PhysiciansPage, ContactPage, IndoorNavigatorStartPage, DonatePage, CheckinPage];
   
   constructor(public navCtrl: NavController, private db: AngularFirestore, private inAppbrowser: InAppBrowser) {
     this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));

@@ -1,3 +1,16 @@
-export const habeasDataText = `Autorizo al HOSPITAL PABLO TOBÓN URIBE como Responsable del Tratamiento de datos personales, a consultar, recolectar, almacenar, usar, circular, suprimir, procesar, compilar, intercambiar, publicar, auditar, actualizar y/o disponer de los datos que como titular le suministre, para las siguientes finalidades: 1. Prevención y control de lavado de activos y   financiación del terrorismo. 2. Realización de trámites administrativos relacionados con la donación y elaboración del Certificado de la misma.<br><br>
-Comprendo y Acepto que tengo el derecho a acceder, corregir, suprimir, actualizar los datos personales; pedir prueba de la autorización de datos personales; conocer qué uso se le ha dado; e interponer queja ante la Superintendencia de Industria y Comercio si identifico incumplimientos por parte del Hospital. Así mismo, que en caso de querer ejercer mis derechos, puedo comunicarme al 4459000, al correo <a href="mailto:hptu@hptu.org.co">hptu@hptu.org.co</a> o a la dirección física Calle 78B # 69-240 de Medellín (Antioquia) – Colombia.<br><br>
-Finalmente, Declaro expresamente que mi actividad, profesión u oficio es lícita y la ejerzo dentro del marco legal y los recursos que poseo no provienen, ni son destinados a actividades ilícitas de las contempladas en el Código Penal Colombiano y demás normas concordantes o complementarias.`;
+export const habeasDataText = `Conviértete en AMIGO del Hospital, donando a nuestros proyectos para:<br>
+<ul>
+<li> a) construcción, adecuación  y dotación de equipos  en áreas y servicios para pacientes</li>
+<li>b) grupos de apoyo para pacientes y acompañantes con diferentes diagnósticos</li>
+<li>c) capacitación para nuestro personal asistencial.</li>
+</ul>
+
+<strong>Instituto de educación para técnicos en auxiliar de enfermería.</strong><br>
+Jóvenes  en condición de vulnerabilidad económica, podrán estudiar para convertirse en Técnicos en Auxiliar de Enfermería.
+<br><br>
+<strong>Aula Pablito</strong><br>
+Niños y niñas hospitalizados, podrán asistir a un lugar donde reír, jugar y continuar con su proceso educativo durante su hospitalización.
+<br><br>
+<strong>Apoyos en servicios de salud</strong><br>
+Contribuye al tratamiento de un paciente de escasos recursos, patrocinando  sus medicamentos y  transporte. Los acompañantes podrán recibir alimentación y  albergue. 
+`;

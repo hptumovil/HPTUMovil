@@ -24,9 +24,7 @@ export class DonatePage {
   //habeas: FormGroup;
   //submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppbrowser: InAppBrowser,
-  //  public formBuilder: FormBuilder
-  ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppbrowser: InAppBrowser) {
     //  this.habeas = formBuilder.group({terms: [false, Validators.pattern('true')]});
   }
 
