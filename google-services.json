@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "692673823673",
+    "firebase_url": "https://hptumovilapp.firebaseio.com",
+    "project_id": "hptumovilapp",
+    "storage_bucket": "hptumovilapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692673823673:android:0654c0427e8cce14",
+        "android_client_info": {
+          "package_name": "co.org.hptumovil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692673823673-pp916e0k8gn8081ghugvdmjcie0h85rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBflROHIoo3Zo4GDoDt1SCJDvcRYWMAUw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

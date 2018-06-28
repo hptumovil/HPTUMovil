@@ -48,7 +48,6 @@ export class AppointmentsFormPage {
   downloadURL: Observable<string>;
   medicalOrderFile: string = "";
   tos = tos.termsOfService;
-  //procedimientoExamen: string;
 
   constructor(
     public navCtrl: NavController,
@@ -61,6 +60,7 @@ export class AppointmentsFormPage {
     private db: AngularFirestore,
     private storage: AngularFireStorage
   ) {
+    //This create and validate the form
     this.appoinmentForm = formBuilder.group({
       name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ\s ]*'), Validators.required])],
       lastname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ\s ]*'), Validators.required])],
@@ -72,7 +72,7 @@ export class AppointmentsFormPage {
       responsablePago: ['', Validators.compose([Validators.required])],
       terms: [false, Validators.pattern('true')]
     });
-    //This create a nre collection from database in firebase
+    //This create a collection object from firebase database
     this.appointmentsCollection = db.collection('solicitudesCitas');
     this.service = navParams.get('service')
     console.log(this.service);
@@ -122,7 +122,6 @@ export class AppointmentsFormPage {
             medicalOrderFile: this.medicalOrderFile,
             creationDate: new Date()
           }
-
         this.appointmentDoc.set(appointment);
 
         //Upload the image and save the url in the doc we create before
@@ -147,7 +146,6 @@ export class AppointmentsFormPage {
         });
         alert.present();
       }
-
       this.navCtrl.push(ContentPage);
     }
   }

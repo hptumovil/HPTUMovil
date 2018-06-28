@@ -26,10 +26,7 @@ export class PhysiciansPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
     this.physicians = navParams.get('physicians');
-    this.especialidades = navParams.get('specialities');
-    //this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
-    //this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
-    //this.initializeItems();    
+    this.especialidades = navParams.get('specialities');       
   }
 
   ionViewDidLoad() {
@@ -61,36 +58,7 @@ export class PhysiciansPage {
       })
     });
     */
-  }
-
-  /**This method grouped the physcians by indice_especialidad*/
-  /** 
-  groupPhysicians(physicians){
-    //Variables to contain the letter and group under that letter
-    let currentSubgroup: string = "";
-    let currentPhysicians = [];
-
-    //this groups the the letter groups and the physicians under this.groupedContacts
-    //sortedServices.forEach((value)
-
-    //sortedServices
-    physicians.forEach(element => {
-      if (element.indice_especialidad != currentSubgroup) {
-
-        currentSubgroup = element.indice_especialidad;
-
-        let newGroup = {
-          subgrupo: currentSubgroup,
-          physicians: []
-        };
-
-        currentPhysicians = newGroup.physicians;
-        this.groupedPhysicians.push(newGroup);
-      }
-      currentPhysicians.push(element);
-    });
-  }
-  */
+  } 
 
   /**
    * This method Search the physician by name or speciality.
@@ -147,11 +115,17 @@ export class PhysiciansPage {
     this.initializeItems();
   }
 
+  /**
+   * Show all the items when the searchbar is canceled
+   */
   onCancel(ev) {
     this.isValid = true;
     this.initializeItems();
   }
 
+  /**
+   * Show all the items when the BackSpace is pressed in the searchbar
+   */
   onBackSpace(ev){
     this.initializeItems();  
     this.getItems(ev);

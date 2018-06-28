@@ -4,8 +4,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 /**
  * Generated class for the MapPage page.
  *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * See https://www.joshmorony.com/implementing-turn-by-turn-navigation-with-google-maps-in-ionic/
+ * for more info on Google maps and navigation.
  */
 
 declare var google;

@@ -174,6 +174,9 @@ export class ServicesPage {
     this.initializeItems();    
   }
   
+  /**
+   * Show all the items when the BackSpace is pressed in the searchbar
+   */
   onBackSpace(ev){
     this.initializeItems();  
     this.getItems(ev);

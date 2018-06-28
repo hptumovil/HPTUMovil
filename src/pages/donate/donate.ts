@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-import * as habeasData from './habeas-data';
+import * as donateData from './donate-info';
 //import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**
@@ -20,13 +20,9 @@ export class DonatePage {
 
   //URL to redirect
   url: string = 'https://www.zonapagos.com/t_hptubas/pagos.asp';
-  habeasDataInfo = habeasData.habeasDataText;
-  //habeas: FormGroup;
-  //submitAttempt: boolean = false;
+  habeasDataInfo = donateData.DataText;  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppbrowser: InAppBrowser) {
-    //  this.habeas = formBuilder.group({terms: [false, Validators.pattern('true')]});
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppbrowser: InAppBrowser) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DonatePage');

@@ -21,8 +21,7 @@ export class IndoorNavigatorEndPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
     this.location1 = navParams.get('location1');
-    this.locations = navParams.get('locations');    
-    //console.info(this.location1);
+    this.locations = navParams.get('locations');
   }
 
   ionViewDidLoad() {
@@ -44,6 +43,7 @@ export class IndoorNavigatorEndPage {
     }    
   }
 
+  //Method that present an alert when the user select the same origin and destiny
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'Destino equivocado',

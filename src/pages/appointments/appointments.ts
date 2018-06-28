@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppointmentsFormPage } from '../appointments-form/appointments-form';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { servicioMedico } from '../../models/servicioMedico';
@@ -35,8 +34,7 @@ export class AppointmentsPage {
    /**
    * Load all items in the array
    */
-  async initializeItems() {
-    //this.currentItems = this.items.query();
+  async initializeItems() {    
     this.medicalServiceCollection.snapshotChanges().subscribe(servicesList =>{
       this.itemsToShow = servicesList.map(item => {
         return{
@@ -106,7 +104,7 @@ export class AppointmentsPage {
   /**
    * Method that allows to search within the json
    * @param params the keys within the json to filter the search
-   * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for tildes problem
+   * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for accents problem
    */
   query(params?: any) {
     if (!params) {

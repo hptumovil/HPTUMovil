@@ -23,8 +23,9 @@ export class IndoorNavigatorPage {
   myColor: string = 'secondary';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFirestore) {
-    this.location1 = navParams.get('location1');
-    this.location2 = navParams.get('location2');
+    //We get the previous location
+    this.location1 = navParams.get('location1'); //Origin location
+    this.location2 = navParams.get('location2'); //Destiny location
   }
 
   ionViewDidLoad() {
@@ -40,16 +41,14 @@ export class IndoorNavigatorPage {
     this.mapsCollection.snapshotChanges().subscribe(mapsList => {
       this.maps = mapsList.map(item => {
         return {
-          archivo: item.payload.doc.data().archivo
-          // inicio: item.payload.doc.data().inicio,
-          // fin: item.payload.doc.data().fin
+          archivo: item.payload.doc.data().archivo          
         }
       })
-      //console.info(this.map);
     });
   }
+
   /**
- * Navigate to the end page for the start location.
+ * Navigate to the start location page.
  */
   newSearch() {
     this.navCtrl.push('IndoorNavigatorStartPage');

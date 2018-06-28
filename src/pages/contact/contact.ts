@@ -32,6 +32,7 @@ export class ContactPage {
     public alertCtrl: AlertController,
     private db: AngularFirestore
   ) {
+    //This build and validate the form
     this.contactUsForm = formBuilder.group({
       name: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ\s ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],

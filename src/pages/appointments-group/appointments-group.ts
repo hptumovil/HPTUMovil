@@ -30,6 +30,7 @@ export class AppointmentsGroupPage {
     this.initializeItems();
   }
 
+  //save the services in a second place for the search functionality
   initializeItems() {
     this.itemsToShow = this.services;
   }
@@ -108,6 +109,9 @@ export class AppointmentsGroupPage {
     this.initializeItems();    
   } 
   
+  /**
+   * Show all the items when the BackSpace in the searchbar is pressed
+   */
   onBackSpace(ev){
     this.initializeItems();  
     this.getItems(ev);

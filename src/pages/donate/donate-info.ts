@@ -1,4 +1,4 @@
-export const habeasDataText = `Conviértete en AMIGO del Hospital, donando a nuestros proyectos para:<br>
+export const DataText = `Conviértete en AMIGO del Hospital, donando a nuestros proyectos para:<br>
 <ul>
 <li> a) construcción, adecuación  y dotación de equipos  en áreas y servicios para pacientes</li>
 <li>b) grupos de apoyo para pacientes y acompañantes con diferentes diagnósticos</li>

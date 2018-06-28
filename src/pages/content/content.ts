@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 import { AppointmentsPage, MapPage, ContactPage, CheckinPage, PhysiciansPage, DonatePage, MedExamsPage, LabPage, IndoorNavigatorStartPage, ServicesPage} from '../pages';
-
+import { EventLoggerProvider } from '../../providers/event-logger/event-logger';
 import { Physician } from '../../models/physician';
 
 @IonicPage()
@@ -23,14 +23,16 @@ export class ContentPage {
   //Array of pages to pass to navController
   pages:any [] =[AppointmentsPage, ServicesPage, MedExamsPage, MapPage, PhysiciansPage, ContactPage, IndoorNavigatorStartPage, DonatePage, CheckinPage];
   
-  constructor(public navCtrl: NavController, private db: AngularFirestore, private inAppbrowser: InAppBrowser) {
+  constructor(public navCtrl: NavController, private db: AngularFirestore, private inAppbrowser: InAppBrowser, public logger: EventLoggerProvider) {
     this.physicianCollection = this.db.collection('medicos', ref => ref.where('isActive', '==', true).orderBy('lastname'));
     this.especialidades = this.db.collection('especialidades-medicas', ref => ref.orderBy('Nombre')).valueChanges();
     this.initializeItems();
    }
 
   //Method that load the selected page
-  goToPage(page: number) {
+  goToPage(page: number) {    
+    this.logger.logButton(this.pages[page],{ pram: 1 })//this for Google analytycs to see which functionality is the most used
+    console.log(this.pages[page]);
     if(page == 4){
       this.navCtrl.push(this.pages[page], {
         physicians: this.physicians,

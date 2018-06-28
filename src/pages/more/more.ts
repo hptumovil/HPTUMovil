@@ -21,6 +21,7 @@ type PageList = PageItem[]
 })
 export class MorePage {
 
+  //Pages for the More screen
   pages: any[] = [
     { title: 'Portafolio de servicios', component: 'ServicesPage' },   
     { title: 'Cómo llegar', component: 'MapPage' },
@@ -35,9 +36,8 @@ export class MorePage {
     console.log('ionViewDidLoad MorePage');
   }
 
-  openPage(page: PageItem) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+  //Method that open the selected page
+  openPage(page: PageItem) {    
     this.navCtrl.push(page.component);
   }
 }

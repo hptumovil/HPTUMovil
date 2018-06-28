@@ -60,36 +60,6 @@ export class MedExamsPage {
     });    
   }  
 
-  //Method that sorts all the instrutions for exams in groups by first letter
-  groupExams(exams) {
-
-    let sortedExams = exams.sort(function (a, b) {
-      return a.Titulo > b.Titulo;
-    });
-
-    let currentLetter = false;
-    let currentExams = [];
-
-    sortedExams.forEach((value, index) => {
-
-      if (value.Titulo.charAt(0) != currentLetter) {
-
-        currentLetter = value.Titulo.charAt(0);
-
-        let newGroup = {
-          letter: currentLetter,
-          exams: []
-        };
-
-        currentExams = newGroup.exams;
-        this.groupedExams.push(newGroup);
-
-      }
-      currentExams.push(value);
-    });
-
-  }
-
   /**
    * Perform a service search for the proper items.
    * see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript for tildes problem
@@ -124,10 +94,16 @@ export class MedExamsPage {
     this.initializeItems();
   }
 
+  /**
+   * Show all the items when the searchbar is canceled
+   */
   onCancel(ev) {
     this.initializeItems();
   }
 
+  /**
+   * Show all the items when the BackSpace is pressed in the searchbar
+   */
   onBackSpace(ev){
     this.initializeItems();  
     this.getItems(ev);

@@ -21,14 +21,16 @@ export class ExamDetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private callNumber: CallNumber) {
     this.exam = navParams.get('exam');
     this.phone = this.exam.Telefono;
-    //console.log(this.exam);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExamDetailPage');
   }
 
-  //These methods controls the accordion
+  /**These methods controls the accordion
+   * For more information
+   * https://ionicacademy.com/accordion-list-ionic/
+   * */
   toggleSection(i) {
     this.exam.info[i].open = !this.exam.info[i].open;
   }

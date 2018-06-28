@@ -26,6 +26,8 @@ import { CallNumber } from '@ionic-native/call-number';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+import { EventLoggerProvider } from '../providers/event-logger/event-logger';
 
 
 
@@ -102,7 +104,9 @@ export const firebaseConfig = {
     EmailComposer,
     InAppBrowser,
     RestProvider,
-    CallNumber
+    CallNumber,
+    FirebaseAnalytics,
+    EventLoggerProvider
   ]
 })
 export class AppModule { }

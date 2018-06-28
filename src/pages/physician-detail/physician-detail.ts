@@ -31,6 +31,7 @@ export class PhysicianDetailPage {
     console.log('ionViewDidLoad PhysicianDetailPage');
   }
 
+  //Method that open the HPTU portal
   goToWebPortal(){
     const options: InAppBrowserOptions = {
       zoom: 'yes',
@@ -44,8 +45,8 @@ export class PhysicianDetailPage {
 
   }
 
+  //Method that open the mail client in the user's phone with the physician email in the recipient
   sendEmail(){
-
     this.emailComposer.isAvailable().then(
       (available: boolean) => {
         if (available) {
