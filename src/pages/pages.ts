@@ -8,8 +8,7 @@ export const MainPage = 'TabsPage';
 // The initial root pages for our tabs (remove if not using tabs)
 export const Tab1Root = 'ContentPage';
 export const Tab2Root = 'AppointmentsPage';
-export const Tab3Root = 'LabPage';
-export const Tab4Root = 'MorePage';
+export const Tab3Root = 'MorePage';
 
 //The pages with the others functionalities
 export const AppointmentsPage = 'AppointmentsPage';
